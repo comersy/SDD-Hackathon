@@ -49,3 +49,17 @@ SDD-Hackathon/
 ├── download_data.py
 └── README.md
 ```
+
+## Entraîner un modèle
+
+```bash
+pip install lightgbm scikit-learn pandas
+python train.py
+```
+
+Le script écrit la soumission dans `submissions/` et le score de validation croisée dans `results/`.
+Pour soumettre sur Kaggle :
+
+```bash
+kaggle competitions submit -c sdd-hackaton-2026-heart-risk -f submissions/<fichier>.csv -m "message"
+```
