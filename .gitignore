@@ -1,0 +1,14 @@
+# Données Kaggle (trop lourdes pour GitHub, voir README)
+*.csv
+*.zip
+data/
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# Kaggle credentials
+kaggle.json
