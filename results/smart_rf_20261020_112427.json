@@ -1,0 +1,753 @@
+{
+  "name": "smart_rf",
+  "idea": "Random Forest « intelligent » : uniquement les colonnes défendables des niveaux A (amont), B (comorbidités), C (parcours/conséquences), D (contexte) de features/tiers.json, codes nettoyés, colonnes vides à > 95 % retirées, + 8 dérivées (SMOKING_STATUS, BMI_CALC, DRINKS_WEEK, DIABETES_BIN, DIAB_YEARS, N_COMORB, N_LIMITS, CARE_INTENSITY), NaN -> -1 ; RandomForestClassifier(500 arbres, max_features='sqrt', min_samples_leaf=5, random_state=42+fold) ; second modèle PRÉVENTION A+B seulement avec les mêmes hyperparamètres ; importances par permutation (AUC) agrégées par niveau",
+  "timestamp": "20261020_112427",
+  "cv": {
+    "f1": 0.41260630813482924,
+    "threshold": 0.22499999999999992,
+    "precision": 0.35033409456144804,
+    "recall": 0.5018021019474816,
+    "auc": 0.8471045937199829
+  },
+  "test_positive_rate": 0.13030666666666665,
+  "submission": "submissions/submission_smart_rf_20261020_112427.csv",
+  "runtime_s": 271.6,
+  "model": "random_forest",
+  "config": {
+    "n_estimators": 500,
+    "max_features": "sqrt",
+    "min_samples_leaf": 5,
+    "fill_value": -1.0,
+    "perm_rows": 20000,
+    "perm_repeats": 5
+  },
+  "nan_max": 0.95,
+  "n_columns": 92,
+  "columns_by_tier": {
+    "A_amont": [
+      "_AGE80",
+      "SEXVAR",
+      "SMOKE100",
+      "SMOKDAY2",
+      "_SMOKER3",
+      "_PACKYRS",
+      "_YRSSMOK",
+      "_PACKDAY",
+      "USENOW3",
+      "ECIGNOW2",
+      "_CURECI2",
+      "WEIGHT2",
+      "HEIGHT3",
+      "_BMI5",
+      "DIABETE4",
+      "DIABAGE4",
+      "PREDIAB2",
+      "EXERANY2",
+      "ALCDAY4",
+      "AVEDRNK3",
+      "DRNK3GE5",
+      "MAXDRNKS",
+      "_DRNKWK2",
+      "SLEPTIM1",
+      "MENTHLTH",
+      "ADDEPEV3",
+      "SDHSTRE1",
+      "PREGNANT",
+      "SMOKING_STATUS",
+      "BMI_CALC",
+      "DRINKS_WEEK",
+      "DIABETES_BIN",
+      "DIAB_YEARS"
+    ],
+    "B_comorbidites": [
+      "CVDSTRK3",
+      "CHCKDNY2",
+      "CHCCOPD3",
+      "HAVARTH4",
+      "ASTHMA3",
+      "ASTHNOW",
+      "CHCSCNC1",
+      "CHCOCNC1",
+      "DEAF",
+      "BLIND",
+      "N_COMORB"
+    ],
+    "C_parcours_consequences": [
+      "GENHLTH",
+      "PHYSHLTH",
+      "POORHLTH",
+      "DIFFWALK",
+      "DIFFDRES",
+      "DIFFALON",
+      "DECIDE",
+      "EMPLOY1",
+      "PERSDOC3",
+      "CHECKUP1",
+      "MEDCOST1",
+      "PRIMINSR",
+      "FLUSHOT7",
+      "FLSHTMY3",
+      "PNEUVAC4",
+      "TETANUS1",
+      "COVIDVA1",
+      "_YRSQUIT",
+      "LASTSMK2",
+      "LCSCTSC1",
+      "LCSSCNCR",
+      "LCSFIRST",
+      "LCSLAST",
+      "LCSNUMCG",
+      "LASTDEN4",
+      "RMVTETH4",
+      "_CRCREC2",
+      "_MAM5023",
+      "HOWLONG",
+      "N_LIMITS",
+      "CARE_INTENSITY"
+    ],
+    "D_contexte": [
+      "INCOME3",
+      "EDUCA",
+      "MARITAL",
+      "_RACE1",
+      "_HISPANC",
+      "_STATE",
+      "_METSTAT",
+      "_URBSTAT",
+      "HHADULT",
+      "CHILDREN",
+      "VETERAN3",
+      "RENTHOM1",
+      "SDHFOOD1",
+      "SDHBILLS",
+      "SDHISOLT",
+      "EMTSUPRT",
+      "LSATISFY"
+    ]
+  },
+  "derived_columns": {
+    "SMOKING_STATUS": "A_amont",
+    "BMI_CALC": "A_amont",
+    "DRINKS_WEEK": "A_amont",
+    "DIABETES_BIN": "A_amont",
+    "DIAB_YEARS": "A_amont",
+    "N_COMORB": "B_comorbidites",
+    "N_LIMITS": "C_parcours_consequences",
+    "CARE_INTENSITY": "C_parcours_consequences"
+  },
+  "dropped_by_tier": {
+    "A_amont": [],
+    "B_comorbidites": [],
+    "C_parcours_consequences": [
+      "STOPSMK2"
+    ],
+    "D_contexte": []
+  },
+  "importance_shares_by_tier": {
+    "A_amont": {
+      "share": 0.4531,
+      "n_columns": 33,
+      "top5": {
+        "_AGE80": 0.0274,
+        "SEXVAR": 0.00377,
+        "DIABETE4": 0.0006,
+        "DIABAGE4": 0.00047,
+        "_YRSSMOK": 0.00045
+      }
+    },
+    "B_comorbidites": {
+      "share": 0.1801,
+      "n_columns": 11,
+      "top5": {
+        "CVDSTRK3": 0.00811,
+        "N_COMORB": 0.00309,
+        "CHCKDNY2": 0.00102,
+        "CHCCOPD3": 0.00077,
+        "HAVARTH4": 0.00045
+      }
+    },
+    "C_parcours_consequences": {
+      "share": 0.352,
+      "n_columns": 31,
+      "top5": {
+        "GENHLTH": 0.00932,
+        "LCSCTSC1": 0.00381,
+        "EMPLOY1": 0.00341,
+        "PERSDOC3": 0.00212,
+        "LCSSCNCR": 0.00175
+      }
+    },
+    "D_contexte": {
+      "share": 0.0149,
+      "n_columns": 17,
+      "top5": {
+        "HHADULT": 0.00025,
+        "VETERAN3": 0.00021,
+        "MARITAL": 0.00013,
+        "_METSTAT": 0.00013,
+        "_URBSTAT": 0.00012
+      }
+    }
+  },
+  "top_features_permutation": {
+    "_AGE80": 0.027404,
+    "GENHLTH": 0.009315,
+    "CVDSTRK3": 0.008105,
+    "LCSCTSC1": 0.003807,
+    "SEXVAR": 0.003772,
+    "EMPLOY1": 0.00341,
+    "N_COMORB": 0.003087,
+    "PERSDOC3": 0.002119,
+    "LCSSCNCR": 0.001751,
+    "_CRCREC2": 0.001194,
+    "HOWLONG": 0.001185,
+    "CHCKDNY2": 0.001016,
+    "CHCCOPD3": 0.000765,
+    "CARE_INTENSITY": 0.000657,
+    "PHYSHLTH": 0.000625,
+    "DIABETE4": 0.000599,
+    "PRIMINSR": 0.000561,
+    "RMVTETH4": 0.00049,
+    "_MAM5023": 0.000484,
+    "DIABAGE4": 0.000475
+  },
+  "permutation_importance": {
+    "_AGE80": {
+      "mean": 0.027404,
+      "std": 0.001778
+    },
+    "SEXVAR": {
+      "mean": 0.003772,
+      "std": 0.000275
+    },
+    "SMOKE100": {
+      "mean": -1.7e-05,
+      "std": 8.2e-05
+    },
+    "SMOKDAY2": {
+      "mean": -0.000168,
+      "std": 6.3e-05
+    },
+    "_SMOKER3": {
+      "mean": -0.00011,
+      "std": 0.000112
+    },
+    "_PACKYRS": {
+      "mean": 0.000359,
+      "std": 0.000596
+    },
+    "_YRSSMOK": {
+      "mean": 0.000452,
+      "std": 0.000649
+    },
+    "_PACKDAY": {
+      "mean": 2.5e-05,
+      "std": 0.000212
+    },
+    "USENOW3": {
+      "mean": 0.000105,
+      "std": 6.2e-05
+    },
+    "ECIGNOW2": {
+      "mean": -9.2e-05,
+      "std": 8.2e-05
+    },
+    "_CURECI2": {
+      "mean": 6.5e-05,
+      "std": 2.8e-05
+    },
+    "WEIGHT2": {
+      "mean": -0.00011,
+      "std": 0.000495
+    },
+    "HEIGHT3": {
+      "mean": 0.000192,
+      "std": 0.000267
+    },
+    "_BMI5": {
+      "mean": 0.000251,
+      "std": 0.000288
+    },
+    "DIABETE4": {
+      "mean": 0.000599,
+      "std": 0.000457
+    },
+    "DIABAGE4": {
+      "mean": 0.000475,
+      "std": 0.000309
+    },
+    "PREDIAB2": {
+      "mean": 3.3e-05,
+      "std": 7.8e-05
+    },
+    "EXERANY2": {
+      "mean": 3.9e-05,
+      "std": 6.7e-05
+    },
+    "ALCDAY4": {
+      "mean": -0.000267,
+      "std": 0.000103
+    },
+    "AVEDRNK3": {
+      "mean": -0.000157,
+      "std": 0.000111
+    },
+    "DRNK3GE5": {
+      "mean": -0.000212,
+      "std": 0.000101
+    },
+    "MAXDRNKS": {
+      "mean": 1e-06,
+      "std": 0.000136
+    },
+    "_DRNKWK2": {
+      "mean": -0.00011,
+      "std": 0.00013
+    },
+    "SLEPTIM1": {
+      "mean": 0.000181,
+      "std": 5.4e-05
+    },
+    "MENTHLTH": {
+      "mean": -3.1e-05,
+      "std": 0.000135
+    },
+    "ADDEPEV3": {
+      "mean": 3e-06,
+      "std": 6.6e-05
+    },
+    "SDHSTRE1": {
+      "mean": -0.000359,
+      "std": 0.000122
+    },
+    "PREGNANT": {
+      "mean": 0.000363,
+      "std": 0.000136
+    },
+    "SMOKING_STATUS": {
+      "mean": -0.00014,
+      "std": 6.1e-05
+    },
+    "BMI_CALC": {
+      "mean": 0.0,
+      "std": 0.000412
+    },
+    "DRINKS_WEEK": {
+      "mean": -7.6e-05,
+      "std": 0.000178
+    },
+    "DIABETES_BIN": {
+      "mean": 0.000449,
+      "std": 0.000414
+    },
+    "DIAB_YEARS": {
+      "mean": 0.000363,
+      "std": 0.000353
+    },
+    "CVDSTRK3": {
+      "mean": 0.008105,
+      "std": 0.000796
+    },
+    "CHCKDNY2": {
+      "mean": 0.001016,
+      "std": 0.000165
+    },
+    "CHCCOPD3": {
+      "mean": 0.000765,
+      "std": 0.00017
+    },
+    "HAVARTH4": {
+      "mean": 0.000453,
+      "std": 0.00031
+    },
+    "ASTHMA3": {
+      "mean": 9.7e-05,
+      "std": 5.5e-05
+    },
+    "ASTHNOW": {
+      "mean": 9.9e-05,
+      "std": 3e-05
+    },
+    "CHCSCNC1": {
+      "mean": -7.2e-05,
+      "std": 0.000107
+    },
+    "CHCOCNC1": {
+      "mean": 0.000204,
+      "std": 0.000122
+    },
+    "DEAF": {
+      "mean": 0.000136,
+      "std": 0.000183
+    },
+    "BLIND": {
+      "mean": -3.7e-05,
+      "std": 0.000129
+    },
+    "N_COMORB": {
+      "mean": 0.003087,
+      "std": 0.000855
+    },
+    "GENHLTH": {
+      "mean": 0.009315,
+      "std": 0.001264
+    },
+    "PHYSHLTH": {
+      "mean": 0.000625,
+      "std": 0.000116
+    },
+    "POORHLTH": {
+      "mean": 7.6e-05,
+      "std": 0.000167
+    },
+    "DIFFWALK": {
+      "mean": 5.2e-05,
+      "std": 0.00035
+    },
+    "DIFFDRES": {
+      "mean": 0.000185,
+      "std": 8.9e-05
+    },
+    "DIFFALON": {
+      "mean": -1.6e-05,
+      "std": 7.6e-05
+    },
+    "DECIDE": {
+      "mean": -9.1e-05,
+      "std": 6.4e-05
+    },
+    "EMPLOY1": {
+      "mean": 0.00341,
+      "std": 0.000738
+    },
+    "PERSDOC3": {
+      "mean": 0.002119,
+      "std": 0.000399
+    },
+    "CHECKUP1": {
+      "mean": 0.000245,
+      "std": 8.5e-05
+    },
+    "MEDCOST1": {
+      "mean": 0.000163,
+      "std": 0.000135
+    },
+    "PRIMINSR": {
+      "mean": 0.000561,
+      "std": 0.000324
+    },
+    "FLUSHOT7": {
+      "mean": -7.4e-05,
+      "std": 9.3e-05
+    },
+    "FLSHTMY3": {
+      "mean": -0.000288,
+      "std": 5.3e-05
+    },
+    "PNEUVAC4": {
+      "mean": -4.4e-05,
+      "std": 0.000205
+    },
+    "TETANUS1": {
+      "mean": -0.000103,
+      "std": 0.000126
+    },
+    "COVIDVA1": {
+      "mean": -0.000144,
+      "std": 0.000111
+    },
+    "_YRSQUIT": {
+      "mean": 0.00038,
+      "std": 0.000321
+    },
+    "LASTSMK2": {
+      "mean": -1.3e-05,
+      "std": 3.7e-05
+    },
+    "LCSCTSC1": {
+      "mean": 0.003807,
+      "std": 0.000392
+    },
+    "LCSSCNCR": {
+      "mean": 0.001751,
+      "std": 0.000463
+    },
+    "LCSFIRST": {
+      "mean": 0.000214,
+      "std": 8.1e-05
+    },
+    "LCSLAST": {
+      "mean": 9e-05,
+      "std": 0.000312
+    },
+    "LCSNUMCG": {
+      "mean": 4.2e-05,
+      "std": 0.000226
+    },
+    "LASTDEN4": {
+      "mean": 0.000245,
+      "std": 0.000121
+    },
+    "RMVTETH4": {
+      "mean": 0.00049,
+      "std": 0.000269
+    },
+    "_CRCREC2": {
+      "mean": 0.001194,
+      "std": 0.000103
+    },
+    "_MAM5023": {
+      "mean": 0.000484,
+      "std": 0.000285
+    },
+    "HOWLONG": {
+      "mean": 0.001185,
+      "std": 0.000253
+    },
+    "N_LIMITS": {
+      "mean": -0.000465,
+      "std": 6.1e-05
+    },
+    "CARE_INTENSITY": {
+      "mean": 0.000657,
+      "std": 0.000198
+    },
+    "INCOME3": {
+      "mean": 0.000109,
+      "std": 0.000208
+    },
+    "EDUCA": {
+      "mean": -8.3e-05,
+      "std": 3.7e-05
+    },
+    "MARITAL": {
+      "mean": 0.00013,
+      "std": 0.000141
+    },
+    "_RACE1": {
+      "mean": 0.000106,
+      "std": 0.000151
+    },
+    "_HISPANC": {
+      "mean": -2.3e-05,
+      "std": 5.3e-05
+    },
+    "_STATE": {
+      "mean": -9.7e-05,
+      "std": 0.000115
+    },
+    "_METSTAT": {
+      "mean": 0.000127,
+      "std": 2.8e-05
+    },
+    "_URBSTAT": {
+      "mean": 0.000125,
+      "std": 3.8e-05
+    },
+    "HHADULT": {
+      "mean": 0.000252,
+      "std": 0.0002
+    },
+    "CHILDREN": {
+      "mean": 9.6e-05,
+      "std": 7.3e-05
+    },
+    "VETERAN3": {
+      "mean": 0.000207,
+      "std": 0.000183
+    },
+    "RENTHOM1": {
+      "mean": -7e-06,
+      "std": 3.6e-05
+    },
+    "SDHFOOD1": {
+      "mean": -0.000201,
+      "std": 8.5e-05
+    },
+    "SDHBILLS": {
+      "mean": -5.1e-05,
+      "std": 8.8e-05
+    },
+    "SDHISOLT": {
+      "mean": -1.4e-05,
+      "std": 0.000102
+    },
+    "EMTSUPRT": {
+      "mean": -0.000113,
+      "std": 0.000202
+    },
+    "LSATISFY": {
+      "mean": -0.000178,
+      "std": 5.1e-05
+    }
+  },
+  "top_features_impurity": {
+    "_AGE80": 0.057888,
+    "GENHLTH": 0.041997,
+    "N_COMORB": 0.032626,
+    "BMI_CALC": 0.030065,
+    "_BMI5": 0.02991,
+    "EMPLOY1": 0.029347,
+    "CVDSTRK3": 0.028528,
+    "_STATE": 0.02826,
+    "WEIGHT2": 0.027877,
+    "HEIGHT3": 0.022379,
+    "LCSCTSC1": 0.021077,
+    "PHYSHLTH": 0.020396,
+    "LCSSCNCR": 0.019829,
+    "INCOME3": 0.017975,
+    "_PACKYRS": 0.017799,
+    "_YRSSMOK": 0.016978,
+    "DIAB_YEARS": 0.016214,
+    "POORHLTH": 0.015489,
+    "SLEPTIM1": 0.015322,
+    "DIABAGE4": 0.014984
+  },
+  "folds": [
+    {
+      "auc": 0.84678,
+      "fit_s": 18.4,
+      "nodes_per_tree": 22924,
+      "fold_s": 19.4
+    },
+    {
+      "auc": 0.84555,
+      "fit_s": 17.8,
+      "nodes_per_tree": 22924,
+      "fold_s": 18.7
+    },
+    {
+      "auc": 0.84744,
+      "fit_s": 17.0,
+      "nodes_per_tree": 22969,
+      "fold_s": 17.9
+    },
+    {
+      "auc": 0.84659,
+      "fit_s": 17.6,
+      "nodes_per_tree": 22948,
+      "fold_s": 18.5
+    },
+    {
+      "auc": 0.84922,
+      "fit_s": 17.3,
+      "nodes_per_tree": 22998,
+      "fold_s": 18.2
+    }
+  ],
+  "prevention_model": {
+    "tiers": [
+      "A_amont",
+      "B_comorbidites"
+    ],
+    "n_columns": 44,
+    "columns": [
+      "_AGE80",
+      "SEXVAR",
+      "SMOKE100",
+      "SMOKDAY2",
+      "_SMOKER3",
+      "_PACKYRS",
+      "_YRSSMOK",
+      "_PACKDAY",
+      "USENOW3",
+      "ECIGNOW2",
+      "_CURECI2",
+      "WEIGHT2",
+      "HEIGHT3",
+      "_BMI5",
+      "DIABETE4",
+      "DIABAGE4",
+      "PREDIAB2",
+      "EXERANY2",
+      "ALCDAY4",
+      "AVEDRNK3",
+      "DRNK3GE5",
+      "MAXDRNKS",
+      "_DRNKWK2",
+      "SLEPTIM1",
+      "MENTHLTH",
+      "ADDEPEV3",
+      "SDHSTRE1",
+      "PREGNANT",
+      "SMOKING_STATUS",
+      "BMI_CALC",
+      "DRINKS_WEEK",
+      "DIABETES_BIN",
+      "DIAB_YEARS",
+      "CVDSTRK3",
+      "CHCKDNY2",
+      "CHCCOPD3",
+      "HAVARTH4",
+      "ASTHMA3",
+      "ASTHNOW",
+      "CHCSCNC1",
+      "CHCOCNC1",
+      "DEAF",
+      "BLIND",
+      "N_COMORB"
+    ],
+    "cv": {
+      "f1": 0.3808525587127538,
+      "threshold": 0.1999999999999999,
+      "precision": 0.30728198646940746,
+      "recall": 0.5007420419783748,
+      "auc": 0.8237657738340003
+    },
+    "folds": [
+      {
+        "auc": 0.82457,
+        "fit_s": 13.0,
+        "nodes_per_tree": 23453,
+        "fold_s": 13.9
+      },
+      {
+        "auc": 0.8236,
+        "fit_s": 12.6,
+        "nodes_per_tree": 23457,
+        "fold_s": 13.5
+      },
+      {
+        "auc": 0.82412,
+        "fit_s": 12.4,
+        "nodes_per_tree": 23504,
+        "fold_s": 13.3
+      },
+      {
+        "auc": 0.82201,
+        "fit_s": 12.6,
+        "nodes_per_tree": 23457,
+        "fold_s": 13.5
+      },
+      {
+        "auc": 0.8246,
+        "fit_s": 12.7,
+        "nodes_per_tree": 23494,
+        "fold_s": 13.6
+      }
+    ],
+    "oof_csv": "results/smart_rf_prevention_20261020_112427_oof.csv",
+    "test_csv": "results/smart_rf_prevention_20261020_112427_test.csv",
+    "top_features_impurity": {
+      "_AGE80": 0.113118,
+      "BMI_CALC": 0.062919,
+      "_BMI5": 0.062139,
+      "N_COMORB": 0.058406,
+      "WEIGHT2": 0.057689,
+      "CVDSTRK3": 0.04635,
+      "HEIGHT3": 0.045495,
+      "_PACKYRS": 0.038547,
+      "_YRSSMOK": 0.037279,
+      "SLEPTIM1": 0.034394,
+      "DIAB_YEARS": 0.028657,
+      "MENTHLTH": 0.02683,
+      "DIABAGE4": 0.026353,
+      "SDHSTRE1": 0.025323,
+      "CHCCOPD3": 0.025011
+    },
+    "delta_vs_full": {
+      "f1": 0.03175,
+      "auc": 0.02334
+    }
+  }
+}

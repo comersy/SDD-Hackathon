@@ -78,8 +78,22 @@ kaggle competitions submit -c sdd-hackaton-2026-heart-risk -f submissions/<fichi
   ```
   Un garde-fou (`modal_budget.json`) refuse tout lancement au-delà du budget estimé.
 
-## Reproduire le record (Kaggle 0,43062)
+## Reproduire le record (Kaggle 0,43239)
 
-Blend de trois modèles entraînés avec la même validation croisée (5 folds, seed 42), poids choisis sur les prédictions out-of-fold :
-`0,55 × LightGBM baggé (experiments/x_lgbbag_proba.py) + 0,20 × FT-Transformer (experiments/dl_ft_transformer.py, GPU) + 0,25 × ResNet tabulaire (experiments/dl_resnet.py, GPU)`, seuil 0,22.
-Lancer ces trois scripts sur Modal (ils écrivent leurs probabilités OOF/test dans `results/`), puis `python experiments/ml_stack.py` en local.
+Blend de trois modèles entraînés avec la même validation croisée (5 folds, seed 42), poids choisis sur les prédictions out-of-fold (F1 CV 0,4259 / AUC 0,8555) :
+`0,42 × LightGBM baggé (experiments/x_lgbbag_proba.py) + 0,28 × CatBoost GPU réglé (experiments/hp_catboost_gpu.py) + 0,30 × ResNet tabulaire (experiments/dl_resnet.py, GPU)`.
+Lancer ces trois scripts sur Modal (ils écrivent leurs probabilités OOF/test dans `results/`), puis `python experiments/ml_stack_v3.py` en local.
+Les écarts entre les meilleurs modèles (0,4247 à 0,4259 en CV, 0,430 à 0,432 sur Kaggle) sont du niveau du bruit : le plafond vient des données (cible auto-déclarée, pas de tension ni de cholestérol dans le millésime 2022), AUC maximale observée 0,855 toutes méthodes confondues.
+
+## Modèle « intelligent » et score prévention
+
+`features/tiers.json` classe les colonnes en quatre niveaux : A facteurs de risque en amont, B comorbidités, C parcours de soins et conséquences (causalité inversée), D contexte social ; le reste (intrusif, doublons, artefacts) est exclu.
+Sur les 92 colonnes A-D (`experiments/smart_lgbm.py`, `smart_xgb.py`, `smart_rf.py`, `smart_mlp_towers.py`, `smart_blend.py`) :
+
+| | F1 CV | AUC | Kaggle |
+|---|---|---|---|
+| Modèle complet A+B+C+D (LightGBM) | 0,4223 | 0,854 | 0,43036 |
+| Modèle prévention A+B seulement | 0,387 | 0,830 | — |
+
+Le MLP à quatre tours (`smart_mlp_towers.py`) décompose le risque par niveau : le parcours de soins explique 33 % de la variance du score, les facteurs d'amont 18 %.
+`features/selected_columns.json` (50 colonnes, AUC 0,8542) et `features/selected_columns_min.json` (listes de 15 à 40 colonnes par élimination récursive) donnent les sous-ensembles minimaux ; en dessous de 30 colonnes la perte devient nette.

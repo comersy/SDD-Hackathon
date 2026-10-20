@@ -1,0 +1,33 @@
+{
+  "description": "Classement critique des colonnes BRFSS 2022 pour la prédiction du risque cardiaque. Seules les colonnes des niveaux A-D sont utilisables par les modèles « intelligents » ; tout le reste est exclu. Les colonnes absentes des données ou vides à plus de 95 % sont ignorées.",
+  "tiers": {
+    "A_amont": {
+      "why": "Facteurs de risque en amont de la maladie : ce qu'un outil de prévention a le droit de regarder.",
+      "columns": ["_AGE80", "SEXVAR", "SMOKE100", "SMOKDAY2", "_SMOKER3", "_PACKYRS", "_YRSSMOK", "_PACKDAY", "USENOW3", "ECIGNOW2", "_CURECI2",
+                  "WEIGHT2", "HEIGHT3", "_BMI5", "DIABETE4", "DIABAGE4", "PREDIAB2", "EXERANY2", "ALCDAY4", "AVEDRNK3", "DRNK3GE5", "MAXDRNKS", "_DRNKWK2",
+                  "SLEPTIM1", "MENTHLTH", "ADDEPEV3", "SDHSTRE1", "PREGNANT"],
+      "monotone_increasing": ["_AGE80", "_PACKYRS", "_YRSSMOK", "_PACKDAY", "_BMI5", "WEIGHT2", "MENTHLTH", "_DRNKWK2", "DIABAGE4_present"],
+      "note": "Hypertension et cholestérol sont absents du millésime 2022 (posés les années impaires) : c'est la principale limite du jeu."
+    },
+    "B_comorbidites": {
+      "why": "Maladies qui partagent les causes de la maladie cardiaque (athérosclérose, tabac, diabète, âge) sans en être la conséquence directe.",
+      "columns": ["CVDSTRK3", "CHCKDNY2", "CHCCOPD3", "HAVARTH4", "ASTHMA3", "ASTHNOW", "CHCSCNC1", "CHCOCNC1", "DEAF", "BLIND"]
+    },
+    "C_parcours_consequences": {
+      "why": "Conséquences de la maladie ou du diagnostic, et intensité du suivi médical : prédictif pour la compétition, inutilisable pour la prévention (causalité inversée).",
+      "columns": ["GENHLTH", "PHYSHLTH", "POORHLTH", "DIFFWALK", "DIFFDRES", "DIFFALON", "DECIDE", "EMPLOY1", "PERSDOC3", "CHECKUP1", "MEDCOST1", "PRIMINSR",
+                  "FLUSHOT7", "FLSHTMY3", "PNEUVAC4", "TETANUS1", "COVIDVA1", "_YRSQUIT", "LASTSMK2", "STOPSMK2",
+                  "LCSCTSC1", "LCSSCNCR", "LCSFIRST", "LCSLAST", "LCSNUMCG", "LASTDEN4", "RMVTETH4", "_CRCREC2", "_MAM5023", "HOWLONG"]
+    },
+    "D_contexte": {
+      "why": "Contexte socio-démographique : agit par l'accès aux soins et les conditions de vie, pas par la biologie. À utiliser avec prudence, jamais seul.",
+      "columns": ["INCOME3", "EDUCA", "MARITAL", "_RACE1", "_HISPANC", "_STATE", "_METSTAT", "_URBSTAT", "HHADULT", "CHILDREN", "VETERAN3", "RENTHOM1",
+                  "SDHFOOD1", "SDHBILLS", "SDHISOLT", "EMTSUPRT", "LSATISFY"]
+    }
+  },
+  "excluded": {
+    "intrusif_ou_sans_lien": ["HIVTST7", "HIVTSTD3", "HIVRISK5", "HADHYST2", "CERVSCRN", "CRVCLCNC", "CRVCLPAP", "CRVCLHPV", "HADSEX", "PFPPRVN4", "TYPCNTR9", "BRTHCNT4", "SOMALE", "SOFEMALE", "TRNSGNDR", "BIRTHSEX", "ACEDEPRS", "ACEDRINK", "ACEDRUGS", "ACEPRISN", "ACEDIVRC", "ACEPUNCH", "ACEHURT1", "ACESWEAR", "ACETOUCH", "ACETTHEM", "ACEHVSEX", "ACEADSAF", "ACEADNED", "MARIJAN1", "MARJSMOK", "MARJEAT", "MARJVAPE", "MARJDAB", "MARJOTHR", "USEMRJN4", "FIREARM5", "GUNLOAD", "LOADULK2", "RRCLASS3", "RRCOGNT2", "RRTREAT", "RRATWRK2", "RRHCARE4", "RRPHYSM2"],
+    "doublons_calcules": ["_AGEG5YR", "_AGE_G", "_AGE65YR", "_SEX", "_RFHLTH", "_PHYS14D", "_MENT14D", "_HLTHPLN", "_HCVU652", "_TOTINDA", "_EXTETH3", "_ALTETH3", "_DENVST3", "_LTASTH1", "_CASTHM1", "_ASTHMS1", "_DRDXAR2", "_PRACE2", "_MRACE2", "_RACEG22", "_RACEGR4", "_RACEPR1", "_IMPRACE", "HTIN4", "HTM4", "WTKG3", "_BMI5CAT", "_RFBMI5", "_CHLDCNT", "_EDUCAG", "_INCOMG1", "_RFSMOK3", "_SMOKGRP", "_LCSREC", "DRNKANY6", "DROCDY4_", "_RFBING6", "_RFDRHV8", "_FLSHOT7", "_PNEUMO3", "_AIDTST4", "_RFMAM22"],
+    "artefacts_questionnaire": "colonnes administratives, dates, poids de sondage, écran d'appel, modules optionnels d'État quasi vides, COVID (hors vaccin), aidants, déclin cognitif, dépistages colorectaux détaillés"
+  }
+}

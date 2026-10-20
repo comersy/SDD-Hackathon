@@ -1,0 +1,1164 @@
+{
+  "name": "smart_mlp_towers",
+  "idea": "Modèle intelligent : colonnes défendables seulement (niveaux A amont / B comorbidités / C parcours / D contexte de features/tiers.json + 8 dérivées), MLP à quatre tours sommées en logit (additif entre niveaux, interactions libres dans un niveau), 5 graines par fold ; le même réseau donne un score prévention A+B et une décomposition lisible de chaque prédiction",
+  "timestamp": "20261020_114011",
+  "cv": {
+    "f1": 0.41930818653832475,
+    "threshold": 0.21999999999999992,
+    "precision": 0.34448101906858064,
+    "recall": 0.5356634461035225,
+    "auc": 0.8522534765519083
+  },
+  "test_positive_rate": 0.14233333333333334,
+  "submission": "submissions/submission_smart_mlp_towers_20261020_114011.csv",
+  "oof_csv": "results/smart_mlp_towers_20261020_114011_oof.csv",
+  "test_csv": "results/smart_mlp_towers_20261020_114011_test.csv",
+  "runtime_s": 996.2,
+  "model": "mlp_towers",
+  "config": {
+    "epochs": 12,
+    "patience": 4,
+    "batch_size": 1024,
+    "lr": 0.001,
+    "weight_decay": 0.0001,
+    "emb_dim": 8,
+    "hidden": [
+      256,
+      128
+    ],
+    "dropout": 0.3,
+    "seeds": 5,
+    "prevention_retrain_seeds": 2
+  },
+  "device": "cuda",
+  "nan_max": 0.95,
+  "cat_max_levels": 15,
+  "n_columns": 92,
+  "columns_by_tier": {
+    "A_amont": [
+      "_AGE80",
+      "SEXVAR",
+      "SMOKE100",
+      "SMOKDAY2",
+      "_SMOKER3",
+      "_PACKYRS",
+      "_YRSSMOK",
+      "_PACKDAY",
+      "USENOW3",
+      "ECIGNOW2",
+      "_CURECI2",
+      "WEIGHT2",
+      "HEIGHT3",
+      "_BMI5",
+      "DIABETE4",
+      "DIABAGE4",
+      "PREDIAB2",
+      "EXERANY2",
+      "ALCDAY4",
+      "AVEDRNK3",
+      "DRNK3GE5",
+      "MAXDRNKS",
+      "_DRNKWK2",
+      "SLEPTIM1",
+      "MENTHLTH",
+      "ADDEPEV3",
+      "SDHSTRE1",
+      "PREGNANT",
+      "SMOKING_STATUS",
+      "BMI_CALC",
+      "DRINKS_WEEK",
+      "DIABETES_BIN",
+      "DIAB_YEARS"
+    ],
+    "B_comorbidites": [
+      "CVDSTRK3",
+      "CHCKDNY2",
+      "CHCCOPD3",
+      "HAVARTH4",
+      "ASTHMA3",
+      "ASTHNOW",
+      "CHCSCNC1",
+      "CHCOCNC1",
+      "DEAF",
+      "BLIND",
+      "N_COMORB"
+    ],
+    "C_parcours_consequences": [
+      "GENHLTH",
+      "PHYSHLTH",
+      "POORHLTH",
+      "DIFFWALK",
+      "DIFFDRES",
+      "DIFFALON",
+      "DECIDE",
+      "EMPLOY1",
+      "PERSDOC3",
+      "CHECKUP1",
+      "MEDCOST1",
+      "PRIMINSR",
+      "FLUSHOT7",
+      "FLSHTMY3",
+      "PNEUVAC4",
+      "TETANUS1",
+      "COVIDVA1",
+      "_YRSQUIT",
+      "LASTSMK2",
+      "LCSCTSC1",
+      "LCSSCNCR",
+      "LCSFIRST",
+      "LCSLAST",
+      "LCSNUMCG",
+      "LASTDEN4",
+      "RMVTETH4",
+      "_CRCREC2",
+      "_MAM5023",
+      "HOWLONG",
+      "N_LIMITS",
+      "CARE_INTENSITY"
+    ],
+    "D_contexte": [
+      "INCOME3",
+      "EDUCA",
+      "MARITAL",
+      "_RACE1",
+      "_HISPANC",
+      "_STATE",
+      "_METSTAT",
+      "_URBSTAT",
+      "HHADULT",
+      "CHILDREN",
+      "VETERAN3",
+      "RENTHOM1",
+      "SDHFOOD1",
+      "SDHBILLS",
+      "SDHISOLT",
+      "EMTSUPRT",
+      "LSATISFY"
+    ]
+  },
+  "categorical_by_tier": {
+    "A_amont": [
+      "SEXVAR",
+      "SMOKE100",
+      "SMOKDAY2",
+      "_SMOKER3",
+      "USENOW3",
+      "ECIGNOW2",
+      "_CURECI2",
+      "DIABETE4",
+      "PREDIAB2",
+      "EXERANY2",
+      "ADDEPEV3",
+      "SDHSTRE1",
+      "PREGNANT",
+      "SMOKING_STATUS",
+      "DIABETES_BIN"
+    ],
+    "B_comorbidites": [
+      "CVDSTRK3",
+      "CHCKDNY2",
+      "CHCCOPD3",
+      "HAVARTH4",
+      "ASTHMA3",
+      "ASTHNOW",
+      "CHCSCNC1",
+      "CHCOCNC1",
+      "DEAF",
+      "BLIND"
+    ],
+    "C_parcours_consequences": [
+      "GENHLTH",
+      "DIFFWALK",
+      "DIFFDRES",
+      "DIFFALON",
+      "DECIDE",
+      "EMPLOY1",
+      "PERSDOC3",
+      "CHECKUP1",
+      "MEDCOST1",
+      "PRIMINSR",
+      "FLUSHOT7",
+      "PNEUVAC4",
+      "TETANUS1",
+      "COVIDVA1",
+      "LASTSMK2",
+      "LCSCTSC1",
+      "LCSSCNCR",
+      "LASTDEN4",
+      "RMVTETH4",
+      "_CRCREC2",
+      "_MAM5023",
+      "HOWLONG"
+    ],
+    "D_contexte": [
+      "INCOME3",
+      "EDUCA",
+      "MARITAL",
+      "_RACE1",
+      "_HISPANC",
+      "_STATE",
+      "_METSTAT",
+      "_URBSTAT",
+      "VETERAN3",
+      "RENTHOM1",
+      "SDHFOOD1",
+      "SDHBILLS",
+      "SDHISOLT",
+      "EMTSUPRT",
+      "LSATISFY"
+    ]
+  },
+  "derived": {
+    "SMOKING_STATUS": "A_amont",
+    "BMI_CALC": "A_amont",
+    "DRINKS_WEEK": "A_amont",
+    "DIABETES_BIN": "A_amont",
+    "DIAB_YEARS": "A_amont",
+    "N_COMORB": "B_comorbidites",
+    "N_LIMITS": "C_parcours_consequences",
+    "CARE_INTENSITY": "C_parcours_consequences"
+  },
+  "excluded_absent_or_sparse": [
+    "STOPSMK2"
+  ],
+  "prevention_model": {
+    "method": "même réseau, sigmoid(biais + tour_A + tour_B + moyenne(tour_C + tour_D) sur le fold d'entraînement)",
+    "n_columns": 44,
+    "columns": [
+      "_AGE80",
+      "SEXVAR",
+      "SMOKE100",
+      "SMOKDAY2",
+      "_SMOKER3",
+      "_PACKYRS",
+      "_YRSSMOK",
+      "_PACKDAY",
+      "USENOW3",
+      "ECIGNOW2",
+      "_CURECI2",
+      "WEIGHT2",
+      "HEIGHT3",
+      "_BMI5",
+      "DIABETE4",
+      "DIABAGE4",
+      "PREDIAB2",
+      "EXERANY2",
+      "ALCDAY4",
+      "AVEDRNK3",
+      "DRNK3GE5",
+      "MAXDRNKS",
+      "_DRNKWK2",
+      "SLEPTIM1",
+      "MENTHLTH",
+      "ADDEPEV3",
+      "SDHSTRE1",
+      "PREGNANT",
+      "SMOKING_STATUS",
+      "BMI_CALC",
+      "DRINKS_WEEK",
+      "DIABETES_BIN",
+      "DIAB_YEARS",
+      "CVDSTRK3",
+      "CHCKDNY2",
+      "CHCCOPD3",
+      "HAVARTH4",
+      "ASTHMA3",
+      "ASTHNOW",
+      "CHCSCNC1",
+      "CHCOCNC1",
+      "DEAF",
+      "BLIND",
+      "N_COMORB"
+    ],
+    "f1": 0.3744709265382171,
+    "threshold": 0.07999999999999999,
+    "precision": 0.29055386569508973,
+    "recall": 0.5265469303692037,
+    "auc": 0.8200715173661351,
+    "oof_csv": "results/smart_mlp_towers_prevention_20261020_114011_oof.csv",
+    "test_csv": "results/smart_mlp_towers_prevention_20261020_114011_test.csv"
+  },
+  "tower_decomposition": {
+    "bias": -0.0282,
+    "total_logit": {
+      "mean": -3.3402,
+      "var": 3.1874
+    },
+    "towers": {
+      "A_amont": {
+        "mean": -0.8871,
+        "std": 0.7664,
+        "var": 0.5874,
+        "min": -3.7125,
+        "q05": -2.2594,
+        "q95": 0.1826,
+        "max": 0.6594,
+        "var_share_of_total_logit": 0.1843,
+        "corr_with_total_logit": 0.823
+      },
+      "B_comorbidites": {
+        "mean": -0.7137,
+        "std": 0.2848,
+        "var": 0.0811,
+        "min": -2.2781,
+        "q05": -0.9383,
+        "q95": -0.0569,
+        "max": 1.1805,
+        "var_share_of_total_logit": 0.0255,
+        "corr_with_total_logit": 0.5515
+      },
+      "C_parcours_consequences": {
+        "mean": -1.125,
+        "std": 1.0271,
+        "var": 1.055,
+        "min": -4.875,
+        "q05": -2.8063,
+        "q95": 0.459,
+        "max": 1.3031,
+        "var_share_of_total_logit": 0.331,
+        "corr_with_total_logit": 0.8891
+      },
+      "D_contexte": {
+        "mean": -0.5862,
+        "std": 0.2063,
+        "var": 0.0426,
+        "min": -1.5281,
+        "q05": -0.9602,
+        "q95": -0.2885,
+        "max": 0.416,
+        "var_share_of_total_logit": 0.0134,
+        "corr_with_total_logit": 0.4084
+      }
+    },
+    "tower_correlation": {
+      "A_amont": {
+        "A_amont": 1.0,
+        "B_comorbidites": 0.3262,
+        "C_parcours_consequences": 0.5249,
+        "D_contexte": 0.3434
+      },
+      "B_comorbidites": {
+        "A_amont": 0.3262,
+        "B_comorbidites": 1.0,
+        "C_parcours_consequences": 0.4049,
+        "D_contexte": 0.165
+      },
+      "C_parcours_consequences": {
+        "A_amont": 0.5249,
+        "B_comorbidites": 0.4049,
+        "C_parcours_consequences": 1.0,
+        "D_contexte": 0.207
+      },
+      "D_contexte": {
+        "A_amont": 0.3434,
+        "B_comorbidites": 0.165,
+        "C_parcours_consequences": 0.207,
+        "D_contexte": 1.0
+      }
+    }
+  },
+  "profiles": [
+    {
+      "profile": "jeune_sain",
+      "n_matching": 15936,
+      "row": 120529,
+      "target": 0,
+      "positive_rate_in_group": 0.0032,
+      "values": {
+        "_AGE80": 22.0,
+        "SEXVAR": 1.0,
+        "SMOKING_STATUS": 0.0,
+        "_PACKYRS": null,
+        "BMI_CALC": 34.971,
+        "DIABETES_BIN": 0.0,
+        "DIAB_YEARS": null,
+        "EXERANY2": 1.0,
+        "DRINKS_WEEK": 0.7,
+        "SLEPTIM1": 7.0,
+        "MENTHLTH": 9.0,
+        "N_COMORB": 0.0,
+        "CVDSTRK3": 2.0,
+        "GENHLTH": 2.0,
+        "N_LIMITS": 0.0,
+        "CARE_INTENSITY": 2.0,
+        "INCOME3": null,
+        "EDUCA": 5.0,
+        "_STATE": 31.0
+      },
+      "logit": {
+        "bias": -0.0282,
+        "A_amont": -1.8094,
+        "B_comorbidites": -0.9383,
+        "C_parcours_consequences": -2.7406,
+        "D_contexte": -0.6687,
+        "total": -6.1852
+      },
+      "proba_full": 0.0021,
+      "proba_prevention": 0.0112
+    },
+    {
+      "profile": "fumeur_age",
+      "n_matching": 7577,
+      "row": 106927,
+      "target": 0,
+      "positive_rate_in_group": 0.206,
+      "values": {
+        "_AGE80": 74.0,
+        "SEXVAR": 2.0,
+        "SMOKING_STATUS": 3.0,
+        "_PACKYRS": 27.0,
+        "BMI_CALC": 33.2814,
+        "DIABETES_BIN": 1.0,
+        "DIAB_YEARS": 14.0,
+        "EXERANY2": 2.0,
+        "DRINKS_WEEK": 0.0,
+        "SLEPTIM1": 8.0,
+        "MENTHLTH": 20.0,
+        "N_COMORB": 2.0,
+        "CVDSTRK3": 2.0,
+        "GENHLTH": 1.0,
+        "N_LIMITS": 1.0,
+        "CARE_INTENSITY": 4.0,
+        "INCOME3": 8.0,
+        "EDUCA": 4.0,
+        "_STATE": 6.0
+      },
+      "logit": {
+        "bias": -0.0282,
+        "A_amont": -0.0908,
+        "B_comorbidites": -0.4738,
+        "C_parcours_consequences": -0.6313,
+        "D_contexte": -0.3668,
+        "total": -1.5909
+      },
+      "proba_full": 0.1724,
+      "proba_prevention": 0.0935
+    },
+    {
+      "profile": "diabetique_ancien",
+      "n_matching": 4408,
+      "row": 235834,
+      "target": 1,
+      "positive_rate_in_group": 0.1527,
+      "values": {
+        "_AGE80": 52.0,
+        "SEXVAR": 1.0,
+        "SMOKING_STATUS": 0.0,
+        "_PACKYRS": null,
+        "BMI_CALC": 42.9265,
+        "DIABETES_BIN": 1.0,
+        "DIAB_YEARS": 12.0,
+        "EXERANY2": 1.0,
+        "DRINKS_WEEK": 0.9333,
+        "SLEPTIM1": 7.0,
+        "MENTHLTH": 0.0,
+        "N_COMORB": 0.0,
+        "CVDSTRK3": 2.0,
+        "GENHLTH": 2.0,
+        "N_LIMITS": 0.0,
+        "CARE_INTENSITY": 4.0,
+        "INCOME3": 9.0,
+        "EDUCA": 5.0,
+        "_STATE": 41.0
+      },
+      "logit": {
+        "bias": -0.0282,
+        "A_amont": -0.3877,
+        "B_comorbidites": -0.8484,
+        "C_parcours_consequences": 0.0598,
+        "D_contexte": -0.7391,
+        "total": -1.9436
+      },
+      "proba_full": 0.1253,
+      "proba_prevention": 0.046
+    },
+    {
+      "profile": "mauvaise_sante_suivi_lourd",
+      "n_matching": 3055,
+      "row": 200946,
+      "target": 1,
+      "positive_rate_in_group": 0.4285,
+      "values": {
+        "_AGE80": 72.0,
+        "SEXVAR": 2.0,
+        "SMOKING_STATUS": 0.0,
+        "_PACKYRS": null,
+        "BMI_CALC": 40.3506,
+        "DIABETES_BIN": 0.0,
+        "DIAB_YEARS": null,
+        "EXERANY2": 2.0,
+        "DRINKS_WEEK": 0.2333,
+        "SLEPTIM1": 7.0,
+        "MENTHLTH": 10.0,
+        "N_COMORB": 4.0,
+        "CVDSTRK3": 1.0,
+        "GENHLTH": 5.0,
+        "N_LIMITS": 2.0,
+        "CARE_INTENSITY": 4.0,
+        "INCOME3": 5.0,
+        "EDUCA": 4.0,
+        "_STATE": 22.0
+      },
+      "logit": {
+        "bias": -0.0282,
+        "A_amont": -0.5875,
+        "B_comorbidites": 0.0501,
+        "C_parcours_consequences": 0.7437,
+        "D_contexte": -0.4742,
+        "total": -0.296
+      },
+      "proba_full": 0.4272,
+      "proba_prevention": 0.0938
+    },
+    {
+      "profile": "precaire_age_moyen",
+      "n_matching": 555,
+      "row": 93790,
+      "target": 0,
+      "positive_rate_in_group": 0.1369,
+      "values": {
+        "_AGE80": 56.0,
+        "SEXVAR": 1.0,
+        "SMOKING_STATUS": 0.0,
+        "_PACKYRS": null,
+        "BMI_CALC": 30.1138,
+        "DIABETES_BIN": 0.0,
+        "DIAB_YEARS": null,
+        "EXERANY2": 1.0,
+        "DRINKS_WEEK": 0.0,
+        "SLEPTIM1": 5.0,
+        "MENTHLTH": 0.0,
+        "N_COMORB": 0.0,
+        "CVDSTRK3": 2.0,
+        "GENHLTH": 4.0,
+        "N_LIMITS": 0.0,
+        "CARE_INTENSITY": 1.0,
+        "INCOME3": 2.0,
+        "EDUCA": 2.0,
+        "_STATE": 36.0
+      },
+      "logit": {
+        "bias": -0.0282,
+        "A_amont": -0.5855,
+        "B_comorbidites": -0.8516,
+        "C_parcours_consequences": -0.3042,
+        "D_contexte": -0.5445,
+        "total": -2.3141
+      },
+      "proba_full": 0.0923,
+      "proba_prevention": 0.0402
+    }
+  ],
+  "folds": [
+    {
+      "auc_full": 0.85181,
+      "auc_prevention": 0.82077,
+      "auc_prevention_retrained": 0.8283,
+      "seeds": [
+        {
+          "seed": 42,
+          "epochs": 12,
+          "best_val_logloss": 0.22769,
+          "val_auc": 0.85071,
+          "bias": -0.033,
+          "shift_CD": -1.7151,
+          "tower_means_train": [
+            -0.9389,
+            -0.6688,
+            -1.053,
+            -0.662
+          ],
+          "tower_stds_train": [
+            0.7883,
+            0.2792,
+            1.0603,
+            0.2158
+          ]
+        },
+        {
+          "seed": 43,
+          "epochs": 10,
+          "best_val_logloss": 0.22798,
+          "val_auc": 0.84981,
+          "bias": -0.027,
+          "shift_CD": -1.7335,
+          "tower_means_train": [
+            -0.7366,
+            -0.8422,
+            -1.138,
+            -0.5956
+          ],
+          "tower_stds_train": [
+            0.6747,
+            0.2981,
+            1.018,
+            0.209
+          ]
+        },
+        {
+          "seed": 44,
+          "epochs": 12,
+          "best_val_logloss": 0.22756,
+          "val_auc": 0.85071,
+          "bias": -0.0369,
+          "shift_CD": -1.7957,
+          "tower_means_train": [
+            -0.8496,
+            -0.6275,
+            -1.2205,
+            -0.5752
+          ],
+          "tower_stds_train": [
+            0.7501,
+            0.2844,
+            1.0199,
+            0.2089
+          ]
+        },
+        {
+          "seed": 45,
+          "epochs": 12,
+          "best_val_logloss": 0.2278,
+          "val_auc": 0.85069,
+          "bias": -0.0285,
+          "shift_CD": -1.7472,
+          "tower_means_train": [
+            -0.8903,
+            -0.6539,
+            -1.1676,
+            -0.5797
+          ],
+          "tower_stds_train": [
+            0.7666,
+            0.281,
+            1.0521,
+            0.2309
+          ]
+        },
+        {
+          "seed": 46,
+          "epochs": 12,
+          "best_val_logloss": 0.2276,
+          "val_auc": 0.85077,
+          "bias": -0.0265,
+          "shift_CD": -1.8496,
+          "tower_means_train": [
+            -0.8952,
+            -0.6132,
+            -1.2851,
+            -0.5645
+          ],
+          "tower_stds_train": [
+            0.788,
+            0.2812,
+            1.0384,
+            0.2333
+          ]
+        }
+      ],
+      "retrained_seeds": [
+        {
+          "seed": 92,
+          "epochs": 12,
+          "best_val_logloss": 0.2387
+        },
+        {
+          "seed": 93,
+          "epochs": 12,
+          "best_val_logloss": 0.23871
+        }
+      ],
+      "s": 195
+    },
+    {
+      "auc_full": 0.85165,
+      "auc_prevention": 0.8203,
+      "auc_prevention_retrained": 0.82824,
+      "seeds": [
+        {
+          "seed": 142,
+          "epochs": 12,
+          "best_val_logloss": 0.22796,
+          "val_auc": 0.84999,
+          "bias": -0.0288,
+          "shift_CD": -1.4687,
+          "tower_means_train": [
+            -0.9202,
+            -0.9574,
+            -0.9928,
+            -0.4759
+          ],
+          "tower_stds_train": [
+            0.7944,
+            0.2931,
+            1.0637,
+            0.2146
+          ]
+        },
+        {
+          "seed": 143,
+          "epochs": 12,
+          "best_val_logloss": 0.22785,
+          "val_auc": 0.85031,
+          "bias": -0.0266,
+          "shift_CD": -1.7811,
+          "tower_means_train": [
+            -1.0604,
+            -0.4637,
+            -1.1552,
+            -0.626
+          ],
+          "tower_stds_train": [
+            0.7803,
+            0.2753,
+            1.0457,
+            0.2186
+          ]
+        },
+        {
+          "seed": 144,
+          "epochs": 12,
+          "best_val_logloss": 0.22761,
+          "val_auc": 0.85114,
+          "bias": -0.0301,
+          "shift_CD": -1.7752,
+          "tower_means_train": [
+            -0.9837,
+            -0.5089,
+            -1.1991,
+            -0.5762
+          ],
+          "tower_stds_train": [
+            0.7899,
+            0.276,
+            1.0345,
+            0.2307
+          ]
+        },
+        {
+          "seed": 145,
+          "epochs": 12,
+          "best_val_logloss": 0.22811,
+          "val_auc": 0.85041,
+          "bias": -0.0284,
+          "shift_CD": -1.7503,
+          "tower_means_train": [
+            -0.891,
+            -0.6477,
+            -1.2065,
+            -0.5438
+          ],
+          "tower_stds_train": [
+            0.7817,
+            0.286,
+            1.0543,
+            0.2287
+          ]
+        },
+        {
+          "seed": 146,
+          "epochs": 12,
+          "best_val_logloss": 0.22765,
+          "val_auc": 0.8504,
+          "bias": -0.0271,
+          "shift_CD": -1.581,
+          "tower_means_train": [
+            -0.8947,
+            -0.8603,
+            -1.1302,
+            -0.4508
+          ],
+          "tower_stds_train": [
+            0.79,
+            0.2791,
+            1.042,
+            0.2223
+          ]
+        }
+      ],
+      "retrained_seeds": [
+        {
+          "seed": 192,
+          "epochs": 12,
+          "best_val_logloss": 0.23826
+        },
+        {
+          "seed": 193,
+          "epochs": 12,
+          "best_val_logloss": 0.23836
+        }
+      ],
+      "s": 198
+    },
+    {
+      "auc_full": 0.85182,
+      "auc_prevention": 0.82094,
+      "auc_prevention_retrained": 0.8282,
+      "seeds": [
+        {
+          "seed": 242,
+          "epochs": 10,
+          "best_val_logloss": 0.22795,
+          "val_auc": 0.85023,
+          "bias": -0.0243,
+          "shift_CD": -1.6742,
+          "tower_means_train": [
+            -0.7064,
+            -0.9367,
+            -1.0251,
+            -0.6491
+          ],
+          "tower_stds_train": [
+            0.7316,
+            0.283,
+            1.0109,
+            0.2248
+          ]
+        },
+        {
+          "seed": 243,
+          "epochs": 11,
+          "best_val_logloss": 0.22796,
+          "val_auc": 0.8503,
+          "bias": -0.0263,
+          "shift_CD": -1.677,
+          "tower_means_train": [
+            -0.85,
+            -0.8163,
+            -1.0467,
+            -0.6303
+          ],
+          "tower_stds_train": [
+            0.7796,
+            0.2984,
+            1.027,
+            0.2204
+          ]
+        },
+        {
+          "seed": 244,
+          "epochs": 12,
+          "best_val_logloss": 0.2277,
+          "val_auc": 0.85076,
+          "bias": -0.0268,
+          "shift_CD": -1.7572,
+          "tower_means_train": [
+            -0.8446,
+            -0.7311,
+            -1.1933,
+            -0.5639
+          ],
+          "tower_stds_train": [
+            0.7839,
+            0.2649,
+            1.021,
+            0.2372
+          ]
+        },
+        {
+          "seed": 245,
+          "epochs": 11,
+          "best_val_logloss": 0.22813,
+          "val_auc": 0.84961,
+          "bias": -0.0284,
+          "shift_CD": -1.7807,
+          "tower_means_train": [
+            -0.7675,
+            -0.8094,
+            -1.185,
+            -0.5957
+          ],
+          "tower_stds_train": [
+            0.7003,
+            0.2712,
+            1.0713,
+            0.2004
+          ]
+        },
+        {
+          "seed": 246,
+          "epochs": 12,
+          "best_val_logloss": 0.22788,
+          "val_auc": 0.85033,
+          "bias": -0.0262,
+          "shift_CD": -1.7396,
+          "tower_means_train": [
+            -0.893,
+            -0.6731,
+            -1.101,
+            -0.6386
+          ],
+          "tower_stds_train": [
+            0.7862,
+            0.2759,
+            1.0168,
+            0.2198
+          ]
+        }
+      ],
+      "retrained_seeds": [
+        {
+          "seed": 292,
+          "epochs": 12,
+          "best_val_logloss": 0.23842
+        },
+        {
+          "seed": 293,
+          "epochs": 12,
+          "best_val_logloss": 0.23851
+        }
+      ],
+      "s": 188
+    },
+    {
+      "auc_full": 0.85272,
+      "auc_prevention": 0.81841,
+      "auc_prevention_retrained": 0.8258,
+      "seeds": [
+        {
+          "seed": 342,
+          "epochs": 12,
+          "best_val_logloss": 0.22763,
+          "val_auc": 0.85159,
+          "bias": -0.0273,
+          "shift_CD": -1.791,
+          "tower_means_train": [
+            -0.8011,
+            -0.6931,
+            -1.2399,
+            -0.5512
+          ],
+          "tower_stds_train": [
+            0.7131,
+            0.2898,
+            1.0586,
+            0.2315
+          ]
+        },
+        {
+          "seed": 343,
+          "epochs": 12,
+          "best_val_logloss": 0.22761,
+          "val_auc": 0.85188,
+          "bias": -0.0312,
+          "shift_CD": -1.6641,
+          "tower_means_train": [
+            -0.9164,
+            -0.6751,
+            -1.0409,
+            -0.6232
+          ],
+          "tower_stds_train": [
+            0.7784,
+            0.2813,
+            1.0211,
+            0.2281
+          ]
+        },
+        {
+          "seed": 344,
+          "epochs": 12,
+          "best_val_logloss": 0.22788,
+          "val_auc": 0.85112,
+          "bias": -0.0284,
+          "shift_CD": -1.6226,
+          "tower_means_train": [
+            -1.0199,
+            -0.6929,
+            -1.1628,
+            -0.4598
+          ],
+          "tower_stds_train": [
+            0.7964,
+            0.2836,
+            1.0152,
+            0.2229
+          ]
+        },
+        {
+          "seed": 345,
+          "epochs": 12,
+          "best_val_logloss": 0.2279,
+          "val_auc": 0.85101,
+          "bias": -0.0271,
+          "shift_CD": -1.8254,
+          "tower_means_train": [
+            -0.7754,
+            -0.7271,
+            -1.0484,
+            -0.777
+          ],
+          "tower_stds_train": [
+            0.7849,
+            0.2875,
+            1.0267,
+            0.2322
+          ]
+        },
+        {
+          "seed": 346,
+          "epochs": 12,
+          "best_val_logloss": 0.22742,
+          "val_auc": 0.85195,
+          "bias": -0.0275,
+          "shift_CD": -1.6443,
+          "tower_means_train": [
+            -0.8833,
+            -0.7507,
+            -1.0132,
+            -0.6311
+          ],
+          "tower_stds_train": [
+            0.7705,
+            0.2825,
+            1.0141,
+            0.2178
+          ]
+        }
+      ],
+      "retrained_seeds": [
+        {
+          "seed": 392,
+          "epochs": 12,
+          "best_val_logloss": 0.2395
+        },
+        {
+          "seed": 393,
+          "epochs": 12,
+          "best_val_logloss": 0.2397
+        }
+      ],
+      "s": 196
+    },
+    {
+      "auc_full": 0.85346,
+      "auc_prevention": 0.82055,
+      "auc_prevention_retrained": 0.82884,
+      "seeds": [
+        {
+          "seed": 442,
+          "epochs": 12,
+          "best_val_logloss": 0.22696,
+          "val_auc": 0.85249,
+          "bias": -0.0284,
+          "shift_CD": -1.6969,
+          "tower_means_train": [
+            -0.9842,
+            -0.5933,
+            -1.1898,
+            -0.5071
+          ],
+          "tower_stds_train": [
+            0.7648,
+            0.2909,
+            1.0179,
+            0.219
+          ]
+        },
+        {
+          "seed": 443,
+          "epochs": 12,
+          "best_val_logloss": 0.22723,
+          "val_auc": 0.85241,
+          "bias": -0.0259,
+          "shift_CD": -1.7462,
+          "tower_means_train": [
+            -0.8704,
+            -0.7175,
+            -0.9952,
+            -0.751
+          ],
+          "tower_stds_train": [
+            0.7905,
+            0.3032,
+            1.0302,
+            0.2357
+          ]
+        },
+        {
+          "seed": 444,
+          "epochs": 12,
+          "best_val_logloss": 0.22694,
+          "val_auc": 0.85255,
+          "bias": -0.0285,
+          "shift_CD": -1.6637,
+          "tower_means_train": [
+            -0.9544,
+            -0.7357,
+            -1.1397,
+            -0.5241
+          ],
+          "tower_stds_train": [
+            0.7881,
+            0.2801,
+            1.0697,
+            0.2321
+          ]
+        },
+        {
+          "seed": 445,
+          "epochs": 12,
+          "best_val_logloss": 0.22739,
+          "val_auc": 0.85194,
+          "bias": -0.0277,
+          "shift_CD": -1.842,
+          "tower_means_train": [
+            -0.7338,
+            -0.7283,
+            -1.2087,
+            -0.6333
+          ],
+          "tower_stds_train": [
+            0.7939,
+            0.2921,
+            1.0352,
+            0.2465
+          ]
+        },
+        {
+          "seed": 446,
+          "epochs": 12,
+          "best_val_logloss": 0.22733,
+          "val_auc": 0.85141,
+          "bias": -0.0284,
+          "shift_CD": -1.4581,
+          "tower_means_train": [
+            -1.1238,
+            -0.72,
+            -0.987,
+            -0.471
+          ],
+          "tower_stds_train": [
+            0.793,
+            0.278,
+            1.0174,
+            0.2218
+          ]
+        }
+      ],
+      "retrained_seeds": [
+        {
+          "seed": 492,
+          "epochs": 12,
+          "best_val_logloss": 0.23841
+        },
+        {
+          "seed": 493,
+          "epochs": 12,
+          "best_val_logloss": 0.23827
+        }
+      ],
+      "s": 198
+    }
+  ],
+  "prevention_retrained": {
+    "method": "réseau A+B seul réentraîné, mêmes hyperparamètres, 2 graines par fold",
+    "f1": 0.3825650532407931,
+    "threshold": 0.18999999999999995,
+    "precision": 0.3051813378059117,
+    "recall": 0.5125238513493049,
+    "auc": 0.827853428737636,
+    "oof_csv": "results/smart_mlp_towers_prevention_retrained_20261020_114011_oof.csv",
+    "test_csv": "results/smart_mlp_towers_prevention_retrained_20261020_114011_test.csv"
+  }
+}
