@@ -1,0 +1,152 @@
+{
+  "name": "lgbbag_cols30",
+  "idea": "[copie de fs_final (LightGBM baggé 5 graines par fold, protocole x_lgbbag_proba inchangé) ; seule modification : select_columns() ne garde que COLUMNS] 30 colonnes RFE : liste minimale issue d'une élimination récursive (rfe_curve) à partir de la liste finale de 50 colonnes, évaluée seule (pas de variante étendue).",
+  "timestamp": "20261020_105735",
+  "cv": {
+    "f1": 0.41995217438325383,
+    "threshold": 0.2149999999999999,
+    "precision": 0.348073781921039,
+    "recall": 0.529242511433504,
+    "auc": 0.8522161651973795
+  },
+  "test_positive_rate": 0.13932,
+  "submission": "submissions/submission_lgbbag_cols30_20261020_105735.csv",
+  "runtime_s": 94.8,
+  "model": "lightgbm_seed_bagging",
+  "params": {
+    "objective": "binary",
+    "learning_rate": 0.05,
+    "num_leaves": 63,
+    "min_child_samples": 100,
+    "feature_fraction": 0.5,
+    "bagging_fraction": 0.8,
+    "bagging_freq": 1,
+    "lambda_l2": 1.0,
+    "verbose": -1,
+    "seed": 42,
+    "num_threads": 16
+  },
+  "seeds": [
+    42,
+    1,
+    2,
+    3,
+    4
+  ],
+  "n_features": 30,
+  "n_columns": 30,
+  "columns": [
+    "_AGE80",
+    "GENHLTH",
+    "EMPLOY1",
+    "LCSCTSC1",
+    "CVDSTRK3",
+    "SEXVAR",
+    "_BMI5",
+    "_PACKYRS",
+    "PERSDOC3",
+    "DIABAGE4",
+    "WEIGHT2",
+    "_YRSSMOK",
+    "CHCKDNY2",
+    "_STATE",
+    "CHCCOPD3",
+    "DIABETE4",
+    "PHYSHLTH",
+    "_MAM5023",
+    "INCOME3",
+    "SLEPTIM1",
+    "HEIGHT3",
+    "POORHLTH",
+    "ALCDAY4",
+    "HADHYST2",
+    "HAVARTH4",
+    "_RACE1",
+    "FLSHTMY3",
+    "_EXTETH3",
+    "DIFFWALK",
+    "PRIMINSR"
+  ],
+  "selection_rule": "[copie de fs_final (LightGBM baggé 5 graines par fold, protocole x_lgbbag_proba inchangé) ; seule modification : select_columns() ne garde que COLUMNS] 30 colonnes RFE : liste minimale issue d'une élimination récursive (rfe_curve) à partir de la liste finale de 50 colonnes, évaluée seule (pas de variante étendue).",
+  "selection_note": "la liste a été construite par élimination récursive à partir d'importances calculées dans chaque fold puis agrégées, donc l'évaluation finale en CV comporte un léger optimisme de sélection (à dire dans le notebook)",
+  "sources": [
+    "results/rfe_curve_20261020_093321_study.json"
+  ],
+  "best_iterations": [
+    [
+      178,
+      160,
+      156,
+      197,
+      191
+    ],
+    [
+      185,
+      167,
+      156,
+      153,
+      162
+    ],
+    [
+      216,
+      196,
+      307,
+      176,
+      175
+    ],
+    [
+      181,
+      197,
+      171,
+      160,
+      221
+    ],
+    [
+      211,
+      190,
+      172,
+      171,
+      185
+    ]
+  ],
+  "cv_seed42_only": {
+    "f1": 0.41837041310592676,
+    "threshold": 0.2149999999999999,
+    "precision": 0.3468175839942609,
+    "recall": 0.5271223914952903,
+    "auc": 0.8514770954505179
+  },
+  "top_features": {
+    "_AGE80": 82408.0,
+    "GENHLTH": 54762.0,
+    "LCSCTSC1": 46486.0,
+    "EMPLOY1": 46357.0,
+    "CVDSTRK3": 26254.0,
+    "DIABETE4": 10990.0,
+    "PERSDOC3": 10758.0,
+    "SEXVAR": 10304.0,
+    "CHCCOPD3": 10096.0,
+    "DIFFWALK": 9459.0,
+    "_PACKYRS": 9313.0,
+    "PRIMINSR": 9279.0,
+    "DIABAGE4": 8675.0,
+    "CHCKDNY2": 8226.0,
+    "PHYSHLTH": 7979.0,
+    "_BMI5": 7700.0,
+    "_YRSSMOK": 7544.0,
+    "HADHYST2": 6680.0,
+    "_MAM5023": 6581.0,
+    "_EXTETH3": 6563.0,
+    "HAVARTH4": 6349.0,
+    "WEIGHT2": 6005.0,
+    "_RACE1": 4436.0,
+    "_STATE": 4112.0,
+    "HEIGHT3": 4064.0,
+    "INCOME3": 4054.0,
+    "POORHLTH": 3862.0,
+    "ALCDAY4": 3759.0,
+    "SLEPTIM1": 3625.0,
+    "FLSHTMY3": 3382.0
+  },
+  "rows": 0
+}

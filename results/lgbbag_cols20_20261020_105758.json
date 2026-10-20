@@ -1,0 +1,132 @@
+{
+  "name": "lgbbag_cols20",
+  "idea": "[copie de fs_final.py (LightGBM baggé 5 graines par fold, pipeline inchangé) ; seule modification : FINAL_COLUMNS remplacée par la liste minimale de 20 colonnes issue de l'élimination récursive (rfe_curve), variante étendue retirée] 20 colonnes RFE : l'utilisateur veut beaucoup moins de colonnes que les 50 de la liste finale ; on mesure ce que coûte en F1/AUC le passage de 50 à 20 colonnes avec le même modèle.",
+  "timestamp": "20261020_105758",
+  "cv": {
+    "f1": 0.4168678796123108,
+    "threshold": 0.1999999999999999,
+    "precision": 0.3331098952860611,
+    "recall": 0.5568949329133477,
+    "auc": 0.850644605679822
+  },
+  "test_positive_rate": 0.15365333333333334,
+  "submission": "submissions/submission_lgbbag_cols20_20261020_105758.csv",
+  "runtime_s": 105.2,
+  "model": "lightgbm_seed_bagging",
+  "params": {
+    "objective": "binary",
+    "learning_rate": 0.05,
+    "num_leaves": 63,
+    "min_child_samples": 100,
+    "feature_fraction": 0.5,
+    "bagging_fraction": 0.8,
+    "bagging_freq": 1,
+    "lambda_l2": 1.0,
+    "verbose": -1,
+    "seed": 42,
+    "num_threads": 16
+  },
+  "seeds": [
+    42,
+    1,
+    2,
+    3,
+    4
+  ],
+  "n_features": 20,
+  "n_columns": 20,
+  "columns": [
+    "_AGE80",
+    "GENHLTH",
+    "EMPLOY1",
+    "LCSCTSC1",
+    "CVDSTRK3",
+    "SEXVAR",
+    "_BMI5",
+    "_PACKYRS",
+    "WEIGHT2",
+    "PERSDOC3",
+    "_YRSSMOK",
+    "DIABAGE4",
+    "_STATE",
+    "PHYSHLTH",
+    "CHCCOPD3",
+    "INCOME3",
+    "CHCKDNY2",
+    "DIABETE4",
+    "SLEPTIM1",
+    "DIFFWALK"
+  ],
+  "selection_rule": "[copie de fs_final.py (LightGBM baggé 5 graines par fold, pipeline inchangé) ; seule modification : FINAL_COLUMNS remplacée par la liste minimale de 20 colonnes issue de l'élimination récursive (rfe_curve), variante étendue retirée] 20 colonnes RFE : l'utilisateur veut beaucoup moins de colonnes que les 50 de la liste finale ; on mesure ce que coûte en F1/AUC le passage de 50 à 20 colonnes avec le même modèle.",
+  "selection_note": "la liste a été construite par élimination récursive à partir d'importances calculées dans chaque fold puis agrégées, donc l'évaluation finale en CV comporte un léger optimisme de sélection (à dire dans le notebook)",
+  "sources": [
+    "results/rfe_curve_20261020_093321_study.json"
+  ],
+  "best_iterations": [
+    [
+      198,
+      153,
+      141,
+      186,
+      149
+    ],
+    [
+      149,
+      142,
+      154,
+      189,
+      161
+    ],
+    [
+      192,
+      215,
+      225,
+      214,
+      174
+    ],
+    [
+      202,
+      231,
+      220,
+      216,
+      192
+    ],
+    [
+      194,
+      158,
+      187,
+      215,
+      212
+    ]
+  ],
+  "cv_seed42_only": {
+    "f1": 0.4161367157690262,
+    "threshold": 0.2049999999999999,
+    "precision": 0.3365501505545269,
+    "recall": 0.5450222612593513,
+    "auc": 0.8501196443685936
+  },
+  "top_features": {
+    "_AGE80": 90928.0,
+    "GENHLTH": 54805.0,
+    "EMPLOY1": 53310.0,
+    "LCSCTSC1": 44894.0,
+    "CVDSTRK3": 26830.0,
+    "SEXVAR": 16962.0,
+    "PHYSHLTH": 12404.0,
+    "_PACKYRS": 12379.0,
+    "DIABETE4": 12327.0,
+    "PERSDOC3": 11853.0,
+    "CHCCOPD3": 11156.0,
+    "CHCKDNY2": 9432.0,
+    "DIABAGE4": 9333.0,
+    "_YRSSMOK": 9126.0,
+    "_BMI5": 9113.0,
+    "WEIGHT2": 8467.0,
+    "DIFFWALK": 8221.0,
+    "_STATE": 5837.0,
+    "INCOME3": 5715.0,
+    "SLEPTIM1": 4860.0
+  },
+  "rows": 0
+}

@@ -1,0 +1,364 @@
+{
+  "name": "smart_xgb",
+  "idea": "[structure de x_lgbbag_proba : folds, seuil OOF, save_outputs avec oof=] Modèle « intelligent » : seules les colonnes des niveaux A_amont / B_comorbidites / C_parcours_consequences / D_contexte de features/tiers.json (listes embarquées), intersectées avec select_columns() et sans les colonnes vides à > 95 % (STOPSMK2 exclue) ; clean() de r1_clean_codes, plus _DRNKWK2 == 99900 (code inconnu) -> NaN. Dérivées sans TARGET, faites une fois sur train et test : SMOKING_STATUS (0 jamais / 1 ancien / 2 occasionnel / 3 quotidien), BMI_CALC depuis WEIGHT2/HEIGHT3 nettoyés, DRINKS_WEEK = ALCDAY4/30*7 x AVEDRNK3, DIABETES_BIN, DIAB_YEARS = _AGE80 - DIABAGE4, N_COMORB (somme des B), N_LIMITS (DIFFWALK/DIFFDRES/DIFFALON/DECIDE), CARE_INTENSITY (PERSDOC3 1-2, CHECKUP1 1, FLUSHOT7 1, PNEUVAC4 1) ; colonnes brutes conservées ; NaN gardés pour les arbres (l'absence d'un module ou d'une question conditionnelle a un sens). XGBoost GPU (device=cuda, hist, binary:logistic, logloss, max_depth 7, lr 0.05, min_child_weight 20, subsample 0.8, colsample_bytree 0.5, reg_lambda 5, early stopping 100, 5000 arbres max) avec monotone_constraints croissantes sur _AGE80, _PACKYRS, _YRSSMOK, _PACKDAY, _BMI5, WEIGHT2, MENTHLTH, _DRNKWK2 et DIABETES_BIN (= « DIABAGE4_present » de tiers.json, mêmes colonnes que smart_lgbm) ; 3 graines (42, 1, 2) par fold, chacune avec son early stopping ; OOF et test = moyenne 3 graines x 5 folds. Hyperparamètres prescrits (aucun results/hp_xgb_optuna_*.json disponible au lancement). Deux évaluations : modèle COMPLET A+B+C+D (soumis) et modèle PRÉVENTION A+B (mêmes hyperparamètres, mêmes folds), dont les métriques OOF vont sous \"prevention_model\" et les OOF/test CSV sous <nom>_prevention",
+  "timestamp": "20261020_112119",
+  "cv": {
+    "f1": 0.4227693528992867,
+    "threshold": 0.2049999999999999,
+    "precision": 0.34396489495079974,
+    "recall": 0.5484144531604931,
+    "auc": 0.8543764873687858
+  },
+  "test_positive_rate": 0.14542666666666668,
+  "submission": "submissions/submission_smart_xgb_20261020_112119.csv",
+  "runtime_s": 77.6,
+  "model": "xgboost_gpu_monotone_seed_bagging",
+  "params": {
+    "objective": "binary:logistic",
+    "eval_metric": "logloss",
+    "tree_method": "hist",
+    "device": "cuda",
+    "max_depth": 7,
+    "learning_rate": 0.05,
+    "min_child_weight": 20,
+    "subsample": 0.8,
+    "colsample_bytree": 0.5,
+    "reg_lambda": 5,
+    "seed": 42,
+    "nthread": 8,
+    "monotone_constraints": [
+      "_AGE80",
+      "_PACKYRS",
+      "_YRSSMOK",
+      "_PACKDAY",
+      "_BMI5",
+      "WEIGHT2",
+      "MENTHLTH",
+      "_DRNKWK2",
+      "DIABETES_BIN"
+    ]
+  },
+  "seeds": [
+    42,
+    1,
+    2
+  ],
+  "num_boost_round": 5000,
+  "early_stopping_rounds": 100,
+  "n_features": 92,
+  "columns_by_tier": {
+    "A_amont": [
+      "_AGE80",
+      "SEXVAR",
+      "SMOKE100",
+      "SMOKDAY2",
+      "_SMOKER3",
+      "_PACKYRS",
+      "_YRSSMOK",
+      "_PACKDAY",
+      "USENOW3",
+      "ECIGNOW2",
+      "_CURECI2",
+      "WEIGHT2",
+      "HEIGHT3",
+      "_BMI5",
+      "DIABETE4",
+      "DIABAGE4",
+      "PREDIAB2",
+      "EXERANY2",
+      "ALCDAY4",
+      "AVEDRNK3",
+      "DRNK3GE5",
+      "MAXDRNKS",
+      "_DRNKWK2",
+      "SLEPTIM1",
+      "MENTHLTH",
+      "ADDEPEV3",
+      "SDHSTRE1",
+      "PREGNANT",
+      "SMOKING_STATUS",
+      "BMI_CALC",
+      "DRINKS_WEEK",
+      "DIABETES_BIN",
+      "DIAB_YEARS"
+    ],
+    "B_comorbidites": [
+      "CVDSTRK3",
+      "CHCKDNY2",
+      "CHCCOPD3",
+      "HAVARTH4",
+      "ASTHMA3",
+      "ASTHNOW",
+      "CHCSCNC1",
+      "CHCOCNC1",
+      "DEAF",
+      "BLIND",
+      "N_COMORB"
+    ],
+    "C_parcours_consequences": [
+      "GENHLTH",
+      "PHYSHLTH",
+      "POORHLTH",
+      "DIFFWALK",
+      "DIFFDRES",
+      "DIFFALON",
+      "DECIDE",
+      "EMPLOY1",
+      "PERSDOC3",
+      "CHECKUP1",
+      "MEDCOST1",
+      "PRIMINSR",
+      "FLUSHOT7",
+      "FLSHTMY3",
+      "PNEUVAC4",
+      "TETANUS1",
+      "COVIDVA1",
+      "_YRSQUIT",
+      "LASTSMK2",
+      "LCSCTSC1",
+      "LCSSCNCR",
+      "LCSFIRST",
+      "LCSLAST",
+      "LCSNUMCG",
+      "LASTDEN4",
+      "RMVTETH4",
+      "_CRCREC2",
+      "_MAM5023",
+      "HOWLONG",
+      "N_LIMITS",
+      "CARE_INTENSITY"
+    ],
+    "D_contexte": [
+      "INCOME3",
+      "EDUCA",
+      "MARITAL",
+      "_RACE1",
+      "_HISPANC",
+      "_STATE",
+      "_METSTAT",
+      "_URBSTAT",
+      "HHADULT",
+      "CHILDREN",
+      "VETERAN3",
+      "RENTHOM1",
+      "SDHFOOD1",
+      "SDHBILLS",
+      "SDHISOLT",
+      "EMTSUPRT",
+      "LSATISFY"
+    ]
+  },
+  "columns_dropped_by_tier": {
+    "A_amont": [],
+    "B_comorbidites": [],
+    "C_parcours_consequences": [
+      "STOPSMK2"
+    ],
+    "D_contexte": []
+  },
+  "derived_columns": {
+    "SMOKING_STATUS": "A_amont",
+    "BMI_CALC": "A_amont",
+    "DRINKS_WEEK": "A_amont",
+    "DIABETES_BIN": "A_amont",
+    "DIAB_YEARS": "A_amont",
+    "N_COMORB": "B_comorbidites",
+    "N_LIMITS": "C_parcours_consequences",
+    "CARE_INTENSITY": "C_parcours_consequences"
+  },
+  "monotone_increasing": [
+    "_AGE80",
+    "_PACKYRS",
+    "_YRSSMOK",
+    "_PACKDAY",
+    "WEIGHT2",
+    "_BMI5",
+    "_DRNKWK2",
+    "MENTHLTH",
+    "DIABETES_BIN"
+  ],
+  "best_iterations": [
+    [
+      212,
+      242,
+      270
+    ],
+    [
+      282,
+      247,
+      291
+    ],
+    [
+      273,
+      273,
+      232
+    ],
+    [
+      262,
+      294,
+      278
+    ],
+    [
+      281,
+      294,
+      237
+    ]
+  ],
+  "cv_seed42_only": {
+    "f1": 0.42180945250573404,
+    "threshold": 0.2099999999999999,
+    "precision": 0.3470956385683552,
+    "recall": 0.5375109791925372,
+    "auc": 0.8538319157533468
+  },
+  "gain_share_by_tier": {
+    "A_amont": 0.2743,
+    "B_comorbidites": 0.1802,
+    "C_parcours_consequences": 0.4826,
+    "D_contexte": 0.0629
+  },
+  "top_features": {
+    "LCSCTSC1": 168.5,
+    "EMPLOY1": 150.5,
+    "GENHLTH": 139.6,
+    "CVDSTRK3": 126.0,
+    "_AGE80": 113.7,
+    "LCSSCNCR": 56.2,
+    "SEXVAR": 54.0,
+    "DIFFWALK": 53.9,
+    "N_COMORB": 53.6,
+    "DIABETE4": 46.1,
+    "DIABETES_BIN": 44.8,
+    "CHCKDNY2": 37.8,
+    "_MAM5023": 32.6,
+    "CHCCOPD3": 31.6,
+    "PREGNANT": 29.7,
+    "PERSDOC3": 22.0,
+    "PNEUVAC4": 17.2,
+    "HOWLONG": 16.9,
+    "RMVTETH4": 16.6,
+    "HAVARTH4": 15.5,
+    "CARE_INTENSITY": 14.9,
+    "N_LIMITS": 13.8,
+    "PRIMINSR": 12.8,
+    "VETERAN3": 12.1,
+    "CHECKUP1": 11.6
+  },
+  "prevention_model": {
+    "tiers": [
+      "A_amont",
+      "B_comorbidites"
+    ],
+    "n_features": 44,
+    "columns": [
+      "_AGE80",
+      "SEXVAR",
+      "SMOKE100",
+      "SMOKDAY2",
+      "_SMOKER3",
+      "_PACKYRS",
+      "_YRSSMOK",
+      "_PACKDAY",
+      "USENOW3",
+      "ECIGNOW2",
+      "_CURECI2",
+      "WEIGHT2",
+      "HEIGHT3",
+      "_BMI5",
+      "DIABETE4",
+      "DIABAGE4",
+      "PREDIAB2",
+      "EXERANY2",
+      "ALCDAY4",
+      "AVEDRNK3",
+      "DRNK3GE5",
+      "MAXDRNKS",
+      "_DRNKWK2",
+      "SLEPTIM1",
+      "MENTHLTH",
+      "ADDEPEV3",
+      "SDHSTRE1",
+      "PREGNANT",
+      "SMOKING_STATUS",
+      "BMI_CALC",
+      "DRINKS_WEEK",
+      "DIABETES_BIN",
+      "DIAB_YEARS",
+      "CVDSTRK3",
+      "CHCKDNY2",
+      "CHCCOPD3",
+      "HAVARTH4",
+      "ASTHMA3",
+      "ASTHNOW",
+      "CHCSCNC1",
+      "CHCOCNC1",
+      "DEAF",
+      "BLIND",
+      "N_COMORB"
+    ],
+    "cv": {
+      "f1": 0.3863170877983094,
+      "threshold": 0.18499999999999994,
+      "precision": 0.30836765662258836,
+      "recall": 0.5170063906472423,
+      "auc": 0.8295655360609596
+    },
+    "cv_seed42_only": {
+      "f1": 0.38614033260424263,
+      "threshold": 0.18999999999999995,
+      "precision": 0.31246254120467487,
+      "recall": 0.5052851561316898,
+      "auc": 0.8292523031091571
+    },
+    "best_iterations": [
+      [
+        152,
+        175,
+        156
+      ],
+      [
+        178,
+        161,
+        192
+      ],
+      [
+        195,
+        192,
+        191
+      ],
+      [
+        191,
+        179,
+        202
+      ],
+      [
+        179,
+        195,
+        142
+      ]
+    ],
+    "top_features": {
+      "CVDSTRK3": 172.3,
+      "_AGE80": 134.3,
+      "DIABETES_BIN": 96.9,
+      "DIABETE4": 86.3,
+      "N_COMORB": 86.1,
+      "SEXVAR": 80.7,
+      "CHCCOPD3": 75.3,
+      "CHCKDNY2": 61.4,
+      "HAVARTH4": 52.5,
+      "PREGNANT": 43.2,
+      "_PACKYRS": 17.1,
+      "ASTHMA3": 16.0,
+      "_YRSSMOK": 13.5,
+      "DEAF": 13.2,
+      "ASTHNOW": 12.6
+    },
+    "oof_csv": "results/smart_xgb_prevention_20261020_112119_oof.csv",
+    "test_csv": "results/smart_xgb_prevention_20261020_112119_test.csv",
+    "delta_full_minus_prevention": {
+      "f1": 0.036452265100977266,
+      "auc": 0.02481095130782618
+    }
+  }
+}

@@ -1,0 +1,718 @@
+{
+  "name": "smart_lgbm",
+  "idea": "[copie de x_lgbbag_proba : LightGBM 5 graines par fold, early stopping par modèle, OOF/test moyennés] Modèle « intelligent » : colonnes restreintes aux niveaux A_amont, B_comorbidites, C_parcours_consequences, D_contexte de features/tiers.json (colonnes intrusives, doublons calculés et artefacts exclus ; vides à plus de 95 % retirées) ; 8 variables dérivées lisibles (SMOKING_STATUS, BMI_CALC, DRINKS_WEEK, DIABETES_BIN, DIAB_YEARS, N_COMORB, N_LIMITS, CARE_INTENSITY) ; contraintes de monotonie croissante sur les facteurs d'amont continus (monotone_constraints_method='advanced') ; même modèle réentraîné sans contraintes et en version PRÉVENTION (A+B seulement) pour chiffrer contraintes et facteurs d'amont",
+  "timestamp": "20261020_112854",
+  "cv": {
+    "f1": 0.4222616077050442,
+    "threshold": 0.2049999999999999,
+    "precision": 0.34329320314721773,
+    "recall": 0.5484144531604931,
+    "auc": 0.8543876959136923
+  },
+  "test_positive_rate": 0.14598666666666665,
+  "submission": "submissions/submission_smart_lgbm_20261020_112854.csv",
+  "runtime_s": 485.8,
+  "model": "lightgbm_seed_bagging_monotone_tiers",
+  "params": {
+    "objective": "binary",
+    "learning_rate": 0.05,
+    "num_leaves": 63,
+    "min_child_samples": 100,
+    "feature_fraction": 0.5,
+    "bagging_fraction": 0.8,
+    "bagging_freq": 1,
+    "lambda_l2": 1.0,
+    "verbose": -1,
+    "seed": 42,
+    "num_threads": 16,
+    "monotone_constraints": [
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      1,
+      1,
+      1,
+      1
+    ],
+    "monotone_constraints_method": "advanced"
+  },
+  "seeds": [
+    42,
+    1,
+    2,
+    3,
+    4
+  ],
+  "rows": 0,
+  "n_features": 92,
+  "columns_by_tier": {
+    "A_amont": [
+      "_AGE80",
+      "SEXVAR",
+      "SMOKE100",
+      "SMOKDAY2",
+      "_SMOKER3",
+      "_PACKYRS",
+      "_YRSSMOK",
+      "_PACKDAY",
+      "USENOW3",
+      "ECIGNOW2",
+      "_CURECI2",
+      "WEIGHT2",
+      "HEIGHT3",
+      "_BMI5",
+      "DIABETE4",
+      "DIABAGE4",
+      "PREDIAB2",
+      "EXERANY2",
+      "ALCDAY4",
+      "AVEDRNK3",
+      "DRNK3GE5",
+      "MAXDRNKS",
+      "_DRNKWK2",
+      "SLEPTIM1",
+      "MENTHLTH",
+      "ADDEPEV3",
+      "SDHSTRE1",
+      "PREGNANT",
+      "SMOKING_STATUS",
+      "BMI_CALC",
+      "DRINKS_WEEK",
+      "DIABETES_BIN",
+      "DIAB_YEARS"
+    ],
+    "B_comorbidites": [
+      "CVDSTRK3",
+      "CHCKDNY2",
+      "CHCCOPD3",
+      "HAVARTH4",
+      "ASTHMA3",
+      "ASTHNOW",
+      "CHCSCNC1",
+      "CHCOCNC1",
+      "DEAF",
+      "BLIND",
+      "N_COMORB"
+    ],
+    "C_parcours_consequences": [
+      "GENHLTH",
+      "PHYSHLTH",
+      "POORHLTH",
+      "DIFFWALK",
+      "DIFFDRES",
+      "DIFFALON",
+      "DECIDE",
+      "EMPLOY1",
+      "PERSDOC3",
+      "CHECKUP1",
+      "MEDCOST1",
+      "PRIMINSR",
+      "FLUSHOT7",
+      "FLSHTMY3",
+      "PNEUVAC4",
+      "TETANUS1",
+      "COVIDVA1",
+      "_YRSQUIT",
+      "LASTSMK2",
+      "LCSCTSC1",
+      "LCSSCNCR",
+      "LCSFIRST",
+      "LCSLAST",
+      "LCSNUMCG",
+      "LASTDEN4",
+      "RMVTETH4",
+      "_CRCREC2",
+      "_MAM5023",
+      "HOWLONG",
+      "N_LIMITS",
+      "CARE_INTENSITY"
+    ],
+    "D_contexte": [
+      "INCOME3",
+      "EDUCA",
+      "MARITAL",
+      "_RACE1",
+      "_HISPANC",
+      "_STATE",
+      "_METSTAT",
+      "_URBSTAT",
+      "HHADULT",
+      "CHILDREN",
+      "VETERAN3",
+      "RENTHOM1",
+      "SDHFOOD1",
+      "SDHBILLS",
+      "SDHISOLT",
+      "EMTSUPRT",
+      "LSATISFY"
+    ]
+  },
+  "derived_columns": {
+    "SMOKING_STATUS": "A_amont",
+    "BMI_CALC": "A_amont",
+    "DRINKS_WEEK": "A_amont",
+    "DIABETES_BIN": "A_amont",
+    "DIAB_YEARS": "A_amont",
+    "N_COMORB": "B_comorbidites",
+    "N_LIMITS": "C_parcours_consequences",
+    "CARE_INTENSITY": "C_parcours_consequences"
+  },
+  "dropped_tier_columns": {
+    "A_amont": [],
+    "B_comorbidites": [],
+    "C_parcours_consequences": [
+      "STOPSMK2"
+    ],
+    "D_contexte": []
+  },
+  "monotone_increasing": [
+    "_AGE80",
+    "_PACKYRS",
+    "_YRSSMOK",
+    "_PACKDAY",
+    "_BMI5",
+    "BMI_CALC",
+    "WEIGHT2",
+    "MENTHLTH",
+    "DRINKS_WEEK",
+    "N_COMORB",
+    "N_LIMITS",
+    "CARE_INTENSITY",
+    "DIAB_YEARS"
+  ],
+  "monotone_check": {
+    "_AGE80": {
+      "spearman": 0.2387,
+      "pos_rate_by_quartile": [
+        0.0129,
+        0.049,
+        0.1108,
+        0.1921
+      ],
+      "nan_rate": 0.0
+    },
+    "_PACKYRS": {
+      "spearman": 0.1798,
+      "pos_rate_by_quartile": [
+        0.0676,
+        0.0953,
+        0.14,
+        0.2257
+      ],
+      "nan_rate": 0.679
+    },
+    "_YRSSMOK": {
+      "spearman": 0.1613,
+      "pos_rate_by_quartile": [
+        0.0713,
+        0.0987,
+        0.1413,
+        0.2131
+      ],
+      "nan_rate": 0.669
+    },
+    "_PACKDAY": {
+      "spearman": 0.1268,
+      "pos_rate_by_quartile": [
+        0.0838,
+        0.1059,
+        0.1477,
+        0.2221
+      ],
+      "nan_rate": 0.663
+    },
+    "_BMI5": {
+      "spearman": 0.0502,
+      "pos_rate_by_quartile": [
+        0.071,
+        0.0874,
+        0.1006,
+        0.1093
+      ],
+      "nan_rate": 0.109
+    },
+    "BMI_CALC": {
+      "spearman": 0.0501,
+      "pos_rate_by_quartile": [
+        0.0706,
+        0.0871,
+        0.1,
+        0.1085
+      ],
+      "nan_rate": 0.104
+    },
+    "WEIGHT2": {
+      "spearman": 0.0507,
+      "pos_rate_by_quartile": [
+        0.0721,
+        0.0867,
+        0.0984,
+        0.111
+      ],
+      "nan_rate": 0.094
+    },
+    "MENTHLTH": {
+      "spearman": 0.0008,
+      "pos_rate_by_quartile": [
+        0.0857,
+        0.0997
+      ],
+      "nan_rate": 0.02
+    },
+    "DRINKS_WEEK": {
+      "spearman": -0.081,
+      "pos_rate_by_quartile": [
+        0.1127,
+        0.0656,
+        0.0644
+      ],
+      "nan_rate": 0.111
+    },
+    "N_COMORB": {
+      "spearman": 0.2294,
+      "pos_rate_by_quartile": [
+        0.0516,
+        0.1296,
+        0.2305
+      ],
+      "nan_rate": 0.0
+    },
+    "N_LIMITS": {
+      "spearman": 0.1735,
+      "pos_rate_by_quartile": [
+        0.0892
+      ],
+      "nan_rate": 0.0
+    },
+    "CARE_INTENSITY": {
+      "spearman": 0.1525,
+      "pos_rate_by_quartile": [
+        0.0551,
+        0.0915,
+        0.1646
+      ],
+      "nan_rate": 0.0
+    },
+    "DIAB_YEARS": {
+      "spearman": 0.1079,
+      "pos_rate_by_quartile": [
+        0.1642,
+        0.1915,
+        0.2268,
+        0.2774
+      ],
+      "nan_rate": 0.871
+    }
+  },
+  "full_model": {
+    "constrained": true,
+    "seeds": [
+      42,
+      1,
+      2,
+      3,
+      4
+    ],
+    "best_iterations": [
+      [
+        192,
+        196,
+        170,
+        187,
+        175
+      ],
+      [
+        199,
+        251,
+        199,
+        215,
+        194
+      ],
+      [
+        298,
+        239,
+        261,
+        205,
+        252
+      ],
+      [
+        220,
+        200,
+        229,
+        268,
+        227
+      ],
+      [
+        188,
+        236,
+        195,
+        180,
+        190
+      ]
+    ],
+    "cv_seed42_only": {
+      "f1": 0.42106562805158654,
+      "threshold": 0.19499999999999995,
+      "precision": 0.33449247449889435,
+      "recall": 0.5681012811581913,
+      "auc": 0.8537213274033464
+    },
+    "top_features": {
+      "_AGE80": 68886.0,
+      "GENHLTH": 61424.0,
+      "EMPLOY1": 45689.0,
+      "LCSCTSC1": 31750.0,
+      "N_COMORB": 24340.0,
+      "CVDSTRK3": 21421.0,
+      "LCSSCNCR": 13124.0,
+      "SEXVAR": 10431.0,
+      "PERSDOC3": 8342.0,
+      "PRIMINSR": 7810.0,
+      "DIABETE4": 7582.0,
+      "RMVTETH4": 7046.0,
+      "HOWLONG": 6852.0,
+      "DIFFWALK": 6193.0,
+      "_MAM5023": 5410.0,
+      "CHCKDNY2": 5354.0,
+      "CHCCOPD3": 4697.0,
+      "PHYSHLTH": 4531.0,
+      "DIABAGE4": 4431.0,
+      "_PACKYRS": 4337.0,
+      "PNEUVAC4": 4101.0,
+      "DIAB_YEARS": 3767.0,
+      "LCSLAST": 3519.0,
+      "PREGNANT": 3512.0,
+      "_RACE1": 3272.0
+    },
+    "importance_share_by_tier": {
+      "A_amont": 0.2967,
+      "B_comorbidites": 0.136,
+      "C_parcours_consequences": 0.5163,
+      "D_contexte": 0.051
+    }
+  },
+  "unconstrained_model": {
+    "cv": {
+      "f1": 0.4238033448673587,
+      "threshold": 0.2149999999999999,
+      "precision": 0.35122971223737925,
+      "recall": 0.5341793621467729,
+      "auc": 0.8548548561378382
+    },
+    "seeds": [
+      42,
+      1,
+      2,
+      3,
+      4
+    ],
+    "cv_seed42_only": {
+      "f1": 0.4227216421872235,
+      "threshold": 0.2099999999999999,
+      "precision": 0.3462162788900054,
+      "recall": 0.5426295544719387,
+      "auc": 0.8542171495255275
+    },
+    "best_iterations": [
+      [
+        213,
+        225,
+        215,
+        231,
+        152
+      ],
+      [
+        203,
+        191,
+        211,
+        210,
+        244
+      ],
+      [
+        248,
+        251,
+        198,
+        205,
+        221
+      ],
+      [
+        237,
+        196,
+        221,
+        219,
+        233
+      ],
+      [
+        271,
+        203,
+        227,
+        194,
+        260
+      ]
+    ],
+    "top_features": {
+      "_AGE80": 71850.0,
+      "GENHLTH": 59726.0,
+      "EMPLOY1": 44647.0,
+      "LCSCTSC1": 30824.0,
+      "N_COMORB": 27267.0,
+      "CVDSTRK3": 22272.0,
+      "LCSSCNCR": 13071.0,
+      "SEXVAR": 10072.0,
+      "PERSDOC3": 8472.0,
+      "PRIMINSR": 7587.0,
+      "DIABETE4": 7289.0,
+      "HOWLONG": 6978.0,
+      "RMVTETH4": 6729.0,
+      "DIFFWALK": 6191.0,
+      "_PACKYRS": 5557.0,
+      "CHCKDNY2": 5537.0,
+      "_MAM5023": 5395.0,
+      "DIAB_YEARS": 5374.0,
+      "CHCCOPD3": 5152.0,
+      "_BMI5": 4608.0,
+      "PHYSHLTH": 4386.0,
+      "_YRSSMOK": 4366.0,
+      "WEIGHT2": 4231.0,
+      "DIABAGE4": 4206.0,
+      "PNEUVAC4": 4134.0
+    },
+    "effect_of_constraints": {
+      "f1": -0.00154,
+      "auc": -0.00047
+    }
+  },
+  "prevention_model": {
+    "tiers": [
+      "A_amont",
+      "B_comorbidites"
+    ],
+    "n_features": 44,
+    "columns": [
+      "_AGE80",
+      "SEXVAR",
+      "SMOKE100",
+      "SMOKDAY2",
+      "_SMOKER3",
+      "_PACKYRS",
+      "_YRSSMOK",
+      "_PACKDAY",
+      "USENOW3",
+      "ECIGNOW2",
+      "_CURECI2",
+      "WEIGHT2",
+      "HEIGHT3",
+      "_BMI5",
+      "DIABETE4",
+      "DIABAGE4",
+      "PREDIAB2",
+      "EXERANY2",
+      "ALCDAY4",
+      "AVEDRNK3",
+      "DRNK3GE5",
+      "MAXDRNKS",
+      "_DRNKWK2",
+      "SLEPTIM1",
+      "MENTHLTH",
+      "ADDEPEV3",
+      "SDHSTRE1",
+      "PREGNANT",
+      "CVDSTRK3",
+      "CHCKDNY2",
+      "CHCCOPD3",
+      "HAVARTH4",
+      "ASTHMA3",
+      "ASTHNOW",
+      "CHCSCNC1",
+      "CHCOCNC1",
+      "DEAF",
+      "BLIND",
+      "SMOKING_STATUS",
+      "BMI_CALC",
+      "DRINKS_WEEK",
+      "DIABETES_BIN",
+      "DIAB_YEARS",
+      "N_COMORB"
+    ],
+    "cv": {
+      "f1": 0.38717845298915476,
+      "threshold": 0.18499999999999994,
+      "precision": 0.3072423051618983,
+      "recall": 0.5233364630341945,
+      "auc": 0.8298620698018937
+    },
+    "seeds": [
+      42,
+      1,
+      2,
+      3,
+      4
+    ],
+    "best_iterations": [
+      [
+        172,
+        166,
+        156,
+        146,
+        159
+      ],
+      [
+        189,
+        178,
+        217,
+        143,
+        174
+      ],
+      [
+        173,
+        186,
+        172,
+        161,
+        167
+      ],
+      [
+        189,
+        180,
+        177,
+        158,
+        163
+      ],
+      [
+        177,
+        183,
+        168,
+        190,
+        163
+      ]
+    ],
+    "cv_seed42_only": {
+      "f1": 0.38655212253629073,
+      "threshold": 0.18999999999999995,
+      "precision": 0.3105768170287857,
+      "recall": 0.511736378229397,
+      "auc": 0.8294086062800077
+    },
+    "top_features": {
+      "_AGE80": 88370.0,
+      "N_COMORB": 53853.0,
+      "CVDSTRK3": 31632.0,
+      "DIABETE4": 17225.0,
+      "SEXVAR": 16337.0,
+      "CHCCOPD3": 15766.0,
+      "HAVARTH4": 12136.0,
+      "CHCKDNY2": 9965.0,
+      "_PACKYRS": 8816.0,
+      "_YRSSMOK": 8227.0,
+      "DIABETES_BIN": 7547.0,
+      "PREGNANT": 7157.0,
+      "DIABAGE4": 5769.0,
+      "SLEPTIM1": 5745.0,
+      "DIAB_YEARS": 5501.0,
+      "HEIGHT3": 5068.0,
+      "MENTHLTH": 3940.0,
+      "_DRNKWK2": 2984.0,
+      "EXERANY2": 2935.0,
+      "WEIGHT2": 2921.0,
+      "MAXDRNKS": 2739.0,
+      "_PACKDAY": 2711.0,
+      "ALCDAY4": 2666.0,
+      "AVEDRNK3": 2528.0,
+      "_BMI5": 2482.0
+    },
+    "importance_share_by_tier": {
+      "A_amont": 0.6205,
+      "B_comorbidites": 0.3795
+    },
+    "gap_vs_full": {
+      "f1": -0.03508,
+      "auc": -0.02453
+    },
+    "oof_csv": "results/smart_lgbm_prevention_20261020_112854_oof.csv",
+    "test_csv": "results/smart_lgbm_prevention_20261020_112854_test.csv"
+  }
+}

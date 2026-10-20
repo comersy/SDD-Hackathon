@@ -1,18 +1,17 @@
 {
   "best_cv": {
-    "f1": 0.4256939742721733,
-    "name": "ml_stack",
-    "script": "experiments/ml_stack.py",
-    "results_json": "results/ml_stack_20261020_110403.json"
+    "name": "ml_stack_v3",
+    "f1": 0.42590777615757897,
+    "script": "experiments/ml_stack_v3.py",
+    "results_json": "results/ml_stack_v3_20261020_135351.json"
   },
-  "last_submitted_cv": 0.4256939742721733,
+  "last_submitted_cv": 0.42590777615757897,
   "best_kaggle": {
-    "f1": 0.43062,
-    "name": "ml_stack",
-    "script": "experiments/ml_stack.py",
-    "submission": "submissions/submission_ml_stack_20261020_110403.csv",
-    "pr": null,
-    "components": "0.55 x_lgbbag_proba + 0.20 dl_ft_transformer + 0.25 dl_resnet"
+    "f1": 0.43239,
+    "name": "ml_stack_v3",
+    "script": "experiments/ml_stack_v3.py",
+    "submission": "submissions/submission_ml_stack_v3_20261020_135351.csv",
+    "pr": null
   },
   "kaggle_submissions": [
     {
@@ -62,6 +61,48 @@
       "name": "ml_stack",
       "cv_f1": 0.4256939742721733,
       "public_f1": 0.43062
+    },
+    {
+      "date": "2026-10-20",
+      "name": "mlp_huge_50",
+      "cv_f1": 0.42122350750928017,
+      "public_f1": 0.429
+    },
+    {
+      "date": "2026-10-20",
+      "name": "ml_stack_v2",
+      "cv_f1": 0.4258930424555497,
+      "public_f1": 0.43046
+    },
+    {
+      "date": "2026-10-20",
+      "name": "hp_lgbm_optuna",
+      "cv_f1": 0.42449533921847027,
+      "public_f1": 0.4286
+    },
+    {
+      "date": "2026-10-20",
+      "name": "hp_xgb_optuna",
+      "cv_f1": 0.42395691484793835,
+      "public_f1": 0.42752
+    },
+    {
+      "date": "2026-10-20",
+      "name": "hp_catboost_gpu",
+      "cv_f1": 0.422697085440969,
+      "public_f1": 0.42726
+    },
+    {
+      "date": "2026-10-20",
+      "name": "hp_ft_transformer_long",
+      "cv_f1": 0.42145187507925713,
+      "public_f1": 0.42891
+    },
+    {
+      "date": "2026-10-20",
+      "name": "ml_stack_v3",
+      "cv_f1": 0.42590777615757897,
+      "public_f1": 0.43239
     }
   ]
 }
