@@ -1,0 +1,220 @@
+{
+  "name": "r3_lgbbag_xgb_blend",
+  "idea": "Blend du LightGBM seed-bagged (5 graines, inchangé par rapport à r2_lgbm_seed_bagging) avec un XGBoost GPU (tree_method hist, device cuda, arbres depth-wise max_depth 7, colsample par arbre 0.5 et par nœud 0.8, NaN natifs) entraîné dans chaque fold avec early stopping ; p = w*oof_lgb_bag + (1-w)*oof_xgb avec w dans {0.5, 0.6, 0.7} choisi sur le F1 OOF, même w sur le test ; seuil choisi sur l'OOF blendé ; StratifiedKFold inchangé (random_state=42)",
+  "timestamp": "20261020_081420",
+  "cv": {
+    "f1": 0.42495215858076474,
+    "threshold": 0.2149999999999999,
+    "precision": 0.35258637906930296,
+    "recall": 0.5346942484174819,
+    "auc": 0.8551343971956984
+  },
+  "test_positive_rate": 0.13858666666666666,
+  "submission": "submissions/submission_r3_lgbbag_xgb_blend_20261020_081420.csv",
+  "runtime_s": 405.9,
+  "model": "lgbm_seed_bagging_xgb_blend",
+  "params": {
+    "objective": "binary",
+    "learning_rate": 0.05,
+    "num_leaves": 63,
+    "min_child_samples": 100,
+    "feature_fraction": 0.5,
+    "bagging_fraction": 0.8,
+    "bagging_freq": 1,
+    "lambda_l2": 1.0,
+    "verbose": -1,
+    "seed": 42,
+    "num_threads": 8
+  },
+  "seeds": [
+    42,
+    1,
+    2,
+    3,
+    4
+  ],
+  "xgb_params": {
+    "objective": "binary:logistic",
+    "eval_metric": "logloss",
+    "tree_method": "hist",
+    "device": "cuda",
+    "learning_rate": 0.05,
+    "max_depth": 7,
+    "min_child_weight": 20,
+    "subsample": 0.8,
+    "colsample_bytree": 0.5,
+    "colsample_bynode": 0.8,
+    "reg_lambda": 1.0,
+    "gamma": 0.0,
+    "max_bin": 256,
+    "seed": 42,
+    "nthread": 8
+  },
+  "blend_weight_lgb": 0.7,
+  "blend_weights": [
+    0.5,
+    0.6,
+    0.7
+  ],
+  "blend_table": {
+    "0.5": {
+      "f1": 0.42479802221459917,
+      "threshold": 0.2099999999999999,
+      "precision": 0.3485113155545204,
+      "recall": 0.5438410515794894,
+      "auc": 0.8550608259194343
+    },
+    "0.6": {
+      "f1": 0.4248807056441895,
+      "threshold": 0.2149999999999999,
+      "precision": 0.3528046266834764,
+      "recall": 0.5339673501529515,
+      "auc": 0.8551116004293078
+    },
+    "0.7": {
+      "f1": 0.42495215858076474,
+      "threshold": 0.2149999999999999,
+      "precision": 0.35258637906930296,
+      "recall": 0.5346942484174819,
+      "auc": 0.8551343971956984
+    }
+  },
+  "cv_lgb_bag_only": {
+    "f1": 0.4246738681305708,
+    "threshold": 0.2099999999999999,
+    "precision": 0.3479724500851261,
+    "recall": 0.5447496744101523,
+    "auc": 0.8550319368084165
+  },
+  "cv_xgb_only": {
+    "f1": 0.4235071090047393,
+    "threshold": 0.2099999999999999,
+    "precision": 0.3478193176731604,
+    "recall": 0.541296907653633,
+    "auc": 0.8543824605366548
+  },
+  "oof_corr_lgb_xgb": 0.9916043048978487,
+  "n_features": 283,
+  "best_iterations": [
+    [
+      203,
+      170,
+      201,
+      220,
+      198
+    ],
+    [
+      293,
+      245,
+      314,
+      207,
+      195
+    ],
+    [
+      283,
+      246,
+      213,
+      269,
+      223
+    ],
+    [
+      196,
+      212,
+      247,
+      207,
+      214
+    ],
+    [
+      265,
+      155,
+      188,
+      244,
+      136
+    ]
+  ],
+  "best_iterations_xgb": [
+    265,
+    371,
+    331,
+    298,
+    273
+  ],
+  "cv_seed42_only": {
+    "f1": 0.42205429610971174,
+    "threshold": 0.22999999999999993,
+    "precision": 0.3638597029985303,
+    "recall": 0.5024078505012569,
+    "auc": 0.8540586797454712
+  },
+  "cv_cumulative_seeds": {
+    "1": {
+      "f1": 0.42205429610971174,
+      "auc": 0.8540586797454712,
+      "threshold": 0.22999999999999993
+    },
+    "2": {
+      "f1": 0.4237858517635112,
+      "auc": 0.8547227784619096,
+      "threshold": 0.2099999999999999
+    },
+    "3": {
+      "f1": 0.42419809595715313,
+      "auc": 0.8548667862119907,
+      "threshold": 0.2099999999999999
+    },
+    "4": {
+      "f1": 0.42407262670594603,
+      "auc": 0.8549838945144439,
+      "threshold": 0.2149999999999999
+    },
+    "5": {
+      "f1": 0.4246738681305708,
+      "auc": 0.8550319368084165,
+      "threshold": 0.2099999999999999
+    }
+  },
+  "top_features": {
+    "_AGE80": 61250.0,
+    "GENHLTH": 47148.0,
+    "EMPLOY1": 39905.0,
+    "LCSCTSC1": 29033.0,
+    "CVDSTRK3": 25060.0,
+    "_AGEG5YR": 20353.0,
+    "_AGE_G": 20143.0,
+    "_RFHLTH": 19497.0,
+    "LCSSCNCR": 11344.0,
+    "PERSDOC3": 8943.0,
+    "CHCCOPD3": 7402.0,
+    "DIABETE4": 7322.0,
+    "CHCKDNY2": 6925.0,
+    "SEXVAR": 6616.0,
+    "DIABAGE4": 5614.0,
+    "DIFFWALK": 4875.0,
+    "_PACKYRS": 4773.0,
+    "_BMI5": 4398.0,
+    "PHYSHLTH": 4164.0,
+    "_MAM5023": 4127.0
+  },
+  "top_features_xgb": {
+    "_AGE65YR": 375.58,
+    "_AGE_G": 355.82,
+    "_RFHLTH": 338.8,
+    "EMPLOY1": 213.46,
+    "LCSCTSC1": 197.23,
+    "CVDSTRK3": 169.61,
+    "GENHLTH": 120.18,
+    "_AGE80": 103.32,
+    "_AGEG5YR": 99.42,
+    "_SEX": 72.83,
+    "SEXVAR": 57.1,
+    "LCSSCNCR": 52.44,
+    "CHCKDNY2": 52.38,
+    "DIFFWALK": 51.08,
+    "CHCCOPD3": 49.4,
+    "_MAM5023": 44.52,
+    "DIABETE4": 38.99,
+    "_HCVU652": 38.62,
+    "_LCSREC": 29.73,
+    "PERSDOC3": 29.05
+  }
+}

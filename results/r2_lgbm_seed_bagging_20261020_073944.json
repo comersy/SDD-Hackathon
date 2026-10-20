@@ -1,0 +1,130 @@
+{
+  "name": "r2_lgbm_seed_bagging",
+  "idea": "Seed averaging LightGBM sur la base r1_clean_codes : dans chaque fold, 5 LightGBM identiques sauf la graine (42, 1, 2, 3, 4 ; pilote bagging et feature_fraction), chacun avec son propre early stopping ; OOF et test = moyenne des 5 probabilités ; seuil choisi sur l'OOF moyenné ; StratifiedKFold inchangé (random_state=42)",
+  "timestamp": "20261020_073944",
+  "cv": {
+    "f1": 0.4246738681305708,
+    "threshold": 0.2099999999999999,
+    "precision": 0.3479724500851261,
+    "recall": 0.5447496744101523,
+    "auc": 0.8550319368084165
+  },
+  "test_positive_rate": 0.14336,
+  "submission": "submissions/submission_r2_lgbm_seed_bagging_20261020_073944.csv",
+  "runtime_s": 272.5,
+  "model": "lightgbm_seed_bagging",
+  "params": {
+    "objective": "binary",
+    "learning_rate": 0.05,
+    "num_leaves": 63,
+    "min_child_samples": 100,
+    "feature_fraction": 0.5,
+    "bagging_fraction": 0.8,
+    "bagging_freq": 1,
+    "lambda_l2": 1.0,
+    "verbose": -1,
+    "seed": 42,
+    "num_threads": 16
+  },
+  "seeds": [
+    42,
+    1,
+    2,
+    3,
+    4
+  ],
+  "n_features": 283,
+  "best_iterations": [
+    [
+      203,
+      170,
+      201,
+      220,
+      198
+    ],
+    [
+      293,
+      245,
+      314,
+      207,
+      195
+    ],
+    [
+      283,
+      246,
+      213,
+      269,
+      223
+    ],
+    [
+      196,
+      212,
+      247,
+      207,
+      214
+    ],
+    [
+      265,
+      155,
+      188,
+      244,
+      136
+    ]
+  ],
+  "cv_seed42_only": {
+    "f1": 0.42205429610971174,
+    "threshold": 0.22999999999999993,
+    "precision": 0.3638597029985303,
+    "recall": 0.5024078505012569,
+    "auc": 0.8540586797454712
+  },
+  "cv_cumulative_seeds": {
+    "1": {
+      "f1": 0.42205429610971174,
+      "auc": 0.8540586797454712,
+      "threshold": 0.22999999999999993
+    },
+    "2": {
+      "f1": 0.4237858517635112,
+      "auc": 0.8547227784619096,
+      "threshold": 0.2099999999999999
+    },
+    "3": {
+      "f1": 0.42419809595715313,
+      "auc": 0.8548667862119907,
+      "threshold": 0.2099999999999999
+    },
+    "4": {
+      "f1": 0.42407262670594603,
+      "auc": 0.8549838945144439,
+      "threshold": 0.2149999999999999
+    },
+    "5": {
+      "f1": 0.4246738681305708,
+      "auc": 0.8550319368084165,
+      "threshold": 0.2099999999999999
+    }
+  },
+  "top_features": {
+    "_AGE80": 61250.0,
+    "GENHLTH": 47148.0,
+    "EMPLOY1": 39905.0,
+    "LCSCTSC1": 29033.0,
+    "CVDSTRK3": 25060.0,
+    "_AGEG5YR": 20353.0,
+    "_AGE_G": 20143.0,
+    "_RFHLTH": 19497.0,
+    "LCSSCNCR": 11344.0,
+    "PERSDOC3": 8943.0,
+    "CHCCOPD3": 7402.0,
+    "DIABETE4": 7322.0,
+    "CHCKDNY2": 6925.0,
+    "SEXVAR": 6616.0,
+    "DIABAGE4": 5614.0,
+    "DIFFWALK": 4875.0,
+    "_PACKYRS": 4773.0,
+    "_BMI5": 4398.0,
+    "PHYSHLTH": 4164.0,
+    "_MAM5023": 4127.0
+  }
+}

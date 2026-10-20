@@ -3,6 +3,9 @@
 *.zip
 data/
 
+# Logs des exécutions Modal
+logs/
+
 # Python
 __pycache__/
 *.pyc

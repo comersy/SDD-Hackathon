@@ -1,0 +1,561 @@
+{
+  "n": 50,
+  "columns": [
+    "SEXVAR",
+    "GENHLTH",
+    "PERSDOC3",
+    "MEDCOST1",
+    "CVDSTRK3",
+    "CHCSCNC1",
+    "CHCOCNC1",
+    "CHCCOPD3",
+    "ADDEPEV3",
+    "CHCKDNY2",
+    "HAVARTH4",
+    "DIABETE4",
+    "DIABAGE4",
+    "NUMHHOL4",
+    "DEAF",
+    "BLIND",
+    "DIFFWALK",
+    "DIFFDRES",
+    "HADHYST2",
+    "_CRCREC2",
+    "LCSCTSC1",
+    "LCSSCNCR",
+    "CNCRTYP2",
+    "_RACE1",
+    "_ALTETH3",
+    "_AGE80",
+    "_PACKYRS",
+    "EMPLOY1",
+    "_BMI5",
+    "_MAM5023",
+    "WEIGHT2",
+    "PHYSHLTH",
+    "_YRSSMOK",
+    "_STATE",
+    "SLEPTIM1",
+    "INCOME3",
+    "POORHLTH",
+    "CHECKUP1",
+    "LASTDEN4",
+    "PRIMINSR",
+    "HEIGHT3",
+    "FLSHTMY3",
+    "MENTHLTH",
+    "MARITAL",
+    "HIVTSTD3",
+    "PNEUVAC4",
+    "ALCDAY4",
+    "TETANUS1",
+    "COVIDFS1",
+    "HHADULT"
+  ],
+  "rule": "Consensus null importance (33 colonnes gardées dans >= 4 folds sur 5, signal prouvé contre cible permutée), chaque colonne remplacée par son représentant dans la liste curée par concept (fs_redundancy : une colonne par groupe de variables redondantes, rho/V >= 0.9) -> 27 colonnes ; complétées par les colonnes stables (communes aux 5 folds) du top-K au coude de la courbe fs_topk_curve (K = 60 = plus petit K avec F1 >= 99 % du maximum), mêmes représentants, sauf PRIMINSR gardée à la place de sa dérivée binaire _HCVU652 (V = 1, gain 15 fois plus faible) -> +23 colonnes = 50. Vérifications : aucune paire redondante (rho/V >= 0.9) dans la liste, aucune colonne administrative / de date / de pondération, chaque colonne présente dans train et test.",
+  "selection_note": "la liste a été construite à partir d'importances calculées dans chaque fold puis agrégées (consensus null importance, stabilité top-K), donc l'évaluation finale en CV comporte un léger optimisme de sélection (à dire dans le notebook)",
+  "cv": {
+    "f1": 0.4218928438337721,
+    "threshold": 0.2149999999999999,
+    "precision": 0.3497707793502093,
+    "recall": 0.5314837810824726,
+    "auc": 0.85419556572967
+  },
+  "cv_seed42_only": {
+    "f1": 0.4202865011223994,
+    "threshold": 0.2049999999999999,
+    "precision": 0.3400617919670443,
+    "recall": 0.5500499742556865,
+    "auc": 0.8533537272543021
+  },
+  "model": "LightGBM baggé 5 graines par fold (experiments/fs_final.py, copie de x_lgbbag_proba)",
+  "reference_283_columns": {
+    "f1": 0.4246738681305708,
+    "auc": 0.8550319368084165,
+    "results_json": "results/x_lgbbag_proba_20261020_082151.json"
+  },
+  "extended_variant": {
+    "n": 62,
+    "extra_columns": [
+      "AVEDRNK3",
+      "CRVCLCNC",
+      "EMTSUPRT",
+      "MAXDRNKS",
+      "EDUCA",
+      "COVIDSE1",
+      "SDHSTRE1",
+      "_MRACE2",
+      "DRNK3GE5",
+      "CNCRAGE",
+      "RRCOGNT2",
+      "_EXTETH3"
+    ],
+    "cv": {
+      "f1": 0.4238292027910285,
+      "threshold": 0.21999999999999992,
+      "precision": 0.356089017102823,
+      "recall": 0.523397037889572,
+      "auc": 0.8544012340879538
+    },
+    "rule": "même règle avec les colonnes stables du top-100 (plateau de l'AUC)"
+  },
+  "results_json": "results/fs_final_20261020_085624.json",
+  "submission": "submissions/submission_fs_final_20261020_085624.csv",
+  "rationale": {
+    "SEXVAR": {
+      "concept": "sexe",
+      "null_importance_folds": "5/5",
+      "topk_rank_fold0": 17,
+      "gain_fold0": 2929.3,
+      "gain_final_model": 10298.0,
+      "in_curated_99": true,
+      "source": "consensus null importance (>= 4/5 folds)"
+    },
+    "GENHLTH": {
+      "concept": "sante_generale",
+      "null_importance_folds": "5/5",
+      "topk_rank_fold0": 2,
+      "gain_fold0": 26161.3,
+      "gain_final_model": 58103.0,
+      "in_curated_99": true,
+      "source": "consensus null importance (>= 4/5 folds)"
+    },
+    "PERSDOC3": {
+      "concept": "singleton",
+      "null_importance_folds": "5/5",
+      "topk_rank_fold0": 9,
+      "gain_fold0": 4972.1,
+      "gain_final_model": 9365.0,
+      "in_curated_99": true,
+      "source": "consensus null importance (>= 4/5 folds)"
+    },
+    "MEDCOST1": {
+      "concept": "singleton",
+      "null_importance_folds": "5/5",
+      "topk_rank_fold0": 59,
+      "gain_fold0": 613.6,
+      "gain_final_model": 1457.0,
+      "in_curated_99": true,
+      "source": "consensus null importance (>= 4/5 folds)"
+    },
+    "CVDSTRK3": {
+      "concept": "singleton",
+      "null_importance_folds": "5/5",
+      "topk_rank_fold0": 5,
+      "gain_fold0": 13245.2,
+      "gain_final_model": 26508.0,
+      "in_curated_99": true,
+      "source": "consensus null importance (>= 4/5 folds)"
+    },
+    "CHCSCNC1": {
+      "concept": "singleton",
+      "null_importance_folds": "5/5",
+      "topk_rank_fold0": 97,
+      "gain_fold0": 318.6,
+      "gain_final_model": 751.0,
+      "in_curated_99": true,
+      "source": "consensus null importance (>= 4/5 folds)"
+    },
+    "CHCOCNC1": {
+      "concept": "singleton",
+      "null_importance_folds": "5/5",
+      "topk_rank_fold0": 92,
+      "gain_fold0": 343.6,
+      "gain_final_model": 755.0,
+      "in_curated_99": true,
+      "source": "consensus null importance (>= 4/5 folds)"
+    },
+    "CHCCOPD3": {
+      "concept": "singleton",
+      "null_importance_folds": "5/5",
+      "topk_rank_fold0": 10,
+      "gain_fold0": 3613.4,
+      "gain_final_model": 9742.0,
+      "in_curated_99": true,
+      "source": "consensus null importance (>= 4/5 folds)"
+    },
+    "ADDEPEV3": {
+      "concept": "singleton",
+      "null_importance_folds": "4/5",
+      "topk_rank_fold0": 80,
+      "gain_fold0": 403.1,
+      "gain_final_model": 810.0,
+      "in_curated_99": true,
+      "source": "consensus null importance (>= 4/5 folds)"
+    },
+    "CHCKDNY2": {
+      "concept": "singleton",
+      "null_importance_folds": "5/5",
+      "topk_rank_fold0": 11,
+      "gain_fold0": 3612.9,
+      "gain_final_model": 7739.0,
+      "in_curated_99": true,
+      "source": "consensus null importance (>= 4/5 folds)"
+    },
+    "HAVARTH4": {
+      "concept": "arthrite",
+      "null_importance_folds": "5/5",
+      "topk_rank_fold0": 23,
+      "gain_fold0": 2191.2,
+      "gain_final_model": 5683.0,
+      "in_curated_99": true,
+      "source": "consensus null importance (>= 4/5 folds)"
+    },
+    "DIABETE4": {
+      "concept": "diabete",
+      "null_importance_folds": "5/5",
+      "topk_rank_fold0": 18,
+      "gain_fold0": 2818.9,
+      "gain_final_model": 9702.0,
+      "in_curated_99": true,
+      "source": "consensus null importance (>= 4/5 folds)"
+    },
+    "DIABAGE4": {
+      "concept": "diabete",
+      "null_importance_folds": "5/5",
+      "topk_rank_fold0": 13,
+      "gain_fold0": 3465.8,
+      "gain_final_model": 8444.0,
+      "in_curated_99": true,
+      "source": "consensus null importance (>= 4/5 folds)"
+    },
+    "NUMHHOL4": {
+      "concept": "telephones",
+      "null_importance_folds": "5/5",
+      "topk_rank_fold0": 143,
+      "gain_fold0": 154.0,
+      "gain_final_model": 796.0,
+      "in_curated_99": true,
+      "source": "consensus null importance (>= 4/5 folds)"
+    },
+    "DEAF": {
+      "concept": "singleton",
+      "null_importance_folds": "5/5",
+      "topk_rank_fold0": 48,
+      "gain_fold0": 724.0,
+      "gain_final_model": 1795.0,
+      "in_curated_99": true,
+      "source": "consensus null importance (>= 4/5 folds)"
+    },
+    "BLIND": {
+      "concept": "singleton",
+      "null_importance_folds": "5/5",
+      "topk_rank_fold0": 81,
+      "gain_fold0": 391.4,
+      "gain_final_model": 1151.0,
+      "in_curated_99": true,
+      "source": "consensus null importance (>= 4/5 folds)"
+    },
+    "DIFFWALK": {
+      "concept": "singleton",
+      "null_importance_folds": "5/5",
+      "topk_rank_fold0": 26,
+      "gain_fold0": 2006.1,
+      "gain_final_model": 10944.0,
+      "in_curated_99": true,
+      "source": "consensus null importance (>= 4/5 folds)"
+    },
+    "DIFFDRES": {
+      "concept": "singleton",
+      "null_importance_folds": "5/5",
+      "topk_rank_fold0": 123,
+      "gain_fold0": 220.8,
+      "gain_final_model": 552.0,
+      "in_curated_99": true,
+      "source": "consensus null importance (>= 4/5 folds)"
+    },
+    "HADHYST2": {
+      "concept": "col_uterus",
+      "null_importance_folds": "4/5",
+      "topk_rank_fold0": 21,
+      "gain_fold0": 2276.6,
+      "gain_final_model": 6138.0,
+      "in_curated_99": true,
+      "source": "consensus null importance (>= 4/5 folds)"
+    },
+    "_CRCREC2": {
+      "concept": "depistage_colorectal",
+      "null_importance_folds": "1/5",
+      "topk_rank_fold0": 134,
+      "gain_fold0": 180.5,
+      "gain_final_model": 4278.0,
+      "in_curated_99": true,
+      "source": "représentant curé de SIGMTES1 (consensus null importance)"
+    },
+    "LCSCTSC1": {
+      "concept": "depistage_poumon",
+      "null_importance_folds": "5/5",
+      "topk_rank_fold0": 3,
+      "gain_fold0": 16196.4,
+      "gain_final_model": 32439.0,
+      "in_curated_99": true,
+      "source": "consensus null importance (>= 4/5 folds)"
+    },
+    "LCSSCNCR": {
+      "concept": "depistage_poumon",
+      "null_importance_folds": "5/5",
+      "topk_rank_fold0": 14,
+      "gain_fold0": 3384.4,
+      "gain_final_model": 14373.0,
+      "in_curated_99": true,
+      "source": "consensus null importance (>= 4/5 folds)"
+    },
+    "CNCRTYP2": {
+      "concept": "cancer_survivant",
+      "null_importance_folds": "4/5",
+      "topk_rank_fold0": 75,
+      "gain_fold0": 439.4,
+      "gain_final_model": 1002.0,
+      "in_curated_99": true,
+      "source": "consensus null importance (>= 4/5 folds)"
+    },
+    "_RACE1": {
+      "concept": "race_ethnie",
+      "null_importance_folds": "2/5",
+      "topk_rank_fold0": 52,
+      "gain_fold0": 701.5,
+      "gain_final_model": 3595.0,
+      "in_curated_99": true,
+      "source": "représentant curé de _IMPRACE, _PRACE2 (consensus null importance)"
+    },
+    "_ALTETH3": {
+      "concept": "dents",
+      "null_importance_folds": "4/5",
+      "topk_rank_fold0": 67,
+      "gain_fold0": 511.5,
+      "gain_final_model": 19525.0,
+      "in_curated_99": true,
+      "source": "consensus null importance (>= 4/5 folds)"
+    },
+    "_AGE80": {
+      "concept": "age",
+      "null_importance_folds": "5/5",
+      "topk_rank_fold0": 1,
+      "gain_fold0": 44852.6,
+      "gain_final_model": 74450.0,
+      "in_curated_99": true,
+      "source": "consensus null importance (>= 4/5 folds)"
+    },
+    "_PACKYRS": {
+      "concept": "tabac_historique",
+      "null_importance_folds": "5/5",
+      "topk_rank_fold0": 15,
+      "gain_fold0": 3341.8,
+      "gain_final_model": 9025.0,
+      "in_curated_99": true,
+      "source": "consensus null importance (>= 4/5 folds)"
+    },
+    "EMPLOY1": {
+      "concept": "singleton",
+      "null_importance_folds": "0/5",
+      "topk_rank_fold0": 4,
+      "gain_fold0": 14941.6,
+      "gain_final_model": 37950.0,
+      "in_curated_99": true,
+      "source": "top-60 stable (commune aux 5 folds)"
+    },
+    "_BMI5": {
+      "concept": "imc",
+      "null_importance_folds": "0/5",
+      "topk_rank_fold0": 12,
+      "gain_fold0": 3490.4,
+      "gain_final_model": 7146.0,
+      "in_curated_99": true,
+      "source": "top-60 stable (commune aux 5 folds)"
+    },
+    "_MAM5023": {
+      "concept": "mammographie",
+      "null_importance_folds": "3/5",
+      "topk_rank_fold0": 16,
+      "gain_fold0": 3176.2,
+      "gain_final_model": 5757.0,
+      "in_curated_99": true,
+      "source": "top-60 stable (commune aux 5 folds)"
+    },
+    "WEIGHT2": {
+      "concept": "poids",
+      "null_importance_folds": "0/5",
+      "topk_rank_fold0": 19,
+      "gain_fold0": 2607.4,
+      "gain_final_model": 5914.0,
+      "in_curated_99": true,
+      "source": "top-60 stable (commune aux 5 folds)"
+    },
+    "PHYSHLTH": {
+      "concept": "sante_physique",
+      "null_importance_folds": "3/5",
+      "topk_rank_fold0": 20,
+      "gain_fold0": 2280.1,
+      "gain_final_model": 6292.0,
+      "in_curated_99": true,
+      "source": "top-60 stable (commune aux 5 folds)"
+    },
+    "_YRSSMOK": {
+      "concept": "tabac_historique",
+      "null_importance_folds": "1/5",
+      "topk_rank_fold0": 25,
+      "gain_fold0": 2029.7,
+      "gain_final_model": 7821.0,
+      "in_curated_99": true,
+      "source": "top-60 stable (commune aux 5 folds)"
+    },
+    "_STATE": {
+      "concept": "singleton",
+      "null_importance_folds": "0/5",
+      "topk_rank_fold0": 27,
+      "gain_fold0": 1978.2,
+      "gain_final_model": 4207.0,
+      "in_curated_99": true,
+      "source": "top-60 stable (commune aux 5 folds)"
+    },
+    "SLEPTIM1": {
+      "concept": "singleton",
+      "null_importance_folds": "3/5",
+      "topk_rank_fold0": 28,
+      "gain_fold0": 1754.8,
+      "gain_final_model": 3691.0,
+      "in_curated_99": true,
+      "source": "top-60 stable (commune aux 5 folds)"
+    },
+    "INCOME3": {
+      "concept": "revenu",
+      "null_importance_folds": "0/5",
+      "topk_rank_fold0": 30,
+      "gain_fold0": 1744.4,
+      "gain_final_model": 3796.0,
+      "in_curated_99": true,
+      "source": "top-60 stable (commune aux 5 folds)"
+    },
+    "POORHLTH": {
+      "concept": "singleton",
+      "null_importance_folds": "0/5",
+      "topk_rank_fold0": 31,
+      "gain_fold0": 1610.8,
+      "gain_final_model": 3681.0,
+      "in_curated_99": true,
+      "source": "top-60 stable (commune aux 5 folds)"
+    },
+    "CHECKUP1": {
+      "concept": "singleton",
+      "null_importance_folds": "1/5",
+      "topk_rank_fold0": 33,
+      "gain_fold0": 1419.6,
+      "gain_final_model": 2699.0,
+      "in_curated_99": true,
+      "source": "top-60 stable (commune aux 5 folds)"
+    },
+    "LASTDEN4": {
+      "concept": "dentiste",
+      "null_importance_folds": "3/5",
+      "topk_rank_fold0": 35,
+      "gain_fold0": 1347.9,
+      "gain_final_model": 3373.0,
+      "in_curated_99": true,
+      "source": "top-60 stable (commune aux 5 folds)"
+    },
+    "PRIMINSR": {
+      "concept": "assurance",
+      "null_importance_folds": "0/5",
+      "topk_rank_fold0": 36,
+      "gain_fold0": 1333.1,
+      "gain_final_model": 5534.0,
+      "in_curated_99": false,
+      "source": "top-60 stable (brute gardée à la place de _HCVU652, dérivée binaire V = 1)"
+    },
+    "HEIGHT3": {
+      "concept": "taille",
+      "null_importance_folds": "0/5",
+      "topk_rank_fold0": 39,
+      "gain_fold0": 1193.2,
+      "gain_final_model": 3909.0,
+      "in_curated_99": true,
+      "source": "top-60 stable (commune aux 5 folds)"
+    },
+    "FLSHTMY3": {
+      "concept": "vaccin_grippe",
+      "null_importance_folds": "0/5",
+      "topk_rank_fold0": 40,
+      "gain_fold0": 1187.8,
+      "gain_final_model": 2517.0,
+      "in_curated_99": true,
+      "source": "top-60 stable (commune aux 5 folds)"
+    },
+    "MENTHLTH": {
+      "concept": "sante_mentale",
+      "null_importance_folds": "0/5",
+      "topk_rank_fold0": 41,
+      "gain_fold0": 1089.9,
+      "gain_final_model": 2341.0,
+      "in_curated_99": true,
+      "source": "top-60 stable (commune aux 5 folds)"
+    },
+    "MARITAL": {
+      "concept": "singleton",
+      "null_importance_folds": "0/5",
+      "topk_rank_fold0": 42,
+      "gain_fold0": 1077.8,
+      "gain_final_model": 3244.0,
+      "in_curated_99": true,
+      "source": "top-60 stable (commune aux 5 folds)"
+    },
+    "HIVTSTD3": {
+      "concept": "vih",
+      "null_importance_folds": "0/5",
+      "topk_rank_fold0": 43,
+      "gain_fold0": 1028.7,
+      "gain_final_model": 2820.0,
+      "in_curated_99": true,
+      "source": "top-60 stable (commune aux 5 folds)"
+    },
+    "PNEUVAC4": {
+      "concept": "vaccin_pneumo",
+      "null_importance_folds": "1/5",
+      "topk_rank_fold0": 44,
+      "gain_fold0": 1014.3,
+      "gain_final_model": 4231.0,
+      "in_curated_99": true,
+      "source": "top-60 stable (commune aux 5 folds)"
+    },
+    "ALCDAY4": {
+      "concept": "alcool_frequence",
+      "null_importance_folds": "0/5",
+      "topk_rank_fold0": 45,
+      "gain_fold0": 959.5,
+      "gain_final_model": 3455.0,
+      "in_curated_99": true,
+      "source": "top-60 stable (commune aux 5 folds)"
+    },
+    "TETANUS1": {
+      "concept": "singleton",
+      "null_importance_folds": "0/5",
+      "topk_rank_fold0": 46,
+      "gain_fold0": 902.2,
+      "gain_final_model": 1517.0,
+      "in_curated_99": true,
+      "source": "top-60 stable (commune aux 5 folds)"
+    },
+    "COVIDFS1": {
+      "concept": "covid_vaccin",
+      "null_importance_folds": "0/5",
+      "topk_rank_fold0": 56,
+      "gain_fold0": 646.3,
+      "gain_final_model": 1683.0,
+      "in_curated_99": true,
+      "source": "top-60 stable (commune aux 5 folds)"
+    },
+    "HHADULT": {
+      "concept": "menage",
+      "null_importance_folds": "0/5",
+      "topk_rank_fold0": 58,
+      "gain_fold0": 628.4,
+      "gain_final_model": 1815.0,
+      "in_curated_99": true,
+      "source": "top-60 stable (commune aux 5 folds)"
+    }
+  },
+  "sources": [
+    "results/fs_null_importance_20261020_084320_study.json",
+    "results/fs_redundancy_20261020_084355_study.json",
+    "results/fs_topk_curve_20261020_084401_study.json"
+  ]
+}

@@ -1,0 +1,276 @@
+{
+  "name": "r4_weight_cols_as_features",
+  "idea": "Réintégrer les 9 colonnes de pondération BRFSS (_STSTR, _STRWT, _RAWRAKE, _WT2RAKE, _CLLCPWT, _DUALUSE, _DUALCOR, _LLCPWT2, _LLCPWT) comme variables numériques brutes (283 -> 292 features), exclues du nettoyage des codes 7/9 (ajoutées à CONTINUOUS_COMPUTED, car _DUALUSE vaut 1/2/9 et _RAWRAKE/_DUALCOR ont un max <= 9) ; _STSTR encode la strate état x région x densité et les poids de raking sont des fonctions de la cellule démographique ; NaN de _CLLCPWT/_DUALCOR gérés nativement ; modèles, graines, blend LGB seed-bag + XGB GPU et StratifiedKFold inchangés par rapport à r3_lgbbag_xgb_blend",
+  "timestamp": "20261020_084938",
+  "cv": {
+    "f1": 0.4252330933553641,
+    "threshold": 0.2099999999999999,
+    "precision": 0.3483650145998105,
+    "recall": 0.5456280098131265,
+    "auc": 0.8551402431009378
+  },
+  "test_positive_rate": 0.14304,
+  "submission": "submissions/submission_r4_weight_cols_as_features_20261020_084938.csv",
+  "runtime_s": 563.7,
+  "model": "lgbm_seed_bagging_xgb_blend",
+  "params": {
+    "objective": "binary",
+    "learning_rate": 0.05,
+    "num_leaves": 63,
+    "min_child_samples": 100,
+    "feature_fraction": 0.5,
+    "bagging_fraction": 0.8,
+    "bagging_freq": 1,
+    "lambda_l2": 1.0,
+    "verbose": -1,
+    "seed": 42,
+    "num_threads": 8
+  },
+  "seeds": [
+    42,
+    1,
+    2,
+    3,
+    4
+  ],
+  "xgb_params": {
+    "objective": "binary:logistic",
+    "eval_metric": "logloss",
+    "tree_method": "hist",
+    "device": "cuda",
+    "learning_rate": 0.05,
+    "max_depth": 7,
+    "min_child_weight": 20,
+    "subsample": 0.8,
+    "colsample_bytree": 0.5,
+    "colsample_bynode": 0.8,
+    "reg_lambda": 1.0,
+    "gamma": 0.0,
+    "max_bin": 256,
+    "seed": 42,
+    "nthread": 8
+  },
+  "blend_weight_lgb": 0.7,
+  "blend_weights": [
+    0.5,
+    0.6,
+    0.7
+  ],
+  "blend_table": {
+    "0.5": {
+      "f1": 0.42424971721498883,
+      "threshold": 0.2149999999999999,
+      "precision": 0.35196166516921235,
+      "recall": 0.533906775297574,
+      "auc": 0.8550612214083821
+    },
+    "0.6": {
+      "f1": 0.4244860622983968,
+      "threshold": 0.2149999999999999,
+      "precision": 0.35220804122475885,
+      "recall": 0.5340884998637065,
+      "auc": 0.8551140653622419
+    },
+    "0.7": {
+      "f1": 0.4252330933553641,
+      "threshold": 0.2099999999999999,
+      "precision": 0.3483650145998105,
+      "recall": 0.5456280098131265,
+      "auc": 0.8551402431009378
+    }
+  },
+  "cv_lgb_bag_only": {
+    "f1": 0.42503364102079844,
+    "threshold": 0.2099999999999999,
+    "precision": 0.34823310961103265,
+    "recall": 0.5452948481085501,
+    "auc": 0.855049701018374
+  },
+  "cv_xgb_only": {
+    "f1": 0.4222436485717273,
+    "threshold": 0.2049999999999999,
+    "precision": 0.34247917687408136,
+    "recall": 0.5504437108156405,
+    "auc": 0.8543773666623645
+  },
+  "oof_corr_lgb_xgb": 0.9916869134153868,
+  "n_features": 292,
+  "best_iterations": [
+    [
+      190,
+      205,
+      222,
+      170,
+      252
+    ],
+    [
+      185,
+      234,
+      266,
+      258,
+      273
+    ],
+    [
+      221,
+      283,
+      280,
+      217,
+      208
+    ],
+    [
+      203,
+      314,
+      206,
+      205,
+      272
+    ],
+    [
+      228,
+      201,
+      191,
+      261,
+      202
+    ]
+  ],
+  "best_iterations_xgb": [
+    232,
+    316,
+    319,
+    274,
+    257
+  ],
+  "cv_seed42_only": {
+    "f1": 0.4240522452004354,
+    "threshold": 0.2049999999999999,
+    "precision": 0.34325616271440623,
+    "recall": 0.5545930884090015,
+    "auc": 0.8543149838061718
+  },
+  "cv_cumulative_seeds": {
+    "1": {
+      "f1": 0.4240522452004354,
+      "auc": 0.8543149838061718,
+      "threshold": 0.2049999999999999
+    },
+    "2": {
+      "f1": 0.42404928829403016,
+      "auc": 0.8547118195008963,
+      "threshold": 0.2099999999999999
+    },
+    "3": {
+      "f1": 0.42477082620544826,
+      "auc": 0.8549221287000719,
+      "threshold": 0.2099999999999999
+    },
+    "4": {
+      "f1": 0.42498171436660925,
+      "auc": 0.8550034984398005,
+      "threshold": 0.2099999999999999
+    },
+    "5": {
+      "f1": 0.42503364102079844,
+      "auc": 0.855049701018374,
+      "threshold": 0.2099999999999999
+    }
+  },
+  "top_features": {
+    "_AGE80": 58036.0,
+    "GENHLTH": 47903.0,
+    "EMPLOY1": 43872.0,
+    "LCSCTSC1": 29885.0,
+    "CVDSTRK3": 24485.0,
+    "_AGE_G": 22035.0,
+    "_AGEG5YR": 20804.0,
+    "_RFHLTH": 18948.0,
+    "LCSSCNCR": 9261.0,
+    "PERSDOC3": 8902.0,
+    "CHCCOPD3": 7348.0,
+    "CHCKDNY2": 6921.0,
+    "DIABETE4": 6580.0,
+    "DIABAGE4": 6138.0,
+    "SEXVAR": 6124.0,
+    "DIFFWALK": 4967.0,
+    "_BMI5": 4311.0,
+    "_PACKYRS": 4289.0,
+    "_SEX": 4046.0,
+    "PHYSHLTH": 3719.0
+  },
+  "top_features_xgb": {
+    "_RFHLTH": 311.91,
+    "_AGE65YR": 304.7,
+    "_AGE_G": 301.05,
+    "LCSCTSC1": 220.89,
+    "EMPLOY1": 210.28,
+    "CVDSTRK3": 153.83,
+    "_AGE80": 138.09,
+    "GENHLTH": 129.87,
+    "_AGEG5YR": 106.29,
+    "_MAM5023": 76.47,
+    "DIFFWALK": 68.02,
+    "_HCVU652": 60.83,
+    "SEXVAR": 60.0,
+    "_SEX": 57.02,
+    "LCSSCNCR": 56.86,
+    "_LCSREC": 53.18,
+    "CHCKDNY2": 52.78,
+    "_ALTETH3": 51.2,
+    "CHCCOPD3": 45.42,
+    "DIABETE4": 39.8
+  },
+  "weight_cols_ranks": {
+    "_STSTR": {
+      "rank_lgb": 30,
+      "gain_lgb": 2440.0,
+      "rank_xgb": 200,
+      "gain_xgb": 7.13
+    },
+    "_STRWT": {
+      "rank_lgb": 43,
+      "gain_lgb": 1806.0,
+      "rank_xgb": 235,
+      "gain_xgb": 6.81
+    },
+    "_RAWRAKE": {
+      "rank_lgb": 180,
+      "gain_lgb": 162.0,
+      "rank_xgb": 114,
+      "gain_xgb": 7.98
+    },
+    "_WT2RAKE": {
+      "rank_lgb": 42,
+      "gain_lgb": 1857.0,
+      "rank_xgb": 227,
+      "gain_xgb": 6.87
+    },
+    "_CLLCPWT": {
+      "rank_lgb": 97,
+      "gain_lgb": 548.0,
+      "rank_xgb": 207,
+      "gain_xgb": 7.04
+    },
+    "_DUALUSE": {
+      "rank_lgb": 213,
+      "gain_lgb": 113.0,
+      "rank_xgb": 262,
+      "gain_xgb": 6.41
+    },
+    "_DUALCOR": {
+      "rank_lgb": 41,
+      "gain_lgb": 1868.0,
+      "rank_xgb": 179,
+      "gain_xgb": 7.29
+    },
+    "_LLCPWT2": {
+      "rank_lgb": 36,
+      "gain_lgb": 2083.0,
+      "rank_xgb": 221,
+      "gain_xgb": 6.9
+    },
+    "_LLCPWT": {
+      "rank_lgb": 31,
+      "gain_lgb": 2399.0,
+      "rank_xgb": 226,
+      "gain_xgb": 6.87
+    }
+  }
+}

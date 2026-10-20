@@ -1,0 +1,240 @@
+{
+  "name": "r3_lgb_nominal_cats",
+  "idea": "Colonnes nominales (_STATE, EMPLOY1, MARITAL, PRIMINSR, race, assurance, dentaire, tabac...) déclarées dtype category (mêmes catégories train/test, NaN = manquant) pour que LightGBM fasse des splits catégoriels au lieu de traiter les codes comme des nombres ordonnés ; régularisation cat_smooth=20, cat_l2=10, min_data_per_group=200, max_cat_to_onehot=4 ; base r2_lgbm_seed_bagging (5 graines, folds, seuil inchangés) ; si F1 < base, seconde CV avec liste réduite ['_STATE','EMPLOY1','PRIMINSR','MARITAL'] et on garde la meilleure",
+  "timestamp": "20261020_081937",
+  "cv": {
+    "f1": 0.4242001301082264,
+    "threshold": 0.2099999999999999,
+    "precision": 0.348004968172644,
+    "recall": 0.5431141533149589,
+    "auc": 0.8547670748412535
+  },
+  "test_positive_rate": 0.14261333333333334,
+  "submission": "submissions/submission_r3_lgb_nominal_cats_20261020_081937.csv",
+  "runtime_s": 630.7,
+  "model": "lightgbm_seed_bagging_nominal_cats",
+  "params": {
+    "objective": "binary",
+    "learning_rate": 0.05,
+    "num_leaves": 63,
+    "min_child_samples": 100,
+    "feature_fraction": 0.5,
+    "bagging_fraction": 0.8,
+    "bagging_freq": 1,
+    "lambda_l2": 1.0,
+    "verbose": -1,
+    "seed": 42,
+    "cat_smooth": 20,
+    "cat_l2": 10,
+    "min_data_per_group": 200,
+    "max_cat_to_onehot": 4,
+    "num_threads": 16
+  },
+  "seeds": [
+    42,
+    1,
+    2,
+    3,
+    4
+  ],
+  "n_features": 283,
+  "selected_run": "full",
+  "categorical_cols": [
+    "_STATE",
+    "EMPLOY1",
+    "MARITAL",
+    "PRIMINSR",
+    "_RACE1",
+    "_RACEPR1",
+    "_IMPRACE",
+    "_HISPANC",
+    "RENTHOM1",
+    "CPDEMO1C",
+    "LASTDEN4",
+    "RMVTETH4",
+    "CHECKUP1",
+    "_SMOKER3",
+    "USENOW3",
+    "ECIGNOW2",
+    "TETANUS1"
+  ],
+  "best_iterations": [
+    [
+      166,
+      218,
+      186,
+      161,
+      173
+    ],
+    [
+      236,
+      241,
+      185,
+      213,
+      279
+    ],
+    [
+      216,
+      214,
+      187,
+      189,
+      209
+    ],
+    [
+      208,
+      216,
+      243,
+      161,
+      227
+    ],
+    [
+      175,
+      153,
+      171,
+      239,
+      240
+    ]
+  ],
+  "cv_seed42_only": {
+    "f1": 0.42107979259332073,
+    "threshold": 0.21999999999999992,
+    "precision": 0.3542558250118878,
+    "recall": 0.5189750734470121,
+    "auc": 0.8537836147564153
+  },
+  "cv_cumulative_seeds": {
+    "1": {
+      "f1": 0.42107979259332073,
+      "auc": 0.8537836147564153,
+      "threshold": 0.21999999999999992
+    },
+    "2": {
+      "f1": 0.4227122616384361,
+      "auc": 0.854340223134586,
+      "threshold": 0.2099999999999999
+    },
+    "3": {
+      "f1": 0.4236779642637686,
+      "auc": 0.8545644552158093,
+      "threshold": 0.2149999999999999
+    },
+    "4": {
+      "f1": 0.4240767062564745,
+      "auc": 0.8547249144795691,
+      "threshold": 0.2149999999999999
+    },
+    "5": {
+      "f1": 0.4242001301082264,
+      "auc": 0.8547670748412535,
+      "threshold": 0.2099999999999999
+    }
+  },
+  "top_features": {
+    "_AGE80": 61058.0,
+    "GENHLTH": 47099.0,
+    "EMPLOY1": 40525.0,
+    "LCSCTSC1": 29171.0,
+    "CVDSTRK3": 25048.0,
+    "_STATE": 23274.0,
+    "_AGEG5YR": 20063.0,
+    "_AGE_G": 19939.0,
+    "_RFHLTH": 19491.0,
+    "LCSSCNCR": 11259.0,
+    "PERSDOC3": 8944.0,
+    "DIABETE4": 7296.0,
+    "CHCCOPD3": 7211.0,
+    "CHCKDNY2": 6946.0,
+    "SEXVAR": 6699.0,
+    "DIABAGE4": 5549.0,
+    "DIFFWALK": 4781.0,
+    "_PACKYRS": 4454.0,
+    "_MAM5023": 4164.0,
+    "_BMI5": 4020.0
+  },
+  "nominal_importance": {
+    "_STATE": {
+      "gain": 23274.0,
+      "rank": 6
+    },
+    "EMPLOY1": {
+      "gain": 40525.0,
+      "rank": 3
+    },
+    "MARITAL": {
+      "gain": 1562.0,
+      "rank": 41
+    },
+    "PRIMINSR": {
+      "gain": 1949.0,
+      "rank": 35
+    },
+    "_RACE1": {
+      "gain": 936.0,
+      "rank": 60
+    },
+    "_RACEPR1": {
+      "gain": 624.0,
+      "rank": 78
+    },
+    "_IMPRACE": {
+      "gain": 967.0,
+      "rank": 59
+    },
+    "_HISPANC": {
+      "gain": 129.0,
+      "rank": 175
+    },
+    "RENTHOM1": {
+      "gain": 251.0,
+      "rank": 136
+    },
+    "CPDEMO1C": {
+      "gain": 181.0,
+      "rank": 155
+    },
+    "LASTDEN4": {
+      "gain": 1144.0,
+      "rank": 53
+    },
+    "RMVTETH4": {
+      "gain": 3016.0,
+      "rank": 26
+    },
+    "CHECKUP1": {
+      "gain": 1888.0,
+      "rank": 37
+    },
+    "_SMOKER3": {
+      "gain": 120.0,
+      "rank": 182
+    },
+    "USENOW3": {
+      "gain": 111.0,
+      "rank": 192
+    },
+    "ECIGNOW2": {
+      "gain": 95.0,
+      "rank": 206
+    },
+    "TETANUS1": {
+      "gain": 315.0,
+      "rank": 121
+    }
+  },
+  "all_runs": {
+    "full": {
+      "f1": 0.4242001301082264,
+      "auc": 0.8547670748412535,
+      "threshold": 0.2099999999999999,
+      "n_categorical": 17,
+      "cv_time_s": 297.4
+    },
+    "reduced": {
+      "f1": 0.4240334378265413,
+      "auc": 0.8548110400592476,
+      "threshold": 0.2049999999999999,
+      "n_categorical": 4,
+      "cv_time_s": 319.2
+    }
+  }
+}

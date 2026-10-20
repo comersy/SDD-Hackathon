@@ -1,10 +1,21 @@
-"""Baseline : tri des colonnes par règles + LightGBM + seuil optimisé pour le F1.
+"""Modèle de référence : tri des colonnes par règles + LightGBM + seuil optimisé pour le F1.
 
-Usage : python train.py [--data-dir .] [--folds 5]
-Sorties : submissions/submission_<horodatage>.csv et results/<horodatage>.json
+Usage : python train.py [--name NOM] [--threads N] [--folds 5]
+Sorties : submissions/submission_<nom>_<horodatage>.csv et results/<nom>_<horodatage>.json
+
+Protocole d'évaluation, à conserver à l'identique dans toute expérience pour que les scores
+restent comparables :
+- entraînement sur train.csv + extra.csv concaténés (370 132 lignes), test.csv sert
+  uniquement à prédire ;
+- StratifiedKFold(n_splits=5, shuffle=True, random_state=42), prédictions out-of-fold ;
+- tout prétraitement qui utilise TARGET est ajusté dans chaque fold sur la partie
+  entraînement seulement ;
+- le seuil de décision est choisi sur les prédictions OOF pour maximiser le F1 ;
+  le F1 reporté est ce F1 OOF, au seuil retenu.
 """
 import argparse
 import json
+import os
 import time
 from pathlib import Path
 
@@ -14,8 +25,20 @@ import pandas as pd
 from sklearn.metrics import f1_score, precision_score, recall_score, roc_auc_score
 from sklearn.model_selection import StratifiedKFold
 
-ROOT = Path(__file__).resolve().parent
+IDEA = "Référence : colonnes triées par règles, LightGBM brut, seuil optimisé pour le F1"
 SEED = 42
+
+
+def find_root():
+    """Dossier du dépôt (celui qui contient train.csv), quel que soit l'emplacement du script."""
+    here = Path(__file__).resolve().parent
+    for d in [here, *here.parents]:
+        if (d / "train.csv").exists():
+            return d
+    raise FileNotFoundError("train.csv introuvable : lance le script depuis le dépôt")
+
+
+ROOT = find_root()
 
 # Colonnes sans rapport avec la santé de la personne (cf. codebook BRFSS)
 DATE_COLS = ["FMONTH", "IDATE", "IMONTH", "IDAY", "IYEAR"]
@@ -41,18 +64,37 @@ LGB_PARAMS = {
     "bagging_fraction": 0.8,
     "bagging_freq": 1,
     "lambda_l2": 1.0,
-    "n_jobs": -1,
     "verbose": -1,
     "seed": SEED,
 }
 
 
-def load(data_dir):
-    train = pd.concat(
-        [pd.read_csv(data_dir / "train.csv"), pd.read_csv(data_dir / "extra.csv")],
-        ignore_index=True,
-    )
-    test = pd.read_csv(data_dir / "test.csv")
+def _read_csv(path):
+    df = pd.read_csv(path, low_memory=False)
+    for c in df.columns:
+        if c == "ID":
+            df[c] = df[c].astype("int64")
+        elif c == "TARGET":
+            df[c] = df[c].astype("int8")
+        else:
+            df[c] = df[c].astype("float32")
+    return df
+
+
+def load():
+    """train.csv + extra.csv concaténés, et test.csv. Cache parquet dans data/ (ignoré par git)."""
+    cache = ROOT / "data"
+    cache.mkdir(exist_ok=True)
+    train_pq, test_pq = cache / "train_extra.parquet", cache / "test.parquet"
+    if train_pq.exists() and test_pq.exists():
+        return pd.read_parquet(train_pq), pd.read_parquet(test_pq)
+    train = pd.concat([_read_csv(ROOT / "train.csv"), _read_csv(ROOT / "extra.csv")],
+                      ignore_index=True)
+    test = _read_csv(ROOT / "test.csv")
+    for df, path in [(train, train_pq), (test, test_pq)]:
+        tmp = path.with_suffix(".tmp")
+        df.to_parquet(tmp)
+        os.replace(tmp, path)  # écriture atomique : plusieurs scripts peuvent tourner en même temps
     return train, test
 
 
@@ -72,26 +114,65 @@ def best_threshold(y, proba):
     return float(grid[i]), float(scores[i])
 
 
+def evaluate(y, oof):
+    threshold, f1 = best_threshold(y, oof)
+    pred = oof >= threshold
+    return {
+        "f1": f1,
+        "threshold": threshold,
+        "precision": float(precision_score(y, pred)),
+        "recall": float(recall_score(y, pred)),
+        "auc": float(roc_auc_score(y, oof)),
+    }
+
+
+def save_outputs(name, test, test_proba, metrics, info, t0):
+    """Écrit la soumission et le JSON de résultats ; retourne le chemin du JSON."""
+    stamp = time.strftime("%Y%m%d_%H%M%S")
+    (ROOT / "submissions").mkdir(exist_ok=True)
+    (ROOT / "results").mkdir(exist_ok=True)
+    sub_path = ROOT / "submissions" / f"submission_{name}_{stamp}.csv"
+    pred = (test_proba >= metrics["threshold"]).astype(int)
+    pd.DataFrame({"ID": test["ID"], "TARGET": pred}).to_csv(sub_path, index=False)
+    result = {
+        "name": name,
+        "idea": IDEA,
+        "timestamp": stamp,
+        "cv": metrics,
+        "test_positive_rate": float(pred.mean()),
+        "submission": f"submissions/{sub_path.name}",
+        "runtime_s": round(time.time() - t0, 1),
+        **info,
+    }
+    res_path = ROOT / "results" / f"{name}_{stamp}.json"
+    res_path.write_text(json.dumps(result, indent=2, ensure_ascii=False), encoding="utf-8")
+    print("CV :", {k: round(v, 4) for k, v in metrics.items()})
+    print(f"Soumission : {sub_path}\nRésultats : {res_path}  ({result['runtime_s']} s)")
+    return res_path
+
+
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--data-dir", type=Path, default=ROOT)
+    parser.add_argument("--name", default="baseline_lgbm")
+    parser.add_argument("--threads", type=int, default=0, help="0 = tous les cœurs")
     parser.add_argument("--folds", type=int, default=5)
     args = parser.parse_args()
 
     t0 = time.time()
-    train, test = load(args.data_dir)
+    train, test = load()
     feats = select_columns(train)
-    X, y = train[feats], train["TARGET"].astype(int).values
+    X, y = train[feats], train["TARGET"].values.astype(int)
     X_test = test[feats]
     print(f"train {X.shape}, test {X_test.shape}, taux de positifs {y.mean():.3f}")
 
+    params = {**LGB_PARAMS, "num_threads": args.threads}
     oof = np.zeros(len(X))
     test_proba = np.zeros(len(X_test))
     importance = pd.Series(0.0, index=feats)
     skf = StratifiedKFold(n_splits=args.folds, shuffle=True, random_state=SEED)
     for fold, (tr_idx, va_idx) in enumerate(skf.split(X, y)):
         model = lgb.train(
-            LGB_PARAMS,
+            params,
             lgb.Dataset(X.iloc[tr_idx], y[tr_idx]),
             num_boost_round=5000,
             valid_sets=[lgb.Dataset(X.iloc[va_idx], y[va_idx])],
@@ -103,37 +184,13 @@ def main():
         print(f"fold {fold}: {model.best_iteration} arbres, "
               f"AUC {roc_auc_score(y[va_idx], oof[va_idx]):.4f}")
 
-    threshold, f1 = best_threshold(y, oof)
-    pred = oof >= threshold
-    metrics = {
-        "f1": f1,
-        "threshold": threshold,
-        "precision": float(precision_score(y, pred)),
-        "recall": float(recall_score(y, pred)),
-        "auc": float(roc_auc_score(y, oof)),
-    }
-    print("CV :", {k: round(v, 4) for k, v in metrics.items()})
+    metrics = evaluate(y, oof)
+    top = importance.sort_values(ascending=False).head(20)
     print("Top 20 variables (gain) :")
-    print(importance.sort_values(ascending=False).head(20).round(0).to_string())
-
-    stamp = time.strftime("%Y%m%d_%H%M%S")
-    (ROOT / "submissions").mkdir(exist_ok=True)
-    (ROOT / "results").mkdir(exist_ok=True)
-    sub_path = ROOT / "submissions" / f"submission_{stamp}.csv"
-    pd.DataFrame({"ID": test["ID"], "TARGET": (test_proba >= threshold).astype(int)}).to_csv(
-        sub_path, index=False)
-    result = {
-        "timestamp": stamp,
-        "model": "lightgbm",
-        "params": LGB_PARAMS,
-        "n_features": len(feats),
-        "cv": metrics,
-        "test_positive_rate": float((test_proba >= threshold).mean()),
-        "submission": sub_path.name,
-        "runtime_s": round(time.time() - t0, 1),
-    }
-    (ROOT / "results" / f"{stamp}.json").write_text(json.dumps(result, indent=2))
-    print(f"Soumission : {sub_path}  ({result['runtime_s']} s)")
+    print(top.round(0).to_string())
+    save_outputs(args.name, test, test_proba, metrics,
+                 {"model": "lightgbm", "params": params, "n_features": len(feats),
+                  "top_features": top.round(0).to_dict()}, t0)
 
 
 if __name__ == "__main__":

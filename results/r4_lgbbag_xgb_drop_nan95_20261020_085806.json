@@ -1,0 +1,295 @@
+{
+  "name": "r4_lgbbag_xgb_drop_nan95",
+  "idea": "Meilleur blend LGB seed-bag (5 graines) + XGBoost GPU de r3_lgbbag_xgb_blend, inchangé, combiné au retrait des colonnes vides à plus de 95 % sur train+extra (x_drop_nan95, +0.0005 sur LightGBM mono-graine) : nan_rate = train[feats].isna().mean() calculé après select_columns et AVANT clean() (critère sans TARGET), colonnes avec nan_rate > 0.95 retirées de feats pour train et test ; ces modules d'état quasi vides n'ajoutent que du bruit au feature_fraction 0.5 ; blend w dans {0.5, 0.6, 0.7} choisi sur le F1 OOF, seuil sur l'OOF blendé, SKF random_state=42",
+  "timestamp": "20261020_085806",
+  "cv": {
+    "f1": 0.42465023626424536,
+    "threshold": 0.2049999999999999,
+    "precision": 0.34378457441821214,
+    "recall": 0.5552594118181543,
+    "auc": 0.8551229674572911
+  },
+  "test_positive_rate": 0.14744,
+  "submission": "submissions/submission_r4_lgbbag_xgb_drop_nan95_20261020_085806.csv",
+  "runtime_s": 371.7,
+  "model": "lgbm_seed_bagging_xgb_blend",
+  "params": {
+    "objective": "binary",
+    "learning_rate": 0.05,
+    "num_leaves": 63,
+    "min_child_samples": 100,
+    "feature_fraction": 0.5,
+    "bagging_fraction": 0.8,
+    "bagging_freq": 1,
+    "lambda_l2": 1.0,
+    "verbose": -1,
+    "seed": 42,
+    "num_threads": 8
+  },
+  "seeds": [
+    42,
+    1,
+    2,
+    3,
+    4
+  ],
+  "xgb_params": {
+    "objective": "binary:logistic",
+    "eval_metric": "logloss",
+    "tree_method": "hist",
+    "device": "cuda",
+    "learning_rate": 0.05,
+    "max_depth": 7,
+    "min_child_weight": 20,
+    "subsample": 0.8,
+    "colsample_bytree": 0.5,
+    "colsample_bynode": 0.8,
+    "reg_lambda": 1.0,
+    "gamma": 0.0,
+    "max_bin": 256,
+    "seed": 42,
+    "nthread": 8
+  },
+  "blend_weight_lgb": 0.7,
+  "blend_weights": [
+    0.5,
+    0.6,
+    0.7
+  ],
+  "blend_table": {
+    "0.5": {
+      "f1": 0.4241277350680071,
+      "threshold": 0.2099999999999999,
+      "precision": 0.3479323928356587,
+      "recall": 0.5430535784595815,
+      "auc": 0.8550571906015558
+    },
+    "0.6": {
+      "f1": 0.42420941631806436,
+      "threshold": 0.2049999999999999,
+      "precision": 0.34354354354354355,
+      "recall": 0.5543810764151801,
+      "auc": 0.8551033128604748
+    },
+    "0.7": {
+      "f1": 0.42465023626424536,
+      "threshold": 0.2049999999999999,
+      "precision": 0.34378457441821214,
+      "recall": 0.5552594118181543,
+      "auc": 0.8551229674572911
+    }
+  },
+  "cv_lgb_bag_only": {
+    "f1": 0.42446525609897096,
+    "threshold": 0.2049999999999999,
+    "precision": 0.34327604585491744,
+    "recall": 0.5559560226549959,
+    "auc": 0.8550166512773744
+  },
+  "cv_xgb_only": {
+    "f1": 0.42215192817602454,
+    "threshold": 0.2049999999999999,
+    "precision": 0.34264031262388855,
+    "recall": 0.54971681255111,
+    "auc": 0.8544174469336656
+  },
+  "oof_corr_lgb_xgb": 0.9918353776613024,
+  "n_features": 214,
+  "nan_max": 0.95,
+  "n_dropped_sparse": 69,
+  "dropped_sparse": [
+    "BCPREFER",
+    "BLDSTFIT",
+    "BRTHCNT4",
+    "CASTHNO2",
+    "CDASSIST",
+    "CDDISCUS",
+    "CDHELP",
+    "CDHOUSE",
+    "CDSOCIAL",
+    "CHKHEMO3",
+    "COPDBRTH",
+    "COPDBTST",
+    "COPDCOGH",
+    "COPDFLEM",
+    "COPDSMOK",
+    "CRGVALZD",
+    "CRGVHOU1",
+    "CRGVHRS1",
+    "CRGVLNG1",
+    "CRGVPER1",
+    "CRGVPRB3",
+    "CRGVREL4",
+    "CSRVCLIN",
+    "CSRVCTL2",
+    "CSRVDEIN",
+    "CSRVDOC1",
+    "CSRVINSR",
+    "CSRVINST",
+    "CSRVPAIN",
+    "CSRVRTRN",
+    "CSRVSUM",
+    "CSRVTRT3",
+    "DIABEDU1",
+    "DIABEYE1",
+    "DIABTYPE",
+    "EYEEXAM1",
+    "FEETSORE",
+    "GUNLOAD",
+    "HADSEX",
+    "HEATTBCO",
+    "HPVADSHT",
+    "HPVADVC4",
+    "IMFVPLA3",
+    "INSULIN1",
+    "LASTSIG4",
+    "LOADULK2",
+    "MARJDAB",
+    "MARJEAT",
+    "MARJOTHR",
+    "MARJSMOK",
+    "MARJVAPE",
+    "MENTCIGS",
+    "MENTECIG",
+    "NOBCUSE8",
+    "NUMPHON4",
+    "PCPSARS2",
+    "PCSTALK1",
+    "PFPPRVN4",
+    "PSASUGST",
+    "PSATEST1",
+    "PSATIME1",
+    "RCSXBRTH",
+    "SDNATES1",
+    "SHINGLE2",
+    "STOPSMK2",
+    "TYPCNTR9",
+    "USEMRJN4",
+    "VCLNTES2",
+    "WHEREGET"
+  ],
+  "xgb_device_used": "cuda",
+  "xgb_global_config": {},
+  "best_iterations": [
+    [
+      197,
+      163,
+      250,
+      162,
+      287
+    ],
+    [
+      231,
+      189,
+      243,
+      251,
+      201
+    ],
+    [
+      206,
+      170,
+      184,
+      225,
+      203
+    ],
+    [
+      201,
+      205,
+      214,
+      210,
+      278
+    ],
+    [
+      222,
+      176,
+      192,
+      190,
+      196
+    ]
+  ],
+  "best_iterations_xgb": [
+    237,
+    214,
+    310,
+    295,
+    259
+  ],
+  "cv_seed42_only": {
+    "f1": 0.4224553772831909,
+    "threshold": 0.2049999999999999,
+    "precision": 0.34175556803294027,
+    "recall": 0.5530484295968744,
+    "auc": 0.8541123192592205
+  },
+  "cv_cumulative_seeds": {
+    "1": {
+      "f1": 0.4224553772831909,
+      "auc": 0.8541123192592205,
+      "threshold": 0.2049999999999999
+    },
+    "2": {
+      "f1": 0.42338801754702243,
+      "auc": 0.8546385700423087,
+      "threshold": 0.2149999999999999
+    },
+    "3": {
+      "f1": 0.42395943874543096,
+      "auc": 0.8548170677169047,
+      "threshold": 0.2099999999999999
+    },
+    "4": {
+      "f1": 0.42440569790028676,
+      "auc": 0.8549348645762176,
+      "threshold": 0.2049999999999999
+    },
+    "5": {
+      "f1": 0.42446525609897096,
+      "auc": 0.8550166512773744,
+      "threshold": 0.2049999999999999
+    }
+  },
+  "top_features": {
+    "_AGE80": 60556.0,
+    "GENHLTH": 46074.0,
+    "EMPLOY1": 35957.0,
+    "LCSCTSC1": 29977.0,
+    "_AGEG5YR": 25811.0,
+    "CVDSTRK3": 24416.0,
+    "_RFHLTH": 22890.0,
+    "_AGE_G": 17006.0,
+    "PERSDOC3": 8966.0,
+    "LCSSCNCR": 8737.0,
+    "CHCCOPD3": 7789.0,
+    "CHCKDNY2": 7042.0,
+    "DIABETE4": 6715.0,
+    "SEXVAR": 6363.0,
+    "DIABAGE4": 6128.0,
+    "_PACKYRS": 4760.0,
+    "DIFFWALK": 4730.0,
+    "_BMI5": 4463.0,
+    "PHYSHLTH": 4446.0,
+    "_AGE65YR": 4122.0
+  },
+  "top_features_xgb": {
+    "_AGE65YR": 390.02,
+    "_AGE_G": 368.27,
+    "EMPLOY1": 245.12,
+    "LCSCTSC1": 193.79,
+    "_RFHLTH": 168.73,
+    "GENHLTH": 151.32,
+    "CVDSTRK3": 148.97,
+    "_AGEG5YR": 123.85,
+    "_AGE80": 81.13,
+    "SEXVAR": 73.26,
+    "LCSSCNCR": 65.41,
+    "DIFFWALK": 61.9,
+    "CHCKDNY2": 49.62,
+    "_SEX": 46.92,
+    "_MAM5023": 42.83,
+    "CHCCOPD3": 42.49,
+    "DIABETE4": 40.15,
+    "PERSDOC3": 28.49,
+    "_LCSREC": 25.31,
+    "HADSIGM4": 24.33
+  }
+}

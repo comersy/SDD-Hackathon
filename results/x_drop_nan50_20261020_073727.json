@@ -1,0 +1,52 @@
+{
+  "name": "x_drop_nan50",
+  "idea": "Nettoyage des codes de non-réponse BRFSS appliqué une fois à train et test : 7/9, 77/99, 777/999, 7777/9999 (ne sait pas / refus) -> NaN, 88/888/8888 (aucun) -> 0, exceptions pour les âges et comptages, WEIGHT2/HEIGHT3/ALCDAY4 converties en unités réelles ; même LightGBM que la base ; EN PLUS : colonnes vides à plus de 50 % sur train retirées",
+  "timestamp": "20261020_073727",
+  "cv": {
+    "f1": 0.4208122962492203,
+    "threshold": 0.2099999999999999,
+    "precision": 0.344125346473668,
+    "recall": 0.5414786322197656,
+    "auc": 0.8533483233766916
+  },
+  "test_positive_rate": 0.14409333333333332,
+  "submission": "submissions/submission_x_drop_nan50_20261020_073727.csv",
+  "runtime_s": 40.7,
+  "model": "lightgbm",
+  "params": {
+    "objective": "binary",
+    "learning_rate": 0.05,
+    "num_leaves": 63,
+    "min_child_samples": 100,
+    "feature_fraction": 0.5,
+    "bagging_fraction": 0.8,
+    "bagging_freq": 1,
+    "lambda_l2": 1.0,
+    "verbose": -1,
+    "seed": 42,
+    "num_threads": 16
+  },
+  "n_features": 115,
+  "top_features": {
+    "_AGE80": 63185.0,
+    "GENHLTH": 49731.0,
+    "LCSCTSC1": 43503.0,
+    "EMPLOY1": 36085.0,
+    "_AGE_G": 29891.0,
+    "CVDSTRK3": 25972.0,
+    "_RFHLTH": 17184.0,
+    "_AGEG5YR": 16293.0,
+    "DIABETE4": 10362.0,
+    "PERSDOC3": 9415.0,
+    "_SEX": 9177.0,
+    "SEXVAR": 8580.0,
+    "CHCCOPD3": 7955.0,
+    "CHCKDNY2": 7074.0,
+    "_BMI5": 6697.0,
+    "DIFFWALK": 5929.0,
+    "WEIGHT2": 5419.0,
+    "RMVTETH4": 4714.0,
+    "PHYSHLTH": 3993.0,
+    "_HCVU652": 3777.0
+  }
+}

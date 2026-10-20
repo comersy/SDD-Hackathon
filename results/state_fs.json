@@ -1,0 +1,30 @@
+{
+  "best_cv": {
+    "f1": 0.42495215858076474,
+    "name": "r3_lgbbag_xgb_blend",
+    "script": "experiments/r3_lgbbag_xgb_blend.py",
+    "results_json": "results/r3_lgbbag_xgb_blend.json"
+  },
+  "last_submitted_cv": 0.4246738681305708,
+  "best_kaggle": {
+    "f1": 0.43024,
+    "name": "baseline_lgbm",
+    "script": "train.py",
+    "submission": "submissions/submission_20261020_083555.csv",
+    "pr": "https://github.com/comersy/SDD-Hackathon/pull/1"
+  },
+  "kaggle_submissions": [
+    {
+      "date": "2026-10-20",
+      "name": "baseline_lgbm",
+      "cv_f1": 0.421104691137622,
+      "public_f1": 0.43024
+    },
+    {
+      "date": "2026-10-20",
+      "name": "r2_lgbm_seed_bagging",
+      "cv_f1": 0.4246738681305708,
+      "public_f1": 0.43024
+    }
+  ]
+}

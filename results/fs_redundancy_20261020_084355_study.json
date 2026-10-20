@@ -1,0 +1,1940 @@
+{
+  "n_candidates": 214,
+  "n_final": 99,
+  "final_list": [
+    "GENHLTH",
+    "_AGE80",
+    "EMPLOY1",
+    "CVDSTRK3",
+    "LCSCTSC1",
+    "LCSSCNCR",
+    "PERSDOC3",
+    "CHCCOPD3",
+    "DIABAGE4",
+    "CHCKDNY2",
+    "SEXVAR",
+    "_ALTETH3",
+    "_PACKYRS",
+    "DIABETE4",
+    "_BMI5",
+    "DIFFWALK",
+    "_FLSHOT7",
+    "_MAM5023",
+    "WEIGHT2",
+    "PHYSHLTH",
+    "_YRSSMOK",
+    "HAVARTH4",
+    "_STATE",
+    "HADHYST2",
+    "SLEPTIM1",
+    "POORHLTH",
+    "_HCVU652",
+    "INCOME3",
+    "HIVTSTD3",
+    "FLSHTMY3",
+    "HEIGHT3",
+    "CHECKUP1",
+    "LASTDEN4",
+    "MARITAL",
+    "ALCDAY4",
+    "_CRCREC2",
+    "PNEUVAC4",
+    "_RACE1",
+    "_SBONTI1",
+    "MENTHLTH",
+    "_EXTETH3",
+    "MAXDRNKS",
+    "DEAF",
+    "COVIDFS1",
+    "SDHSTRE1",
+    "CRVCLCNC",
+    "TETANUS1",
+    "EDUCA",
+    "AVEDRNK3",
+    "MEDCOST1",
+    "HHADULT",
+    "COVIDSE1",
+    "EMTSUPRT",
+    "_MRACE2",
+    "VETERAN3",
+    "CNCRAGE",
+    "DRNK3GE5",
+    "BLIND",
+    "CNCRTYP2",
+    "RRCOGNT2",
+    "ADDEPEV3",
+    "COVIDPOS",
+    "MSCODE",
+    "CHILDREN",
+    "COVIDPRM",
+    "RRCLASS3",
+    "ECIGNOW2",
+    "CHCSCNC1",
+    "CHCOCNC1",
+    "HIVTST7",
+    "SOFEMALE",
+    "MARIJAN1",
+    "CPDEMO1C",
+    "LASTSMK2",
+    "NUMADULT",
+    "ASTHNOW",
+    "RENTHOM1",
+    "DIFFALON",
+    "DECIDE",
+    "SMOKE100",
+    "_TOTINDA",
+    "_URBSTAT",
+    "NUMHHOL4",
+    "CIMEMLOS",
+    "PREGNANT",
+    "SOMALE",
+    "DIFFDRES",
+    "ACEHURT1",
+    "CAREGIV1",
+    "RCSRLTN2",
+    "USENOW3",
+    "CAGEG",
+    "ASTHMA3",
+    "ACEADSAF",
+    "ASBIBING",
+    "CRGVEXPT",
+    "ASBIADVC",
+    "FIREARM5",
+    "HIVRISK5"
+  ],
+  "gain_source": "LightGBM rapide 200 arbres lr 0.1, 2 graines, ajusté sur TOUT train (décision structurelle de sélection, signalée : léger risque d'optimisme)",
+  "gain_quick": {
+    "GENHLTH": 33176.4,
+    "_AGE80": 29079.8,
+    "_AGEG5YR": 23612.2,
+    "EMPLOY1": 18248.6,
+    "CVDSTRK3": 17274.2,
+    "LCSCTSC1": 16433.2,
+    "_RFHLTH": 11727.4,
+    "_AGE_G": 8318.2,
+    "LCSSCNCR": 7924.9,
+    "PERSDOC3": 6033.9,
+    "CHCCOPD3": 5763.2,
+    "DIABAGE4": 5252.9,
+    "CHCKDNY2": 5176.0,
+    "SEXVAR": 4815.2,
+    "_ALTETH3": 4321.8,
+    "_PACKYRS": 4014.3,
+    "DIABETE4": 3896.8,
+    "_BMI5": 3887.7,
+    "DIFFWALK": 3821.7,
+    "_FLSHOT7": 3198.2,
+    "_MAM5023": 3174.9,
+    "WEIGHT2": 3022.5,
+    "PHYSHLTH": 2920.5,
+    "_YRSSMOK": 2755.8,
+    "HOWLONG": 2576.7,
+    "RMVTETH4": 2359.0,
+    "HAVARTH4": 2224.2,
+    "_LCSREC": 2150.3,
+    "_STATE": 2074.5,
+    "HADHYST2": 2057.7,
+    "LCSLAST": 2027.9,
+    "SLEPTIM1": 2011.6,
+    "_AGE65YR": 1809.9,
+    "_SEX": 1774.7,
+    "POORHLTH": 1769.5,
+    "_YRSQUIT": 1727.2,
+    "_HCVU652": 1716.1,
+    "INCOME3": 1648.3,
+    "WTKG3": 1639.7,
+    "HIVTSTD3": 1619.5,
+    "FLSHTMY3": 1556.4,
+    "HEIGHT3": 1550.8,
+    "CHECKUP1": 1540.5,
+    "LCSFIRST": 1515.7,
+    "LCSNUMCG": 1500.2,
+    "LASTDEN4": 1422.7,
+    "MARITAL": 1298.3,
+    "ALCDAY4": 1277.6,
+    "_CRCREC2": 1260.0,
+    "PNEUVAC4": 1218.2,
+    "HTIN4": 1200.1,
+    "PRIMINSR": 1154.4,
+    "_RACE1": 1097.8,
+    "_SBONTI1": 1097.2,
+    "MENTHLTH": 1034.7,
+    "_PNEUMO3": 929.2,
+    "COLNTES1": 923.6,
+    "_INCOMG1": 919.4,
+    "_EXTETH3": 865.9,
+    "MAXDRNKS": 858.6,
+    "DEAF": 855.5,
+    "COVIDFS1": 853.2,
+    "SDHSTRE1": 816.9,
+    "_DRNKWK2": 813.8,
+    "_PACKDAY": 799.7,
+    "CRVCLCNC": 761.6,
+    "PDIABTS1": 749.4,
+    "TETANUS1": 746.5,
+    "EDUCA": 730.2,
+    "AVEDRNK3": 728.8,
+    "HADSIGM4": 728.7,
+    "MEDCOST1": 728.2,
+    "HHADULT": 695.9,
+    "_IMPRACE": 672.9,
+    "COVIDSE1": 668.4,
+    "_DRDXAR2": 662.7,
+    "EMTSUPRT": 662.1,
+    "SDHISOLT": 662.0,
+    "_MRACE2": 626.0,
+    "HTM4": 620.4,
+    "COLNCNCR": 603.4,
+    "VETERAN3": 602.5,
+    "CNCRAGE": 593.9,
+    "LCSCTWHN": 585.0,
+    "DRNK3GE5": 549.0,
+    "BLIND": 540.3,
+    "_PRACE2": 535.3,
+    "_RFMAM22": 534.8,
+    "PREDIAB2": 520.3,
+    "LSATISFY": 509.7,
+    "CNCRTYP2": 503.4,
+    "RRCOGNT2": 500.8,
+    "ADDEPEV3": 493.4,
+    "COVIDNU1": 480.7,
+    "COVIDPOS": 478.7,
+    "_PHYS14D": 474.4,
+    "SDHFOOD1": 465.8,
+    "HADMAM": 462.7,
+    "MSCODE": 454.5,
+    "_SGMSCP1": 451.2,
+    "_DENVST3": 438.8,
+    "CHILDREN": 436.9,
+    "_METSTAT": 430.5,
+    "_CLNSCP1": 412.4,
+    "SIGMTES1": 403.4,
+    "COVIDPRM": 395.9,
+    "RRCLASS3": 387.4,
+    "ECIGNOW2": 385.5,
+    "STOLTEST": 383.9,
+    "CHCSCNC1": 375.1,
+    "CHCOCNC1": 370.6,
+    "HIVTST7": 360.6,
+    "_MENT14D": 358.4,
+    "_RACEPR1": 358.4,
+    "SOFEMALE": 355.9,
+    "_BMI5CAT": 355.7,
+    "MARIJAN1": 352.1,
+    "_EDUCAG": 347.8,
+    "CPDEMO1C": 345.3,
+    "COLNSIGM": 343.6,
+    "_RACEGR4": 343.4,
+    "RRTREAT": 340.3,
+    "LASTSMK2": 339.1,
+    "NUMADULT": 336.2,
+    "SDHBILLS": 331.4,
+    "DROCDY4_": 322.3,
+    "ASTHNOW": 308.8,
+    "RENTHOM1": 303.0,
+    "COVIDSMP": 300.5,
+    "_SGMS101": 294.5,
+    "DIFFALON": 292.3,
+    "CRVCLHPV": 291.9,
+    "RRHCARE4": 281.6,
+    "DECIDE": 279.3,
+    "BIRTHSEX": 275.2,
+    "SMOKE100": 269.9,
+    "_CASTHM1": 260.0,
+    "_TOTINDA": 253.4,
+    "_URBSTAT": 251.7,
+    "CERVSCRN": 248.2,
+    "_HADCOLN": 243.9,
+    "NUMHHOL4": 243.7,
+    "_SMOKGRP": 236.3,
+    "_RACEG22": 226.1,
+    "CIMEMLOS": 225.5,
+    "FOODSTMP": 223.3,
+    "RRPHYSM2": 222.4,
+    "FLUSHOT7": 220.0,
+    "PREGNANT": 219.2,
+    "_SMOKER3": 217.5,
+    "SOMALE": 214.4,
+    "DIFFDRES": 210.0,
+    "_CHLDCNT": 209.4,
+    "SMOKDAY2": 205.0,
+    "ACEHURT1": 204.6,
+    "CAREGIV1": 200.5,
+    "_HADSIGM": 198.4,
+    "RCSRLTN2": 194.8,
+    "_RFBLDS5": 184.2,
+    "EXERANY2": 184.0,
+    "USENOW3": 183.9,
+    "SMALSTOL": 183.6,
+    "NUMWOMEN": 178.7,
+    "COVIDVA1": 176.0,
+    "CAGEG": 175.2,
+    "ASTHMA3": 172.4,
+    "ACEADSAF": 168.1,
+    "VIRCOLO1": 167.8,
+    "STOOLDN2": 167.2,
+    "TRNSGNDR": 166.1,
+    "_ASTHMS1": 165.9,
+    "SDHUTILS": 165.7,
+    "ASBIBING": 164.7,
+    "SDHTRNSP": 163.9,
+    "CRGVEXPT": 163.9,
+    "_AIDTST4": 158.3,
+    "RRATWRK2": 156.8,
+    "NUMMEN": 152.0,
+    "_RFDRHV8": 146.2,
+    "_CRACE2": 145.7,
+    "_STOLDN1": 140.5,
+    "CRVCLPAP": 139.5,
+    "SDHEMPLY": 139.0,
+    "ASBIADVC": 136.4,
+    "ACETOUCH": 135.9,
+    "ACEADNED": 135.8,
+    "_VIRCOL1": 126.2,
+    "_RFBMI5": 116.8,
+    "ASBIALCH": 109.5,
+    "_HISPANC": 106.4,
+    "ACEPUNCH": 101.4,
+    "_CURECI2": 98.9,
+    "CASTHDX2": 98.5,
+    "_RFBING6": 98.1,
+    "FIREARM5": 96.8,
+    "_CPRACE2": 95.9,
+    "ASBIRDUC": 92.9,
+    "ACEPRISN": 86.1,
+    "RCSGEND1": 85.8,
+    "ACESWEAR": 83.0,
+    "_HLTHPLN": 77.1,
+    "ASBIDRNK": 75.0,
+    "DRNKANY6": 74.0,
+    "_LTASTH1": 73.5,
+    "CNCRDIFF": 71.4,
+    "ACEDRUGS": 66.0,
+    "HIVRISK5": 60.1,
+    "_RFSMOK3": 56.2,
+    "ACEDEPRS": 54.8,
+    "_CHISPNC": 54.0,
+    "ACEDIVRC": 50.4,
+    "ACEHVSEX": 48.9,
+    "ACETTHEM": 47.7,
+    "ACEDRINK": 43.5
+  },
+  "n_redundant_pairs": 89,
+  "pairs": [
+    [
+      "GENHLTH",
+      "_RFHLTH",
+      "cramer",
+      1.0,
+      "GENHLTH"
+    ],
+    [
+      "_TOTINDA",
+      "EXERANY2",
+      "cramer",
+      1.0,
+      "_TOTINDA"
+    ],
+    [
+      "LASTDEN4",
+      "_DENVST3",
+      "cramer",
+      1.0,
+      "LASTDEN4"
+    ],
+    [
+      "RMVTETH4",
+      "_EXTETH3",
+      "cramer",
+      1.0,
+      "_EXTETH3"
+    ],
+    [
+      "ASTHMA3",
+      "_LTASTH1",
+      "spearman",
+      1.0,
+      "ASTHMA3"
+    ],
+    [
+      "ASTHMA3",
+      "_ASTHMS1",
+      "cramer",
+      1.0,
+      "ASTHMA3"
+    ],
+    [
+      "ASTHNOW",
+      "_CASTHM1",
+      "spearman",
+      1.0,
+      "ASTHNOW"
+    ],
+    [
+      "ASTHNOW",
+      "_ASTHMS1",
+      "spearman",
+      1.0,
+      "ASTHNOW"
+    ],
+    [
+      "HAVARTH4",
+      "_DRDXAR2",
+      "cramer",
+      1.0,
+      "HAVARTH4"
+    ],
+    [
+      "EDUCA",
+      "_EDUCAG",
+      "cramer",
+      1.0,
+      "EDUCA"
+    ],
+    [
+      "HEIGHT3",
+      "HTIN4",
+      "spearman",
+      1.0,
+      "HEIGHT3"
+    ],
+    [
+      "HOWLONG",
+      "_RFMAM22",
+      "cramer",
+      1.0,
+      null
+    ],
+    [
+      "_MAM5023",
+      "HOWLONG",
+      "cramer",
+      1.0,
+      "_MAM5023"
+    ],
+    [
+      "COLNSIGM",
+      "_HADCOLN",
+      "cramer",
+      1.0,
+      null
+    ],
+    [
+      "COLNSIGM",
+      "_HADSIGM",
+      "cramer",
+      1.0,
+      null
+    ],
+    [
+      "COLNTES1",
+      "_CLNSCP1",
+      "cramer",
+      1.0,
+      null
+    ],
+    [
+      "_RFBLDS5",
+      "SMALSTOL",
+      "cramer",
+      1.0,
+      null
+    ],
+    [
+      "STOLTEST",
+      "_RFBLDS5",
+      "cramer",
+      1.0,
+      null
+    ],
+    [
+      "STOOLDN2",
+      "_STOLDN1",
+      "cramer",
+      1.0,
+      null
+    ],
+    [
+      "SMOKE100",
+      "_SMOKER3",
+      "cramer",
+      1.0,
+      "SMOKE100"
+    ],
+    [
+      "SMOKE100",
+      "_SMOKGRP",
+      "cramer",
+      1.0,
+      "SMOKE100"
+    ],
+    [
+      "_SMOKER3",
+      "SMOKDAY2",
+      "spearman",
+      1.0,
+      null
+    ],
+    [
+      "SMOKDAY2",
+      "_RFSMOK3",
+      "cramer",
+      1.0,
+      null
+    ],
+    [
+      "ECIGNOW2",
+      "_CURECI2",
+      "cramer",
+      1.0,
+      "ECIGNOW2"
+    ],
+    [
+      "LCSNUMCG",
+      "_PACKDAY",
+      "spearman",
+      1.0,
+      null
+    ],
+    [
+      "_FLSHOT7",
+      "FLUSHOT7",
+      "spearman",
+      1.0,
+      "_FLSHOT7"
+    ],
+    [
+      "PNEUVAC4",
+      "_PNEUMO3",
+      "spearman",
+      1.0,
+      "PNEUVAC4"
+    ],
+    [
+      "_SEX",
+      "BIRTHSEX",
+      "spearman",
+      1.0,
+      null
+    ],
+    [
+      "_IMPRACE",
+      "_RACEG22",
+      "cramer",
+      1.0,
+      null
+    ],
+    [
+      "_IMPRACE",
+      "_RACEPR1",
+      "cramer",
+      1.0,
+      null
+    ],
+    [
+      "_HCVU652",
+      "_HLTHPLN",
+      "spearman",
+      1.0,
+      "_HCVU652"
+    ],
+    [
+      "_ASTHMS1",
+      "_LTASTH1",
+      "cramer",
+      1.0,
+      null
+    ],
+    [
+      "_CASTHM1",
+      "_ASTHMS1",
+      "cramer",
+      1.0,
+      null
+    ],
+    [
+      "_RACE1",
+      "_HISPANC",
+      "cramer",
+      1.0,
+      "_RACE1"
+    ],
+    [
+      "_RACEGR4",
+      "_HISPANC",
+      "cramer",
+      1.0,
+      null
+    ],
+    [
+      "_RACE1",
+      "_RACEG22",
+      "cramer",
+      1.0,
+      "_RACE1"
+    ],
+    [
+      "_RACE1",
+      "_RACEGR4",
+      "cramer",
+      1.0,
+      "_RACE1"
+    ],
+    [
+      "_RACE1",
+      "_RACEPR1",
+      "spearman",
+      1.0,
+      "_RACE1"
+    ],
+    [
+      "_RACEGR4",
+      "_RACEG22",
+      "cramer",
+      1.0,
+      null
+    ],
+    [
+      "_RACEPR1",
+      "_RACEG22",
+      "cramer",
+      1.0,
+      null
+    ],
+    [
+      "_RACEPR1",
+      "_RACEGR4",
+      "cramer",
+      1.0,
+      null
+    ],
+    [
+      "_AGEG5YR",
+      "_AGE65YR",
+      "cramer",
+      1.0,
+      null
+    ],
+    [
+      "HTIN4",
+      "HTM4",
+      "spearman",
+      1.0,
+      null
+    ],
+    [
+      "_BMI5CAT",
+      "_RFBMI5",
+      "cramer",
+      1.0,
+      null
+    ],
+    [
+      "_MAM5023",
+      "_RFMAM22",
+      "spearman",
+      1.0,
+      "_MAM5023"
+    ],
+    [
+      "_CLNSCP1",
+      "_HADCOLN",
+      "cramer",
+      1.0,
+      null
+    ],
+    [
+      "_SGMSCP1",
+      "_HADSIGM",
+      "cramer",
+      1.0,
+      null
+    ],
+    [
+      "_SGMS101",
+      "_HADSIGM",
+      "cramer",
+      1.0,
+      null
+    ],
+    [
+      "_SMOKER3",
+      "_RFSMOK3",
+      "cramer",
+      1.0,
+      null
+    ],
+    [
+      "PRIMINSR",
+      "_HLTHPLN",
+      "cramer",
+      1.0,
+      null
+    ],
+    [
+      "_HCVU652",
+      "PRIMINSR",
+      "cramer",
+      1.0,
+      "_HCVU652"
+    ],
+    [
+      "_ALTETH3",
+      "RMVTETH4",
+      "cramer",
+      1.0,
+      "_ALTETH3"
+    ],
+    [
+      "INCOME3",
+      "_INCOMG1",
+      "cramer",
+      1.0,
+      "INCOME3"
+    ],
+    [
+      "VIRCOLO1",
+      "_VIRCOL1",
+      "cramer",
+      1.0,
+      null
+    ],
+    [
+      "HIVTST7",
+      "_AIDTST4",
+      "cramer",
+      1.0,
+      "HIVTST7"
+    ],
+    [
+      "_RACE1",
+      "_IMPRACE",
+      "cramer",
+      1.0,
+      "_RACE1"
+    ],
+    [
+      "WEIGHT2",
+      "WTKG3",
+      "spearman",
+      1.0,
+      "WEIGHT2"
+    ],
+    [
+      "CHILDREN",
+      "_CHLDCNT",
+      "spearman",
+      1.0,
+      "CHILDREN"
+    ],
+    [
+      "ALCDAY4",
+      "DROCDY4_",
+      "spearman",
+      1.0,
+      "ALCDAY4"
+    ],
+    [
+      "HEIGHT3",
+      "HTM4",
+      "spearman",
+      1.0,
+      "HEIGHT3"
+    ],
+    [
+      "_IMPRACE",
+      "_HISPANC",
+      "cramer",
+      0.9997,
+      null
+    ],
+    [
+      "_RACEPR1",
+      "_HISPANC",
+      "cramer",
+      0.9997,
+      null
+    ],
+    [
+      "_SGMSCP1",
+      "_SGMS101",
+      "spearman",
+      0.9995,
+      null
+    ],
+    [
+      "COLNSIGM",
+      "_SGMS101",
+      "spearman",
+      0.9978,
+      null
+    ],
+    [
+      "_SGMSCP1",
+      "COLNSIGM",
+      "spearman",
+      0.9976,
+      null
+    ],
+    [
+      "SEXVAR",
+      "_SEX",
+      "spearman",
+      0.9975,
+      "SEXVAR"
+    ],
+    [
+      "_IMPRACE",
+      "_RACEGR4",
+      "spearman",
+      0.9958,
+      null
+    ],
+    [
+      "_AGEG5YR",
+      "_AGE_G",
+      "cramer",
+      0.9931,
+      null
+    ],
+    [
+      "HADSIGM4",
+      "_CLNSCP1",
+      "cramer",
+      0.9905,
+      null
+    ],
+    [
+      "HADSIGM4",
+      "_HADCOLN",
+      "spearman",
+      0.9887,
+      null
+    ],
+    [
+      "PHYSHLTH",
+      "_PHYS14D",
+      "spearman",
+      0.9885,
+      "PHYSHLTH"
+    ],
+    [
+      "MENTHLTH",
+      "_MENT14D",
+      "spearman",
+      0.988,
+      "MENTHLTH"
+    ],
+    [
+      "SEXVAR",
+      "BIRTHSEX",
+      "cramer",
+      0.9855,
+      "SEXVAR"
+    ],
+    [
+      "_DRNKWK2",
+      "DROCDY4_",
+      "spearman",
+      0.9837,
+      null
+    ],
+    [
+      "DRNK3GE5",
+      "_RFBING6",
+      "spearman",
+      0.9833,
+      "DRNK3GE5"
+    ],
+    [
+      "ALCDAY4",
+      "_DRNKWK2",
+      "spearman",
+      0.9782,
+      "ALCDAY4"
+    ],
+    [
+      "_SMOKGRP",
+      "_SMOKER3",
+      "spearman",
+      0.9727,
+      null
+    ],
+    [
+      "_AGE80",
+      "_AGE_G",
+      "spearman",
+      0.9693,
+      "_AGE80"
+    ],
+    [
+      "_AGE80",
+      "_AGEG5YR",
+      "spearman",
+      0.9618,
+      "_AGE80"
+    ],
+    [
+      "_MRACE2",
+      "_PRACE2",
+      "spearman",
+      0.959,
+      "_MRACE2"
+    ],
+    [
+      "_BMI5",
+      "_BMI5CAT",
+      "spearman",
+      0.9449,
+      "_BMI5"
+    ],
+    [
+      "MSCODE",
+      "_METSTAT",
+      "cramer",
+      0.9369,
+      "MSCODE"
+    ],
+    [
+      "_YRSSMOK",
+      "LCSLAST",
+      "spearman",
+      0.9239,
+      "_YRSSMOK"
+    ],
+    [
+      "DROCDY4_",
+      "DRNKANY6",
+      "spearman",
+      0.9153,
+      null
+    ],
+    [
+      "ALCDAY4",
+      "DRNKANY6",
+      "spearman",
+      0.9153,
+      "ALCDAY4"
+    ],
+    [
+      "_CRACE2",
+      "_CPRACE2",
+      "spearman",
+      0.9133,
+      null
+    ],
+    [
+      "_DRNKWK2",
+      "DRNKANY6",
+      "spearman",
+      0.9112,
+      null
+    ],
+    [
+      "_CRCREC2",
+      "COLNTES1",
+      "cramer",
+      0.9067,
+      "_CRCREC2"
+    ],
+    [
+      "_SBONTI1",
+      "SMALSTOL",
+      "cramer",
+      0.9033,
+      "_SBONTI1"
+    ]
+  ],
+  "near_pairs": [
+    [
+      "_CLNSCP1",
+      "_CRCREC2",
+      "spearman",
+      0.892
+    ],
+    [
+      "RRCLASS3",
+      "_RACEG22",
+      "cramer",
+      0.883
+    ],
+    [
+      "_MRACE2",
+      "_RACE1",
+      "cramer",
+      0.867
+    ],
+    [
+      "_MRACE2",
+      "_RACEPR1",
+      "cramer",
+      0.86
+    ],
+    [
+      "_IMPRACE",
+      "_MRACE2",
+      "cramer",
+      0.851
+    ],
+    [
+      "WEIGHT2",
+      "_BMI5",
+      "spearman",
+      0.846
+    ],
+    [
+      "RRCLASS3",
+      "_RACE1",
+      "spearman",
+      0.846
+    ],
+    [
+      "WTKG3",
+      "_BMI5",
+      "spearman",
+      0.846
+    ],
+    [
+      "RRCLASS3",
+      "_RACEGR4",
+      "spearman",
+      0.845
+    ],
+    [
+      "_MRACE2",
+      "_RACEG22",
+      "cramer",
+      0.841
+    ],
+    [
+      "_MRACE2",
+      "_RACEGR4",
+      "cramer",
+      0.841
+    ],
+    [
+      "RRCLASS3",
+      "_RACEPR1",
+      "spearman",
+      0.827
+    ],
+    [
+      "RRCLASS3",
+      "_IMPRACE",
+      "spearman",
+      0.822
+    ],
+    [
+      "_AGE65YR",
+      "_AGE_G",
+      "spearman",
+      0.818
+    ],
+    [
+      "ASTHMA3",
+      "_CASTHM1",
+      "spearman",
+      0.816
+    ],
+    [
+      "_LTASTH1",
+      "_CASTHM1",
+      "spearman",
+      0.816
+    ],
+    [
+      "_PRACE2",
+      "_RACEG22",
+      "cramer",
+      0.813
+    ],
+    [
+      "_CHISPNC",
+      "_RACE1",
+      "cramer",
+      0.807
+    ],
+    [
+      "_CHISPNC",
+      "_RACEGR4",
+      "cramer",
+      0.807
+    ],
+    [
+      "_CHISPNC",
+      "_HISPANC",
+      "spearman",
+      0.805
+    ],
+    [
+      "_BMI5",
+      "_RFBMI5",
+      "spearman",
+      0.803
+    ]
+  ],
+  "groups": {
+    "age": {
+      "kept": [
+        "_AGE80"
+      ],
+      "dropped": [
+        "_AGEG5YR",
+        "_AGE_G",
+        "_AGE65YR"
+      ],
+      "why": "_AGE80 : gain max du groupe (29080) ; retirées : _AGEG5YR (gain 23612, spearman 0.96 avec _AGE80), _AGE_G (gain 8318, spearman 0.97 avec _AGE80), _AGE65YR (gain 1810)"
+    },
+    "sexe": {
+      "kept": [
+        "SEXVAR"
+      ],
+      "dropped": [
+        "_SEX",
+        "BIRTHSEX"
+      ],
+      "why": "SEXVAR : gain max du groupe (4815) ; retirées : _SEX (gain 1775, spearman 1.00 avec SEXVAR), BIRTHSEX (gain 275, cramer 0.99 avec SEXVAR)"
+    },
+    "imc": {
+      "kept": [
+        "_BMI5"
+      ],
+      "dropped": [
+        "_BMI5CAT",
+        "_RFBMI5"
+      ],
+      "why": "_BMI5 : gain max du groupe (3888) ; retirées : _BMI5CAT (gain 356, spearman 0.94 avec _BMI5), _RFBMI5 (gain 117)"
+    },
+    "poids": {
+      "kept": [
+        "WEIGHT2"
+      ],
+      "dropped": [
+        "WTKG3"
+      ],
+      "why": "WEIGHT2 : gain max du groupe (3023) ; retirées : WTKG3 (gain 1640, spearman 1.00 avec WEIGHT2)"
+    },
+    "taille": {
+      "kept": [
+        "HEIGHT3"
+      ],
+      "dropped": [
+        "HTM4",
+        "HTIN4"
+      ],
+      "why": "HEIGHT3 : gain max du groupe (1551) ; retirées : HTM4 (gain 620, spearman 1.00 avec HEIGHT3), HTIN4 (gain 1200, spearman 1.00 avec HEIGHT3)"
+    },
+    "tabac_statut": {
+      "kept": [
+        "LASTSMK2",
+        "SMOKE100"
+      ],
+      "dropped": [
+        "_SMOKER3",
+        "_RFSMOK3",
+        "_SMOKGRP",
+        "SMOKDAY2"
+      ],
+      "why": "LASTSMK2 : gain max du groupe (339) ; SMOKE100 : information distincte (non redondante, gain 270 = 80% de la 1re) ; retirées : _SMOKER3 (gain 218), _RFSMOK3 (gain 56), _SMOKGRP (gain 236), SMOKDAY2 (gain 205)"
+    },
+    "tabac_historique": {
+      "kept": [
+        "_PACKYRS",
+        "_YRSSMOK"
+      ],
+      "dropped": [
+        "_PACKDAY",
+        "_YRSQUIT",
+        "LCSNUMCG",
+        "LCSFIRST",
+        "LCSLAST"
+      ],
+      "why": "_PACKYRS : gain max du groupe (4014) ; _YRSSMOK : information distincte (non redondante, gain 2756 = 69% de la 1re) ; retirées : _PACKDAY (gain 800), _YRSQUIT (gain 1727), LCSNUMCG (gain 1500), LCSFIRST (gain 1516), LCSLAST (gain 2028)"
+    },
+    "ecig": {
+      "kept": [
+        "ECIGNOW2"
+      ],
+      "dropped": [
+        "_CURECI2"
+      ],
+      "why": "ECIGNOW2 : gain max du groupe (385) ; retirées : _CURECI2 (gain 99, cramer 1.00 avec ECIGNOW2)"
+    },
+    "depistage_poumon": {
+      "kept": [
+        "LCSCTSC1",
+        "LCSSCNCR"
+      ],
+      "dropped": [
+        "LCSCTWHN",
+        "_LCSREC"
+      ],
+      "why": "LCSCTSC1 : gain max du groupe (16433) ; LCSSCNCR : information distincte (non redondante, gain 7925 = 48% de la 1re) ; retirées : LCSCTWHN (gain 585), _LCSREC (gain 2150)"
+    },
+    "alcool_frequence": {
+      "kept": [
+        "ALCDAY4"
+      ],
+      "dropped": [
+        "DRNKANY6",
+        "DROCDY4_"
+      ],
+      "why": "ALCDAY4 : gain max du groupe (1278) ; retirées : DRNKANY6 (gain 74, spearman 0.92 avec ALCDAY4), DROCDY4_ (gain 322, spearman 1.00 avec ALCDAY4)"
+    },
+    "alcool_quantite": {
+      "kept": [
+        "_DRNKWK2",
+        "AVEDRNK3"
+      ],
+      "dropped": [
+        "_RFDRHV8"
+      ],
+      "why": "_DRNKWK2 : gain max du groupe (814) ; AVEDRNK3 : information distincte (non redondante, gain 729 = 90% de la 1re) ; retirées : _RFDRHV8 (gain 146)"
+    },
+    "alcool_excès": {
+      "kept": [
+        "MAXDRNKS",
+        "DRNK3GE5"
+      ],
+      "dropped": [
+        "_RFBING6"
+      ],
+      "why": "MAXDRNKS : gain max du groupe (859) ; DRNK3GE5 : information distincte (non redondante, gain 549 = 64% de la 1re) ; retirées : _RFBING6 (gain 98)"
+    },
+    "sante_generale": {
+      "kept": [
+        "GENHLTH"
+      ],
+      "dropped": [
+        "_RFHLTH"
+      ],
+      "why": "GENHLTH : gain max du groupe (33176) ; retirées : _RFHLTH (gain 11727, cramer 1.00 avec GENHLTH)"
+    },
+    "sante_physique": {
+      "kept": [
+        "PHYSHLTH"
+      ],
+      "dropped": [
+        "_PHYS14D"
+      ],
+      "why": "PHYSHLTH : gain max du groupe (2921) ; retirées : _PHYS14D (gain 474, spearman 0.99 avec PHYSHLTH)"
+    },
+    "sante_mentale": {
+      "kept": [
+        "MENTHLTH"
+      ],
+      "dropped": [
+        "_MENT14D"
+      ],
+      "why": "MENTHLTH : gain max du groupe (1035) ; retirées : _MENT14D (gain 358, spearman 0.99 avec MENTHLTH)"
+    },
+    "assurance": {
+      "kept": [
+        "_HCVU652"
+      ],
+      "dropped": [
+        "PRIMINSR",
+        "_HLTHPLN"
+      ],
+      "why": "_HCVU652 : gain max du groupe (1716) ; retirées : PRIMINSR (gain 1154, cramer 1.00 avec _HCVU652), _HLTHPLN (gain 77, spearman 1.00 avec _HCVU652)"
+    },
+    "activite_physique": {
+      "kept": [
+        "_TOTINDA"
+      ],
+      "dropped": [
+        "EXERANY2"
+      ],
+      "why": "_TOTINDA : gain max du groupe (253) ; retirées : EXERANY2 (gain 184, cramer 1.00 avec _TOTINDA)"
+    },
+    "arthrite": {
+      "kept": [
+        "HAVARTH4"
+      ],
+      "dropped": [
+        "_DRDXAR2"
+      ],
+      "why": "HAVARTH4 : gain max du groupe (2224) ; retirées : _DRDXAR2 (gain 663, cramer 1.00 avec HAVARTH4)"
+    },
+    "asthme": {
+      "kept": [
+        "ASTHNOW",
+        "ASTHMA3"
+      ],
+      "dropped": [
+        "_LTASTH1",
+        "_CASTHM1",
+        "_ASTHMS1"
+      ],
+      "why": "ASTHNOW : gain max du groupe (309) ; ASTHMA3 : information distincte (non redondante, gain 172 = 56% de la 1re) ; retirées : _LTASTH1 (gain 74), _CASTHM1 (gain 260, spearman 1.00 avec ASTHNOW), _ASTHMS1 (gain 166, spearman 1.00 avec ASTHNOW)"
+    },
+    "dents": {
+      "kept": [
+        "_ALTETH3",
+        "_EXTETH3"
+      ],
+      "dropped": [
+        "RMVTETH4"
+      ],
+      "why": "_ALTETH3 : gain max du groupe (4322) ; _EXTETH3 : information distincte (non redondante, gain 866 = 20% de la 1re) ; retirées : RMVTETH4 (gain 2359, cramer 1.00 avec _ALTETH3)"
+    },
+    "dentiste": {
+      "kept": [
+        "LASTDEN4"
+      ],
+      "dropped": [
+        "_DENVST3"
+      ],
+      "why": "LASTDEN4 : gain max du groupe (1423) ; retirées : _DENVST3 (gain 439, cramer 1.00 avec LASTDEN4)"
+    },
+    "race_ethnie": {
+      "kept": [
+        "_RACE1",
+        "_MRACE2"
+      ],
+      "dropped": [
+        "_PRACE2",
+        "_HISPANC",
+        "_RACEG22",
+        "_RACEGR4",
+        "_RACEPR1",
+        "_IMPRACE"
+      ],
+      "why": "_RACE1 : gain max du groupe (1098) ; _MRACE2 : information distincte (non redondante, gain 626 = 57% de la 1re) ; retirées : _PRACE2 (gain 535), _HISPANC (gain 106, cramer 1.00 avec _RACE1), _RACEG22 (gain 226, cramer 1.00 avec _RACE1), _RACEGR4 (gain 343, cramer 1.00 avec _RACE1), _RACEPR1 (gain 358, spearman 1.00 avec _RACE1), _IMPRACE (gain 673, cramer 1.00 avec _RACE1)"
+    },
+    "education": {
+      "kept": [
+        "EDUCA"
+      ],
+      "dropped": [
+        "_EDUCAG"
+      ],
+      "why": "EDUCA : gain max du groupe (730) ; retirées : _EDUCAG (gain 348, cramer 1.00 avec EDUCA)"
+    },
+    "revenu": {
+      "kept": [
+        "INCOME3"
+      ],
+      "dropped": [
+        "_INCOMG1"
+      ],
+      "why": "INCOME3 : gain max du groupe (1648) ; retirées : _INCOMG1 (gain 919, cramer 1.00 avec INCOME3)"
+    },
+    "enfants": {
+      "kept": [
+        "CHILDREN"
+      ],
+      "dropped": [
+        "_CHLDCNT"
+      ],
+      "why": "CHILDREN : gain max du groupe (437) ; retirées : _CHLDCNT (gain 209, spearman 1.00 avec CHILDREN)"
+    },
+    "vaccin_grippe": {
+      "kept": [
+        "_FLSHOT7",
+        "FLSHTMY3"
+      ],
+      "dropped": [
+        "FLUSHOT7"
+      ],
+      "why": "_FLSHOT7 : gain max du groupe (3198) ; FLSHTMY3 : information distincte (non redondante, gain 1556 = 49% de la 1re) ; retirées : FLUSHOT7 (gain 220, spearman 1.00 avec _FLSHOT7)"
+    },
+    "vaccin_pneumo": {
+      "kept": [
+        "PNEUVAC4"
+      ],
+      "dropped": [
+        "_PNEUMO3"
+      ],
+      "why": "PNEUVAC4 : gain max du groupe (1218) ; retirées : _PNEUMO3 (gain 929, spearman 1.00 avec PNEUVAC4)"
+    },
+    "vih": {
+      "kept": [
+        "HIVTSTD3",
+        "HIVTST7"
+      ],
+      "dropped": [
+        "_AIDTST4"
+      ],
+      "why": "HIVTSTD3 : gain max du groupe (1620) ; HIVTST7 : information distincte (non redondante, gain 361 = 22% de la 1re) ; retirées : _AIDTST4 (gain 158)"
+    },
+    "depistage_colorectal": {
+      "kept": [
+        "_CRCREC2",
+        "_SBONTI1"
+      ],
+      "dropped": [
+        "HADSIGM4",
+        "COLNSIGM",
+        "COLNTES1",
+        "SIGMTES1",
+        "COLNCNCR",
+        "VIRCOLO1",
+        "SMALSTOL",
+        "STOLTEST",
+        "STOOLDN2",
+        "_HADCOLN",
+        "_CLNSCP1",
+        "_HADSIGM",
+        "_SGMSCP1",
+        "_SGMS101",
+        "_RFBLDS5",
+        "_STOLDN1",
+        "_VIRCOL1"
+      ],
+      "why": "_CRCREC2 : gain max du groupe (1260) ; _SBONTI1 : information distincte (non redondante, gain 1097 = 87% de la 1re) ; retirées : HADSIGM4 (gain 729), COLNSIGM (gain 344), COLNTES1 (gain 924, cramer 0.91 avec _CRCREC2), SIGMTES1 (gain 403), COLNCNCR (gain 603), VIRCOLO1 (gain 168), SMALSTOL (gain 184), STOLTEST (gain 384), STOOLDN2 (gain 167), _HADCOLN (gain 244), _CLNSCP1 (gain 412), _HADSIGM (gain 198), _SGMSCP1 (gain 451), _SGMS101 (gain 294), _RFBLDS5 (gain 184), _STOLDN1 (gain 141), _VIRCOL1 (gain 126)"
+    },
+    "mammographie": {
+      "kept": [
+        "_MAM5023"
+      ],
+      "dropped": [
+        "HADMAM",
+        "HOWLONG",
+        "_RFMAM22"
+      ],
+      "why": "_MAM5023 : gain max du groupe (3175) ; retirées : HADMAM (gain 463), HOWLONG (gain 2577, cramer 1.00 avec _MAM5023), _RFMAM22 (gain 535, spearman 1.00 avec _MAM5023)"
+    },
+    "col_uterus": {
+      "kept": [
+        "HADHYST2",
+        "CRVCLCNC"
+      ],
+      "dropped": [
+        "CERVSCRN",
+        "CRVCLPAP",
+        "CRVCLHPV"
+      ],
+      "why": "HADHYST2 : gain max du groupe (2058) ; CRVCLCNC : information distincte (non redondante, gain 762 = 37% de la 1re) ; retirées : CERVSCRN (gain 248), CRVCLPAP (gain 139), CRVCLHPV (gain 292)"
+    },
+    "metropole": {
+      "kept": [
+        "MSCODE",
+        "_URBSTAT"
+      ],
+      "dropped": [
+        "_METSTAT"
+      ],
+      "why": "MSCODE : gain max du groupe (454) ; _URBSTAT : information distincte (non redondante, gain 252 = 55% de la 1re) ; retirées : _METSTAT (gain 431, cramer 0.94 avec MSCODE)"
+    },
+    "menage": {
+      "kept": [
+        "HHADULT",
+        "NUMADULT"
+      ],
+      "dropped": [
+        "NUMMEN",
+        "NUMWOMEN"
+      ],
+      "why": "HHADULT : gain max du groupe (696) ; NUMADULT : information distincte (non redondante, gain 336 = 48% de la 1re) ; retirées : NUMMEN (gain 152), NUMWOMEN (gain 179)"
+    },
+    "telephones": {
+      "kept": [
+        "CPDEMO1C",
+        "NUMHHOL4"
+      ],
+      "dropped": [],
+      "why": "CPDEMO1C : gain max du groupe (345) ; NUMHHOL4 : information distincte (non redondante, gain 244 = 71% de la 1re) ; retirées : "
+    },
+    "diabete": {
+      "kept": [
+        "DIABAGE4",
+        "DIABETE4"
+      ],
+      "dropped": [
+        "PDIABTS1",
+        "PREDIAB2"
+      ],
+      "why": "DIABAGE4 : gain max du groupe (5253) ; DIABETE4 : information distincte (non redondante, gain 3897 = 74% de la 1re) ; retirées : PDIABTS1 (gain 749), PREDIAB2 (gain 520)"
+    },
+    "covid_infection": {
+      "kept": [
+        "COVIDPOS",
+        "COVIDPRM"
+      ],
+      "dropped": [
+        "COVIDSMP"
+      ],
+      "why": "COVIDPOS : gain max du groupe (479) ; COVIDPRM : information distincte (non redondante, gain 396 = 83% de la 1re) ; retirées : COVIDSMP (gain 301)"
+    },
+    "covid_vaccin": {
+      "kept": [
+        "COVIDFS1",
+        "COVIDSE1"
+      ],
+      "dropped": [
+        "COVIDVA1",
+        "COVIDNU1"
+      ],
+      "why": "COVIDFS1 : gain max du groupe (853) ; COVIDSE1 : information distincte (non redondante, gain 668 = 78% de la 1re) ; retirées : COVIDVA1 (gain 176), COVIDNU1 (gain 481)"
+    },
+    "cancer_survivant": {
+      "kept": [
+        "CNCRAGE",
+        "CNCRTYP2"
+      ],
+      "dropped": [
+        "CNCRDIFF"
+      ],
+      "why": "CNCRAGE : gain max du groupe (594) ; CNCRTYP2 : information distincte (non redondante, gain 503 = 85% de la 1re) ; retirées : CNCRDIFF (gain 71)"
+    },
+    "aidant": {
+      "kept": [
+        "CAREGIV1",
+        "CRGVEXPT"
+      ],
+      "dropped": [],
+      "why": "CAREGIV1 : gain max du groupe (201) ; CRGVEXPT : information distincte (non redondante, gain 164 = 82% de la 1re) ; retirées : "
+    },
+    "ace_enfance": {
+      "kept": [
+        "ACEHURT1",
+        "ACEADSAF"
+      ],
+      "dropped": [
+        "ACEDEPRS",
+        "ACEDRINK",
+        "ACEDRUGS",
+        "ACEPRISN",
+        "ACEDIVRC",
+        "ACEPUNCH",
+        "ACESWEAR",
+        "ACETOUCH",
+        "ACETTHEM",
+        "ACEHVSEX",
+        "ACEADNED"
+      ],
+      "why": "ACEHURT1 : gain max du groupe (205) ; ACEADSAF : information distincte (non redondante, gain 168 = 82% de la 1re) ; retirées : ACEDEPRS (gain 55), ACEDRINK (gain 43), ACEDRUGS (gain 66), ACEPRISN (gain 86), ACEDIVRC (gain 50), ACEPUNCH (gain 101), ACESWEAR (gain 83), ACETOUCH (gain 136), ACETTHEM (gain 48), ACEHVSEX (gain 49), ACEADNED (gain 136)"
+    },
+    "social_sdoh": {
+      "kept": [
+        "SDHSTRE1",
+        "EMTSUPRT"
+      ],
+      "dropped": [
+        "LSATISFY",
+        "SDHISOLT",
+        "SDHEMPLY",
+        "FOODSTMP",
+        "SDHFOOD1",
+        "SDHBILLS",
+        "SDHUTILS",
+        "SDHTRNSP"
+      ],
+      "why": "SDHSTRE1 : gain max du groupe (817) ; EMTSUPRT : information distincte (non redondante, gain 662 = 81% de la 1re) ; retirées : LSATISFY (gain 510), SDHISOLT (gain 662), SDHEMPLY (gain 139), FOODSTMP (gain 223), SDHFOOD1 (gain 466), SDHBILLS (gain 331), SDHUTILS (gain 166), SDHTRNSP (gain 164)"
+    },
+    "alcool_conseil_asbi": {
+      "kept": [
+        "ASBIBING",
+        "ASBIADVC"
+      ],
+      "dropped": [
+        "ASBIALCH",
+        "ASBIDRNK",
+        "ASBIRDUC"
+      ],
+      "why": "ASBIBING : gain max du groupe (165) ; ASBIADVC : information distincte (non redondante, gain 136 = 83% de la 1re) ; retirées : ASBIALCH (gain 110), ASBIDRNK (gain 75), ASBIRDUC (gain 93)"
+    },
+    "reactions_race": {
+      "kept": [
+        "RRCOGNT2",
+        "RRCLASS3"
+      ],
+      "dropped": [
+        "RRTREAT",
+        "RRATWRK2",
+        "RRHCARE4",
+        "RRPHYSM2"
+      ],
+      "why": "RRCOGNT2 : gain max du groupe (501) ; RRCLASS3 : information distincte (non redondante, gain 387 = 77% de la 1re) ; retirées : RRTREAT (gain 340), RRATWRK2 (gain 157), RRHCARE4 (gain 282), RRPHYSM2 (gain 222)"
+    },
+    "orientation_sexuelle": {
+      "kept": [
+        "SOFEMALE",
+        "SOMALE"
+      ],
+      "dropped": [
+        "TRNSGNDR"
+      ],
+      "why": "SOFEMALE : gain max du groupe (356) ; SOMALE : information distincte (non redondante, gain 214 = 60% de la 1re) ; retirées : TRNSGNDR (gain 166)"
+    },
+    "enfant_selectionne": {
+      "kept": [
+        "RCSRLTN2",
+        "CAGEG"
+      ],
+      "dropped": [
+        "_CHISPNC",
+        "_CRACE2",
+        "_CPRACE2",
+        "RCSGEND1",
+        "CASTHDX2"
+      ],
+      "why": "RCSRLTN2 : gain max du groupe (195) ; CAGEG : information distincte (non redondante, gain 175 = 90% de la 1re) ; retirées : _CHISPNC (gain 54), _CRACE2 (gain 146), _CPRACE2 (gain 96), RCSGEND1 (gain 86), CASTHDX2 (gain 98)"
+    }
+  },
+  "singletons": [
+    "_STATE",
+    "POORHLTH",
+    "PERSDOC3",
+    "MEDCOST1",
+    "CHECKUP1",
+    "SLEPTIM1",
+    "CVDSTRK3",
+    "CHCSCNC1",
+    "CHCOCNC1",
+    "CHCCOPD3",
+    "ADDEPEV3",
+    "CHCKDNY2",
+    "MARITAL",
+    "RENTHOM1",
+    "VETERAN3",
+    "EMPLOY1",
+    "PREGNANT",
+    "DEAF",
+    "BLIND",
+    "DECIDE",
+    "DIFFWALK",
+    "DIFFDRES",
+    "DIFFALON",
+    "USENOW3",
+    "TETANUS1",
+    "HIVRISK5",
+    "CIMEMLOS",
+    "MARIJAN1",
+    "FIREARM5"
+  ],
+  "cross_group_dropped": {
+    "_DRNKWK2": "ALCDAY4"
+  },
+  "thresholds": {
+    "redundant": 0.9,
+    "near": 0.8,
+    "corr_rows": 100000,
+    "min_common": 5000,
+    "max_card_cramer": 15,
+    "second_share": 0.2
+  },
+  "cv_curated": {
+    "f1": 0.42103149290051267,
+    "threshold": 0.2099999999999999,
+    "precision": 0.34512074675136045,
+    "recall": 0.5397522488415059,
+    "auc": 0.8537981935823086
+  },
+  "best_iterations_curated": [
+    213,
+    216,
+    194,
+    196,
+    209
+  ],
+  "top_features_curated": {
+    "_AGE80": 74066.0,
+    "GENHLTH": 67929.0,
+    "LCSCTSC1": 43913.0,
+    "EMPLOY1": 36737.0,
+    "CVDSTRK3": 23827.0,
+    "_ALTETH3": 21402.0,
+    "SEXVAR": 9460.0,
+    "PERSDOC3": 9236.0,
+    "DIABETE4": 8563.0,
+    "_PACKYRS": 7638.0,
+    "CHCCOPD3": 7539.0,
+    "CHCKDNY2": 7178.0,
+    "DIFFWALK": 7169.0,
+    "_MAM5023": 6560.0,
+    "DIABAGE4": 6176.0,
+    "_BMI5": 5821.0,
+    "_YRSSMOK": 5689.0,
+    "WEIGHT2": 5053.0,
+    "PHYSHLTH": 4591.0,
+    "_EXTETH3": 4427.0,
+    "HAVARTH4": 4187.0,
+    "HADHYST2": 3484.0,
+    "_HCVU652": 3449.0,
+    "_RACE1": 2816.0,
+    "SLEPTIM1": 2813.0,
+    "LASTDEN4": 2805.0,
+    "LCSSCNCR": 2780.0,
+    "_STATE": 2778.0,
+    "PNEUVAC4": 2757.0,
+    "INCOME3": 2679.0,
+    "_CRCREC2": 2579.0,
+    "POORHLTH": 2571.0,
+    "HEIGHT3": 2512.0,
+    "_FLSHOT7": 2445.0,
+    "CHECKUP1": 2295.0,
+    "MARITAL": 2182.0,
+    "FLSHTMY3": 2061.0,
+    "HIVTSTD3": 2025.0,
+    "ALCDAY4": 1928.0,
+    "_SBONTI1": 1813.0,
+    "VETERAN3": 1762.0,
+    "MENTHLTH": 1706.0,
+    "_MRACE2": 1591.0,
+    "CRVCLCNC": 1409.0,
+    "DEAF": 1394.0,
+    "SOFEMALE": 1310.0,
+    "COVIDFS1": 1303.0,
+    "PREGNANT": 1288.0,
+    "EMTSUPRT": 1248.0,
+    "EDUCA": 1226.0,
+    "MEDCOST1": 1218.0,
+    "SDHSTRE1": 1181.0,
+    "AVEDRNK3": 1141.0,
+    "MAXDRNKS": 1125.0,
+    "TETANUS1": 1108.0,
+    "SMOKE100": 1019.0,
+    "COVIDSE1": 991.0,
+    "HHADULT": 921.0,
+    "CHILDREN": 880.0,
+    "CNCRAGE": 859.0,
+    "DRNK3GE5": 838.0,
+    "BLIND": 829.0,
+    "MSCODE": 755.0,
+    "CNCRTYP2": 742.0,
+    "ADDEPEV3": 737.0,
+    "SOMALE": 697.0,
+    "RRCOGNT2": 695.0,
+    "COVIDPRM": 684.0,
+    "RRCLASS3": 675.0,
+    "CPDEMO1C": 633.0,
+    "COVIDPOS": 626.0,
+    "CHCOCNC1": 615.0,
+    "MARIJAN1": 568.0,
+    "ECIGNOW2": 556.0,
+    "ASTHNOW": 546.0,
+    "NUMADULT": 534.0,
+    "CHCSCNC1": 509.0,
+    "ASTHMA3": 503.0,
+    "_URBSTAT": 483.0,
+    "RENTHOM1": 470.0,
+    "DECIDE": 469.0,
+    "DIFFALON": 443.0,
+    "LASTSMK2": 428.0,
+    "HIVTST7": 419.0,
+    "NUMHHOL4": 409.0,
+    "ACEADSAF": 375.0,
+    "DIFFDRES": 349.0,
+    "CIMEMLOS": 348.0,
+    "_TOTINDA": 340.0,
+    "ACEHURT1": 326.0,
+    "RCSRLTN2": 301.0,
+    "CAGEG": 292.0,
+    "CAREGIV1": 276.0,
+    "FIREARM5": 262.0,
+    "ASBIADVC": 252.0,
+    "USENOW3": 249.0,
+    "ASBIBING": 211.0,
+    "CRGVEXPT": 209.0,
+    "HIVRISK5": 151.0
+  },
+  "short_variant": {
+    "n_columns": 84,
+    "dropped": [
+      "HIVRISK5",
+      "CRGVEXPT",
+      "ASBIBING",
+      "USENOW3",
+      "ASBIADVC",
+      "FIREARM5",
+      "CAREGIV1",
+      "CAGEG",
+      "RCSRLTN2",
+      "ACEHURT1",
+      "_TOTINDA",
+      "CIMEMLOS",
+      "DIFFDRES",
+      "ACEADSAF",
+      "NUMHHOL4"
+    ],
+    "cv": {
+      "f1": 0.42166428064434636,
+      "threshold": 0.2149999999999999,
+      "precision": 0.3497585119546561,
+      "recall": 0.530787170245631,
+      "auc": 0.8539035083719905
+    },
+    "best_iterations": [
+      239,
+      315,
+      231,
+      267,
+      171
+    ],
+    "columns": [
+      "GENHLTH",
+      "_AGE80",
+      "EMPLOY1",
+      "CVDSTRK3",
+      "LCSCTSC1",
+      "LCSSCNCR",
+      "PERSDOC3",
+      "CHCCOPD3",
+      "DIABAGE4",
+      "CHCKDNY2",
+      "SEXVAR",
+      "_ALTETH3",
+      "_PACKYRS",
+      "DIABETE4",
+      "_BMI5",
+      "DIFFWALK",
+      "_FLSHOT7",
+      "_MAM5023",
+      "WEIGHT2",
+      "PHYSHLTH",
+      "_YRSSMOK",
+      "HAVARTH4",
+      "_STATE",
+      "HADHYST2",
+      "SLEPTIM1",
+      "POORHLTH",
+      "_HCVU652",
+      "INCOME3",
+      "HIVTSTD3",
+      "FLSHTMY3",
+      "HEIGHT3",
+      "CHECKUP1",
+      "LASTDEN4",
+      "MARITAL",
+      "ALCDAY4",
+      "_CRCREC2",
+      "PNEUVAC4",
+      "_RACE1",
+      "_SBONTI1",
+      "MENTHLTH",
+      "_EXTETH3",
+      "MAXDRNKS",
+      "DEAF",
+      "COVIDFS1",
+      "SDHSTRE1",
+      "CRVCLCNC",
+      "TETANUS1",
+      "EDUCA",
+      "AVEDRNK3",
+      "MEDCOST1",
+      "HHADULT",
+      "COVIDSE1",
+      "EMTSUPRT",
+      "_MRACE2",
+      "VETERAN3",
+      "CNCRAGE",
+      "DRNK3GE5",
+      "BLIND",
+      "CNCRTYP2",
+      "RRCOGNT2",
+      "ADDEPEV3",
+      "COVIDPOS",
+      "MSCODE",
+      "CHILDREN",
+      "COVIDPRM",
+      "RRCLASS3",
+      "ECIGNOW2",
+      "CHCSCNC1",
+      "CHCOCNC1",
+      "HIVTST7",
+      "SOFEMALE",
+      "MARIJAN1",
+      "CPDEMO1C",
+      "LASTSMK2",
+      "NUMADULT",
+      "ASTHNOW",
+      "RENTHOM1",
+      "DIFFALON",
+      "DECIDE",
+      "SMOKE100",
+      "_URBSTAT",
+      "PREGNANT",
+      "SOMALE",
+      "ASTHMA3"
+    ],
+    "top_features": {
+      "_AGE80": 75150.0,
+      "GENHLTH": 55581.0,
+      "EMPLOY1": 36176.0,
+      "CVDSTRK3": 28012.0,
+      "LCSCTSC1": 26653.0,
+      "LCSSCNCR": 15493.0,
+      "DIFFWALK": 15422.0,
+      "_ALTETH3": 12827.0,
+      "SEXVAR": 10968.0,
+      "DIABETE4": 10807.0,
+      "CHCCOPD3": 10396.0,
+      "PERSDOC3": 9921.0,
+      "CHCKDNY2": 8457.0,
+      "_FLSHOT7": 7874.0,
+      "PHYSHLTH": 7431.0,
+      "_PACKYRS": 7421.0,
+      "_BMI5": 7277.0,
+      "_YRSSMOK": 6244.0,
+      "DIABAGE4": 5785.0,
+      "HADHYST2": 5399.0,
+      "WEIGHT2": 5363.0,
+      "_EXTETH3": 5252.0,
+      "_MAM5023": 5124.0,
+      "HAVARTH4": 4543.0,
+      "_STATE": 3715.0,
+      "INCOME3": 3398.0,
+      "HEIGHT3": 3390.0,
+      "SLEPTIM1": 3133.0,
+      "LASTDEN4": 3019.0,
+      "PNEUVAC4": 2813.0,
+      "_SBONTI1": 2775.0,
+      "_RACE1": 2773.0,
+      "POORHLTH": 2737.0,
+      "CHECKUP1": 2607.0,
+      "HIVTSTD3": 2588.0,
+      "MARITAL": 2564.0,
+      "ALCDAY4": 2286.0,
+      "_HCVU652": 2196.0,
+      "_CRCREC2": 2136.0,
+      "FLSHTMY3": 2085.0,
+      "MENTHLTH": 1939.0,
+      "_MRACE2": 1931.0,
+      "PREGNANT": 1785.0,
+      "HHADULT": 1636.0,
+      "CRVCLCNC": 1491.0,
+      "SDHSTRE1": 1472.0,
+      "EDUCA": 1420.0,
+      "AVEDRNK3": 1418.0,
+      "EMTSUPRT": 1417.0,
+      "TETANUS1": 1410.0,
+      "COVIDFS1": 1394.0,
+      "DEAF": 1354.0,
+      "MAXDRNKS": 1321.0,
+      "COVIDSE1": 1303.0,
+      "MEDCOST1": 1217.0,
+      "SMOKE100": 1136.0,
+      "CHILDREN": 1098.0,
+      "CNCRAGE": 1045.0,
+      "DRNK3GE5": 1037.0,
+      "BLIND": 986.0,
+      "RRCOGNT2": 958.0,
+      "COVIDPOS": 951.0,
+      "MSCODE": 937.0,
+      "SOFEMALE": 930.0,
+      "COVIDPRM": 879.0,
+      "VETERAN3": 813.0,
+      "CNCRTYP2": 791.0,
+      "MARIJAN1": 790.0,
+      "CPDEMO1C": 780.0,
+      "RRCLASS3": 779.0,
+      "ADDEPEV3": 765.0,
+      "NUMADULT": 728.0,
+      "CHCOCNC1": 698.0,
+      "ECIGNOW2": 693.0,
+      "ASTHNOW": 687.0,
+      "HIVTST7": 660.0,
+      "CHCSCNC1": 645.0,
+      "_URBSTAT": 633.0,
+      "DIFFALON": 619.0,
+      "DECIDE": 575.0,
+      "SOMALE": 575.0,
+      "RENTHOM1": 565.0,
+      "LASTSMK2": 513.0,
+      "ASTHMA3": 492.0
+    },
+    "submission": "submissions/submission_fs_redundancy_short_20261020_084355.csv"
+  }
+}
