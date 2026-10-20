@@ -1,0 +1,161 @@
+{
+  "name": "ml_random_forest",
+  "idea": "Random Forest sklearn sur toutes les colonnes nettoyées (214 candidates, vides à > 95 % retirées) : codes entiers des catégorielles (<= 15 modalités) + quantiles normaux des numériques avec indicateurs de valeur manquante, ajustés par fold ; RandomForestClassifier(n_estimators=500, max_features='sqrt', min_samples_leaf=5, random_state=42+fold), bascule à 300 arbres si un fold dépasse 5 min ; feature_importances_ moyennées",
+  "timestamp": "20261020_083542",
+  "cv": {
+    "f1": 0.4100129965530881,
+    "threshold": 0.2049999999999999,
+    "precision": 0.3270354078026971,
+    "recall": 0.5494139382742224,
+    "auc": 0.8448949300796991
+  },
+  "test_positive_rate": 0.15148,
+  "submission": "submissions/submission_ml_random_forest_20261020_083542.csv",
+  "runtime_s": 169.2,
+  "model": "random_forest",
+  "config": {
+    "top_k": 214,
+    "n_estimators": 500,
+    "n_estimators_fallback": 300,
+    "fold_max_s": 300,
+    "max_features": "sqrt",
+    "min_samples_leaf": 5
+  },
+  "nan_max": 0.95,
+  "cat_max_levels": 15,
+  "n_candidates": 214,
+  "top_features": {
+    "GENHLTH": 0.030303,
+    "_AGE80": 0.027065,
+    "CVDSTRK3": 0.021774,
+    "_RFHLTH": 0.021349,
+    "_BMI5": 0.019252,
+    "WTKG3": 0.016811,
+    "WEIGHT2": 0.016804,
+    "EMPLOY1": 0.016734,
+    "_STATE": 0.016446,
+    "_AGEG5YR": 0.016372,
+    "LCSCTSC1": 0.015459,
+    "LCSSCNCR": 0.015244,
+    "PHYSHLTH": 0.014654,
+    "_PACKYRS": 0.011755,
+    "_AGE_G": 0.011579,
+    "HEIGHT3": 0.011408,
+    "HTIN4": 0.011379,
+    "HTM4": 0.011377,
+    "_YRSSMOK": 0.010649,
+    "POORHLTH": 0.010534
+  },
+  "folds": [
+    {
+      "n_cat": 179,
+      "n_num": 35,
+      "n_features": 249,
+      "n_estimators": 500,
+      "nodes_per_tree": 22709,
+      "auc": 0.84495,
+      "fit_s": 24.1,
+      "fold_s": 32.5,
+      "top10_gain": {
+        "_AGE80": 44853,
+        "GENHLTH": 26161,
+        "LCSCTSC1": 16196,
+        "EMPLOY1": 14942,
+        "CVDSTRK3": 13245,
+        "_RFHLTH": 12347,
+        "_AGEG5YR": 11965,
+        "_AGE_G": 5929,
+        "PERSDOC3": 4972,
+        "CHCCOPD3": 3613
+      }
+    },
+    {
+      "n_cat": 179,
+      "n_num": 35,
+      "n_features": 249,
+      "n_estimators": 500,
+      "nodes_per_tree": 22705,
+      "auc": 0.84362,
+      "fit_s": 23.4,
+      "fold_s": 32.8,
+      "top10_gain": {
+        "_AGE80": 40891,
+        "GENHLTH": 26412,
+        "EMPLOY1": 18149,
+        "LCSCTSC1": 15316,
+        "_RFHLTH": 14520,
+        "CVDSTRK3": 12931,
+        "_AGEG5YR": 12115,
+        "_AGE_G": 6348,
+        "PERSDOC3": 4563,
+        "SEXVAR": 3963
+      }
+    },
+    {
+      "n_cat": 179,
+      "n_num": 35,
+      "n_features": 249,
+      "n_estimators": 500,
+      "nodes_per_tree": 22733,
+      "auc": 0.84534,
+      "fit_s": 22.7,
+      "fold_s": 30.9,
+      "top10_gain": {
+        "_AGE80": 44008,
+        "GENHLTH": 27753,
+        "LCSCTSC1": 15265,
+        "EMPLOY1": 15161,
+        "_RFHLTH": 13705,
+        "_AGEG5YR": 12836,
+        "CVDSTRK3": 12183,
+        "_AGE_G": 5989,
+        "PERSDOC3": 4969,
+        "CHCKDNY2": 3760
+      }
+    },
+    {
+      "n_cat": 179,
+      "n_num": 35,
+      "n_features": 249,
+      "n_estimators": 500,
+      "nodes_per_tree": 22728,
+      "auc": 0.84399,
+      "fit_s": 22.5,
+      "fold_s": 30.2,
+      "top10_gain": {
+        "_AGE80": 43021,
+        "GENHLTH": 26392,
+        "EMPLOY1": 18356,
+        "LCSCTSC1": 15472,
+        "_RFHLTH": 13054,
+        "CVDSTRK3": 13027,
+        "_AGEG5YR": 12258,
+        "_AGE_G": 5879,
+        "PERSDOC3": 4579,
+        "CHCKDNY2": 3492
+      }
+    },
+    {
+      "n_cat": 179,
+      "n_num": 35,
+      "n_features": 249,
+      "n_estimators": 500,
+      "nodes_per_tree": 22758,
+      "auc": 0.84662,
+      "fit_s": 23.3,
+      "fold_s": 31.0,
+      "top10_gain": {
+        "_AGE80": 45141,
+        "GENHLTH": 26747,
+        "LCSCTSC1": 15163,
+        "EMPLOY1": 14655,
+        "CVDSTRK3": 13014,
+        "_RFHLTH": 12471,
+        "_AGEG5YR": 12044,
+        "_AGE_G": 6387,
+        "PERSDOC3": 4563,
+        "SEXVAR": 3920
+      }
+    }
+  ]
+}

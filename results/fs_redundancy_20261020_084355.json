@@ -1,0 +1,493 @@
+{
+  "name": "fs_redundancy",
+  "idea": "Étude de SÉLECTION DE COLONNES par redondance (une colonne par concept BRFSS). Base = x_drop_nan95 (nettoyage des codes de non-réponse, colonnes administratives et vides à plus de 95 % retirées : 214 candidates). Analyse sans TARGET faite une fois sur train : Spearman entre toutes les paires sur 100 000 lignes (lignes communes, min 5 000) + V de Cramér pour les paires à <= 15 modalités ; paire redondante si |rho| >= 0.9 ou V >= 0.9. Regroupement par concept (variables calculées « _ » dérivées des brutes : âge, corpulence, tabac, alcool, santé générale, assurance, race, dépistages...) ; dans chaque groupe on garde la colonne au plus fort gain (LightGBM rapide 200 arbres ajusté sur tout train, décision structurelle, 2 graines) et une seconde seulement si elle n'est pas redondante avec la première et apporte >= 20 % du gain de la première ; puis passe globale : toute colonne redondante avec une colonne déjà gardée de plus fort gain est retirée. Même LightGBM que la base (une graine, early stopping) sur la liste curée ; variante courte = liste curée privée des colonnes à <= 1 % de gain cumulé.",
+  "timestamp": "20261020_084355",
+  "cv": {
+    "f1": 0.42103149290051267,
+    "threshold": 0.2099999999999999,
+    "precision": 0.34512074675136045,
+    "recall": 0.5397522488415059,
+    "auc": 0.8537981935823086
+  },
+  "test_positive_rate": 0.14270666666666668,
+  "submission": "submissions/submission_fs_redundancy_20261020_084355.csv",
+  "runtime_s": 107.3,
+  "model": "lightgbm",
+  "params": {
+    "objective": "binary",
+    "learning_rate": 0.05,
+    "num_leaves": 63,
+    "min_child_samples": 100,
+    "feature_fraction": 0.5,
+    "bagging_fraction": 0.8,
+    "bagging_freq": 1,
+    "lambda_l2": 1.0,
+    "verbose": -1,
+    "seed": 42,
+    "num_threads": 16
+  },
+  "n_features": 99,
+  "n_candidates": 214,
+  "columns_per_fold": [
+    99,
+    99,
+    99,
+    99,
+    99
+  ],
+  "final_list": [
+    "GENHLTH",
+    "_AGE80",
+    "EMPLOY1",
+    "CVDSTRK3",
+    "LCSCTSC1",
+    "LCSSCNCR",
+    "PERSDOC3",
+    "CHCCOPD3",
+    "DIABAGE4",
+    "CHCKDNY2",
+    "SEXVAR",
+    "_ALTETH3",
+    "_PACKYRS",
+    "DIABETE4",
+    "_BMI5",
+    "DIFFWALK",
+    "_FLSHOT7",
+    "_MAM5023",
+    "WEIGHT2",
+    "PHYSHLTH",
+    "_YRSSMOK",
+    "HAVARTH4",
+    "_STATE",
+    "HADHYST2",
+    "SLEPTIM1",
+    "POORHLTH",
+    "_HCVU652",
+    "INCOME3",
+    "HIVTSTD3",
+    "FLSHTMY3",
+    "HEIGHT3",
+    "CHECKUP1",
+    "LASTDEN4",
+    "MARITAL",
+    "ALCDAY4",
+    "_CRCREC2",
+    "PNEUVAC4",
+    "_RACE1",
+    "_SBONTI1",
+    "MENTHLTH",
+    "_EXTETH3",
+    "MAXDRNKS",
+    "DEAF",
+    "COVIDFS1",
+    "SDHSTRE1",
+    "CRVCLCNC",
+    "TETANUS1",
+    "EDUCA",
+    "AVEDRNK3",
+    "MEDCOST1",
+    "HHADULT",
+    "COVIDSE1",
+    "EMTSUPRT",
+    "_MRACE2",
+    "VETERAN3",
+    "CNCRAGE",
+    "DRNK3GE5",
+    "BLIND",
+    "CNCRTYP2",
+    "RRCOGNT2",
+    "ADDEPEV3",
+    "COVIDPOS",
+    "MSCODE",
+    "CHILDREN",
+    "COVIDPRM",
+    "RRCLASS3",
+    "ECIGNOW2",
+    "CHCSCNC1",
+    "CHCOCNC1",
+    "HIVTST7",
+    "SOFEMALE",
+    "MARIJAN1",
+    "CPDEMO1C",
+    "LASTSMK2",
+    "NUMADULT",
+    "ASTHNOW",
+    "RENTHOM1",
+    "DIFFALON",
+    "DECIDE",
+    "SMOKE100",
+    "_TOTINDA",
+    "_URBSTAT",
+    "NUMHHOL4",
+    "CIMEMLOS",
+    "PREGNANT",
+    "SOMALE",
+    "DIFFDRES",
+    "ACEHURT1",
+    "CAREGIV1",
+    "RCSRLTN2",
+    "USENOW3",
+    "CAGEG",
+    "ASTHMA3",
+    "ACEADSAF",
+    "ASBIBING",
+    "CRGVEXPT",
+    "ASBIADVC",
+    "FIREARM5",
+    "HIVRISK5"
+  ],
+  "n_redundant_pairs": 89,
+  "groups_summary": {
+    "age": {
+      "kept": [
+        "_AGE80"
+      ],
+      "n_dropped": 3
+    },
+    "sexe": {
+      "kept": [
+        "SEXVAR"
+      ],
+      "n_dropped": 2
+    },
+    "imc": {
+      "kept": [
+        "_BMI5"
+      ],
+      "n_dropped": 2
+    },
+    "poids": {
+      "kept": [
+        "WEIGHT2"
+      ],
+      "n_dropped": 1
+    },
+    "taille": {
+      "kept": [
+        "HEIGHT3"
+      ],
+      "n_dropped": 2
+    },
+    "tabac_statut": {
+      "kept": [
+        "LASTSMK2",
+        "SMOKE100"
+      ],
+      "n_dropped": 4
+    },
+    "tabac_historique": {
+      "kept": [
+        "_PACKYRS",
+        "_YRSSMOK"
+      ],
+      "n_dropped": 5
+    },
+    "ecig": {
+      "kept": [
+        "ECIGNOW2"
+      ],
+      "n_dropped": 1
+    },
+    "depistage_poumon": {
+      "kept": [
+        "LCSCTSC1",
+        "LCSSCNCR"
+      ],
+      "n_dropped": 2
+    },
+    "alcool_frequence": {
+      "kept": [
+        "ALCDAY4"
+      ],
+      "n_dropped": 2
+    },
+    "alcool_quantite": {
+      "kept": [
+        "_DRNKWK2",
+        "AVEDRNK3"
+      ],
+      "n_dropped": 1
+    },
+    "alcool_excès": {
+      "kept": [
+        "MAXDRNKS",
+        "DRNK3GE5"
+      ],
+      "n_dropped": 1
+    },
+    "sante_generale": {
+      "kept": [
+        "GENHLTH"
+      ],
+      "n_dropped": 1
+    },
+    "sante_physique": {
+      "kept": [
+        "PHYSHLTH"
+      ],
+      "n_dropped": 1
+    },
+    "sante_mentale": {
+      "kept": [
+        "MENTHLTH"
+      ],
+      "n_dropped": 1
+    },
+    "assurance": {
+      "kept": [
+        "_HCVU652"
+      ],
+      "n_dropped": 2
+    },
+    "activite_physique": {
+      "kept": [
+        "_TOTINDA"
+      ],
+      "n_dropped": 1
+    },
+    "arthrite": {
+      "kept": [
+        "HAVARTH4"
+      ],
+      "n_dropped": 1
+    },
+    "asthme": {
+      "kept": [
+        "ASTHNOW",
+        "ASTHMA3"
+      ],
+      "n_dropped": 3
+    },
+    "dents": {
+      "kept": [
+        "_ALTETH3",
+        "_EXTETH3"
+      ],
+      "n_dropped": 1
+    },
+    "dentiste": {
+      "kept": [
+        "LASTDEN4"
+      ],
+      "n_dropped": 1
+    },
+    "race_ethnie": {
+      "kept": [
+        "_RACE1",
+        "_MRACE2"
+      ],
+      "n_dropped": 6
+    },
+    "education": {
+      "kept": [
+        "EDUCA"
+      ],
+      "n_dropped": 1
+    },
+    "revenu": {
+      "kept": [
+        "INCOME3"
+      ],
+      "n_dropped": 1
+    },
+    "enfants": {
+      "kept": [
+        "CHILDREN"
+      ],
+      "n_dropped": 1
+    },
+    "vaccin_grippe": {
+      "kept": [
+        "_FLSHOT7",
+        "FLSHTMY3"
+      ],
+      "n_dropped": 1
+    },
+    "vaccin_pneumo": {
+      "kept": [
+        "PNEUVAC4"
+      ],
+      "n_dropped": 1
+    },
+    "vih": {
+      "kept": [
+        "HIVTSTD3",
+        "HIVTST7"
+      ],
+      "n_dropped": 1
+    },
+    "depistage_colorectal": {
+      "kept": [
+        "_CRCREC2",
+        "_SBONTI1"
+      ],
+      "n_dropped": 17
+    },
+    "mammographie": {
+      "kept": [
+        "_MAM5023"
+      ],
+      "n_dropped": 3
+    },
+    "col_uterus": {
+      "kept": [
+        "HADHYST2",
+        "CRVCLCNC"
+      ],
+      "n_dropped": 3
+    },
+    "metropole": {
+      "kept": [
+        "MSCODE",
+        "_URBSTAT"
+      ],
+      "n_dropped": 1
+    },
+    "menage": {
+      "kept": [
+        "HHADULT",
+        "NUMADULT"
+      ],
+      "n_dropped": 2
+    },
+    "telephones": {
+      "kept": [
+        "CPDEMO1C",
+        "NUMHHOL4"
+      ],
+      "n_dropped": 0
+    },
+    "diabete": {
+      "kept": [
+        "DIABAGE4",
+        "DIABETE4"
+      ],
+      "n_dropped": 2
+    },
+    "covid_infection": {
+      "kept": [
+        "COVIDPOS",
+        "COVIDPRM"
+      ],
+      "n_dropped": 1
+    },
+    "covid_vaccin": {
+      "kept": [
+        "COVIDFS1",
+        "COVIDSE1"
+      ],
+      "n_dropped": 2
+    },
+    "cancer_survivant": {
+      "kept": [
+        "CNCRAGE",
+        "CNCRTYP2"
+      ],
+      "n_dropped": 1
+    },
+    "aidant": {
+      "kept": [
+        "CAREGIV1",
+        "CRGVEXPT"
+      ],
+      "n_dropped": 0
+    },
+    "ace_enfance": {
+      "kept": [
+        "ACEHURT1",
+        "ACEADSAF"
+      ],
+      "n_dropped": 11
+    },
+    "social_sdoh": {
+      "kept": [
+        "SDHSTRE1",
+        "EMTSUPRT"
+      ],
+      "n_dropped": 8
+    },
+    "alcool_conseil_asbi": {
+      "kept": [
+        "ASBIBING",
+        "ASBIADVC"
+      ],
+      "n_dropped": 3
+    },
+    "reactions_race": {
+      "kept": [
+        "RRCOGNT2",
+        "RRCLASS3"
+      ],
+      "n_dropped": 4
+    },
+    "orientation_sexuelle": {
+      "kept": [
+        "SOFEMALE",
+        "SOMALE"
+      ],
+      "n_dropped": 1
+    },
+    "enfant_selectionne": {
+      "kept": [
+        "RCSRLTN2",
+        "CAGEG"
+      ],
+      "n_dropped": 5
+    }
+  },
+  "cross_group_dropped": {
+    "_DRNKWK2": "ALCDAY4"
+  },
+  "gain_source": "LightGBM rapide 200 arbres lr 0.1, 2 graines, ajusté sur TOUT train (décision structurelle de sélection, signalée : léger risque d'optimisme)",
+  "short_variant": {
+    "n_columns": 84,
+    "cv": {
+      "f1": 0.42166428064434636,
+      "threshold": 0.2149999999999999,
+      "precision": 0.3497585119546561,
+      "recall": 0.530787170245631,
+      "auc": 0.8539035083719905
+    },
+    "dropped": [
+      "HIVRISK5",
+      "CRGVEXPT",
+      "ASBIBING",
+      "USENOW3",
+      "ASBIADVC",
+      "FIREARM5",
+      "CAREGIV1",
+      "CAGEG",
+      "RCSRLTN2",
+      "ACEHURT1",
+      "_TOTINDA",
+      "CIMEMLOS",
+      "DIFFDRES",
+      "ACEADSAF",
+      "NUMHHOL4"
+    ],
+    "submission": "submissions/submission_fs_redundancy_short_20261020_084355.csv"
+  },
+  "study_json": "results/fs_redundancy_20261020_084355_study.json",
+  "top_features": {
+    "_AGE80": 74066.0,
+    "GENHLTH": 67929.0,
+    "LCSCTSC1": 43913.0,
+    "EMPLOY1": 36737.0,
+    "CVDSTRK3": 23827.0,
+    "_ALTETH3": 21402.0,
+    "SEXVAR": 9460.0,
+    "PERSDOC3": 9236.0,
+    "DIABETE4": 8563.0,
+    "_PACKYRS": 7638.0,
+    "CHCCOPD3": 7539.0,
+    "CHCKDNY2": 7178.0,
+    "DIFFWALK": 7169.0,
+    "_MAM5023": 6560.0,
+    "DIABAGE4": 6176.0,
+    "_BMI5": 5821.0,
+    "_YRSSMOK": 5689.0,
+    "WEIGHT2": 5053.0,
+    "PHYSHLTH": 4591.0,
+    "_EXTETH3": 4427.0
+  }
+}

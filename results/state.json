@@ -1,0 +1,67 @@
+{
+  "best_cv": {
+    "f1": 0.4256939742721733,
+    "name": "ml_stack",
+    "script": "experiments/ml_stack.py",
+    "results_json": "results/ml_stack_20261020_110403.json"
+  },
+  "last_submitted_cv": 0.4256939742721733,
+  "best_kaggle": {
+    "f1": 0.43062,
+    "name": "ml_stack",
+    "script": "experiments/ml_stack.py",
+    "submission": "submissions/submission_ml_stack_20261020_110403.csv",
+    "pr": null,
+    "components": "0.55 x_lgbbag_proba + 0.20 dl_ft_transformer + 0.25 dl_resnet"
+  },
+  "kaggle_submissions": [
+    {
+      "date": "2026-10-20",
+      "name": "baseline_lgbm",
+      "cv_f1": 0.421104691137622,
+      "public_f1": 0.43024
+    },
+    {
+      "date": "2026-10-20",
+      "name": "r2_lgbm_seed_bagging",
+      "cv_f1": 0.4246738681305708,
+      "public_f1": 0.43024
+    },
+    {
+      "date": "2026-10-20",
+      "name": "r4_lgbbag_feature_fraction_03",
+      "cv_f1": 0.425324440806106,
+      "public_f1": 0.43025
+    },
+    {
+      "date": "2026-10-20",
+      "name": "fs_final_extended",
+      "cv_f1": 0.42383,
+      "public_f1": 0.4297
+    },
+    {
+      "date": "2026-10-20",
+      "name": "fs_final",
+      "cv_f1": 0.4218928438337721,
+      "public_f1": 0.42524
+    },
+    {
+      "date": "2026-10-20",
+      "name": "dl_ft_transformer",
+      "cv_f1": 0.42036901046447583,
+      "public_f1": 0.42786
+    },
+    {
+      "date": "2026-10-20",
+      "name": "dl_blend",
+      "cv_f1": 0.42514106068248736,
+      "public_f1": 0.4305
+    },
+    {
+      "date": "2026-10-20",
+      "name": "ml_stack",
+      "cv_f1": 0.4256939742721733,
+      "public_f1": 0.43062
+    }
+  ]
+}

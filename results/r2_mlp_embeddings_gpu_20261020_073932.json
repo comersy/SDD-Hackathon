@@ -1,0 +1,46 @@
+{
+  "name": "r2_mlp_embeddings_gpu",
+  "idea": "MLP PyTorch sur GPU (composant diversifié pour un blend futur) sur les colonnes nettoyées de r1_clean_codes : catégorielles (<= 15 valeurs distinctes) -> codes factorisés + nn.Embedding(k+1, 4), numériques -> QuantileTransformer normal ajusté sur train, NaN -> 0 + indicateur isna ; réseau 512-256-1 avec BatchNorm/ReLU/Dropout 0.3, BCEWithLogitsLoss, AdamW 1e-3, batch 2048, 20 époques max, early stopping sur l'AUC de validation (patience 3)",
+  "timestamp": "20261020_073932",
+  "cv": {
+    "f1": 0.4177027027027027,
+    "threshold": 0.21999999999999992,
+    "precision": 0.332466880590861,
+    "recall": 0.5617106339158615,
+    "auc": 0.8499856118883647
+  },
+  "test_positive_rate": 0.1518,
+  "submission": "submissions/submission_r2_mlp_embeddings_gpu_20261020_073932.csv",
+  "runtime_s": 195.2,
+  "model": "mlp_torch",
+  "device": "cuda",
+  "n_features": 283,
+  "n_cat": 245,
+  "n_num": 38,
+  "emb_dim": 4,
+  "hidden": [
+    512,
+    256
+  ],
+  "dropout": 0.3,
+  "lr": 0.001,
+  "weight_decay": 1e-05,
+  "batch_size": 2048,
+  "max_epochs": 20,
+  "patience": 3,
+  "best_epochs": [
+    4,
+    3,
+    2,
+    4,
+    3
+  ],
+  "fold_aucs": [
+    0.8521730450923433,
+    0.8493932774226971,
+    0.8505590637147502,
+    0.8508140502653464,
+    0.8515175928814991
+  ],
+  "prep_time_s": 14.4
+}

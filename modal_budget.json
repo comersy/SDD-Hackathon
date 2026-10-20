@@ -1,0 +1,4 @@
+{
+  "cap_usd": 25,
+  "note": "Plafond local estime (Modal offre 30 $/mois de credits sur le plan Starter). modal_run.py refuse tout nouveau lancement au-dela. Les runs anterieurs au garde-fou sont estimes a 7 $ (ligne initiale de logs/modal_usage.jsonl)."
+}

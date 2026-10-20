@@ -1,0 +1,36 @@
+{
+  "best_cv": {
+    "f1": 0.4256939742721733,
+    "name": "ml_stack",
+    "script": "C:/Users/comer/SDD-Hackathon/experiments/ml_stack.py",
+    "results_json": "C:/Users/comer/SDD-Hackathon/results/ml_stack_20261020_110403.json"
+  },
+  "last_submitted_cv": 0.4256939742721733,
+  "best_kaggle": {
+    "f1": 0.43062,
+    "name": "ml_stack",
+    "script": "C:/Users/comer/SDD-Hackathon/experiments/ml_stack.py",
+    "submission": "C:/Users/comer/SDD-Hackathon/submissions/submission_ml_stack_20261020_110403.csv",
+    "pr": null
+  },
+  "kaggle_submissions": [
+    {
+      "date": "2026-10-20",
+      "name": "baseline_lgbm",
+      "cv_f1": 0.421104691137622,
+      "public_f1": 0.43024
+    },
+    {
+      "date": "2026-10-20",
+      "name": "r2_lgbm_seed_bagging",
+      "cv_f1": 0.4246738681305708,
+      "public_f1": 0.43024
+    },
+    {
+      "date": "2026-10-20",
+      "name": "ml_stack",
+      "cv_f1": 0.4256939742721733,
+      "public_f1": 0.43062
+    }
+  ]
+}
